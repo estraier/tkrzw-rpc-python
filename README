@@ -1,0 +1,33 @@
+===============================================================
+ Python client library of Tkrzw-RPC
+================================================================
+
+Please read the following documents.
+
+  COPYING           - license
+  CONTRIBUTING.md   - how to contribute
+  doc/index.xhtml   - main document
+
+Contents of the directory tree are below.
+
+  ./              - utility source code
+  ./tkrzw_rpc/    - package source code
+  ./example/      - sample code for tutorial
+
+This package provides a Python client library to access the service
+via gRPC protocol.  This package is independent of the core library
+of Tkrzw.  You don't have to install the core library.  Meanwhile,
+you have to install the library of gRPC for Python as described in
+the official document.  Python 3.6 or later is required to use this
+package.
+
+Enter the directory of the extracted package then perform installation.
+If your system has the another command except for the "python3"
+command, edit the Makefile beforehand.  Then, run these commands.
+
+ make
+ sudo make install
+
+Thanks.
+
+== END OF FILE ==
