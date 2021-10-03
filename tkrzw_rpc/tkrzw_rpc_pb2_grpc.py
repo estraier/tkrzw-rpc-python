@@ -110,10 +110,10 @@ class DBMServiceStub(object):
                 request_serializer=tkrzw__rpc__pb2.SynchronizeRequest.SerializeToString,
                 response_deserializer=tkrzw__rpc__pb2.SynchronizeResponse.FromString,
                 )
-        self.SearchModal = channel.unary_unary(
-                '/tkrzw.DBMService/SearchModal',
-                request_serializer=tkrzw__rpc__pb2.SearchModalRequest.SerializeToString,
-                response_deserializer=tkrzw__rpc__pb2.SearchModalResponse.FromString,
+        self.Search = channel.unary_unary(
+                '/tkrzw.DBMService/Search',
+                request_serializer=tkrzw__rpc__pb2.SearchRequest.SerializeToString,
+                response_deserializer=tkrzw__rpc__pb2.SearchResponse.FromString,
                 )
         self.Stream = channel.stream_stream(
                 '/tkrzw.DBMService/Stream',
@@ -255,7 +255,7 @@ class DBMServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def SearchModal(self, request, context):
+    def Search(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -383,10 +383,10 @@ def add_DBMServiceServicer_to_server(servicer, server):
                     request_deserializer=tkrzw__rpc__pb2.SynchronizeRequest.FromString,
                     response_serializer=tkrzw__rpc__pb2.SynchronizeResponse.SerializeToString,
             ),
-            'SearchModal': grpc.unary_unary_rpc_method_handler(
-                    servicer.SearchModal,
-                    request_deserializer=tkrzw__rpc__pb2.SearchModalRequest.FromString,
-                    response_serializer=tkrzw__rpc__pb2.SearchModalResponse.SerializeToString,
+            'Search': grpc.unary_unary_rpc_method_handler(
+                    servicer.Search,
+                    request_deserializer=tkrzw__rpc__pb2.SearchRequest.FromString,
+                    response_serializer=tkrzw__rpc__pb2.SearchResponse.SerializeToString,
             ),
             'Stream': grpc.stream_stream_rpc_method_handler(
                     servicer.Stream,
@@ -743,7 +743,7 @@ class DBMService(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def SearchModal(request,
+    def Search(request,
             target,
             options=(),
             channel_credentials=None,
@@ -753,9 +753,9 @@ class DBMService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/tkrzw.DBMService/SearchModal',
-            tkrzw__rpc__pb2.SearchModalRequest.SerializeToString,
-            tkrzw__rpc__pb2.SearchModalResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/tkrzw.DBMService/Search',
+            tkrzw__rpc__pb2.SearchRequest.SerializeToString,
+            tkrzw__rpc__pb2.SearchResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

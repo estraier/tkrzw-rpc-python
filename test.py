@@ -141,11 +141,12 @@ class TestTkrzw(unittest.TestCase):
     self.assertEqual(Status.SUCCESS, dbm.Rebuild())
     self.assertFalse(dbm.ShouldBeRebuilt())
     self.assertEqual(Status.SUCCESS, dbm.Synchronize(False))
-
-    
-
-
-    
+    for i in range(10):
+      self.assertEqual(Status.SUCCESS, dbm.Set(i, i))
+    keys = dbm.Search("regex", "[23]$", 5)
+    self.assertEqual(2, len(keys))
+    self.assertTrue("2" in keys)
+    self.assertTrue("3" in keys)
     self.assertEqual(Status.SUCCESS, dbm.Disconnect())
 
 

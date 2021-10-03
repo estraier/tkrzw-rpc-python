@@ -440,9 +440,6 @@ class RemoteDBM:
       return None
     request = tkrzw_rpc_pb2.GetRequest()
     request.dbm_index = self.dbm_index
-    
-    # Set index and timeout.  And others.
-    
     request.key = _MakeBytes(key)
     try:
       response = self.stub.Get(request, timeout=self.timeout)
@@ -854,9 +851,24 @@ class RemoteDBM:
     :param mode: The search mode.  "contain" extracts keys containing the pattern.  "begin" extracts keys beginning with the pattern.  "end" extracts keys ending with the pattern.  "regex" extracts keys partially matches the pattern of a regular expression.  "edit" extracts keys whose edit distance to the UTF-8 pattern is the least.  "editbin" extracts keys whose edit distance to the binary pattern is the least.
     :param pattern: The pattern for matching.
     :param capacity: The maximum records to obtain.  0 means unlimited.
-    :return: A list of keys matching the condition.
+    :return: A list of string keys matching the condition.
     """
-    pass  # native code
+    result = []
+    if not self.channel:
+      return result
+    request = tkrzw_rpc_pb2.SearchRequest()
+    request.dbm_index = self.dbm_index
+    request.mode = mode
+    request.pattern = _MakeBytes(pattern)
+    request.capacity = capacity
+    try:
+      response = self.stub.Search(request, timeout=self.timeout)
+    except grpc.RpcError as error:
+      return result
+    if response.status.code == Status.SUCCESS:
+      for key in response.matched:
+        result.append(key.decode("utf-8"))
+    return result
 
   def MakeIterator(self):
     """
