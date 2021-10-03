@@ -75,9 +75,12 @@ class TestTkrzw(unittest.TestCase):
     else:
       self.fail("no exception")
 
-  # RemoteDBM tests.
-  def testRemoteDBM(self):
+  # Basic tests.
+  def testBasic(self):
     dbm = RemoteDBM()
+    self.assertEqual(0, repr(dbm).find("<tkrzw_rpc.RemoteDBM"))
+    self.assertEqual(0, str(dbm).find("RemoteDBM"))
+    self.assertEqual(0, len(dbm))
     self.assertEqual(Status.SUCCESS, dbm.Connect("localhost:1978"))
     self.assertEqual(Status.SUCCESS, dbm.SetDBMIndex(-1))
     attrs = dbm.Inspect()
@@ -137,6 +140,7 @@ class TestTkrzw(unittest.TestCase):
     self.assertEqual(Status.SUCCESS, status)
     self.assertEqual(110, dbm.Increment("num", 5))
     self.assertEqual(3, dbm.Count())
+    self.assertEqual(3, len(dbm))
     self.assertTrue(dbm.GetFileSize() >= 0)
     self.assertEqual(Status.SUCCESS, dbm.Rebuild())
     self.assertFalse(dbm.ShouldBeRebuilt())
@@ -147,8 +151,186 @@ class TestTkrzw(unittest.TestCase):
     self.assertEqual(2, len(keys))
     self.assertTrue("2" in keys)
     self.assertTrue("3" in keys)
+    self.assertEqual(Status.SUCCESS, dbm.Clear())
+    dbm["japan"] = "tokyo"
+    self.assertEqual("tokyo", dbm["japan"])
+    del dbm["japan"]
+    try:
+      self.assertEqual("tokyo", dbm["japan"])
+    except StatusException as e:
+      self.assertEqual(Status.NOT_FOUND_ERROR, e.GetStatus())
+    else:
+      self.assertFalse("no exception")
+    try:
+      del dbm["japan"]
+    except StatusException as e:
+      self.assertEqual(Status.NOT_FOUND_ERROR, e.GetStatus())
+    else:
+      self.assertFalse("no exception")
+    self.assertEqual(0, len(dbm))
+    for i in range(1, 11):
+      dbm[i] = i * i
+      self.assertEqual(str(i * i).encode("utf-8"), dbm[i])
+    count = 0
+    for key, value in dbm:
+      self.assertEqual(int(key) ** 2, int(value))
+      count += 1
+    self.assertEqual(len(dbm), count)
     self.assertEqual(Status.SUCCESS, dbm.Disconnect())
 
+  # Iterator tests.
+  def testIterator(self):
+    dbm = RemoteDBM()
+    self.assertEqual(Status.SUCCESS, dbm.Connect("localhost:1978"))
+    self.assertEqual(Status.SUCCESS, dbm.Clear())
+    for i in range(10):
+      self.assertEqual(Status.SUCCESS, dbm.Set(i, i * i))
+    it = dbm.MakeIterator()
+    self.assertEqual(0, repr(it).find("<tkrzw_rpc.Iterator"))
+    self.assertEqual(0, str(it).find("Iterator"))
+    self.assertEqual(Status.SUCCESS, it.First())
+    count = 0
+    while True:
+      status = Status(Status.UNKNOWN_ERROR)
+      record = it.Get(status)
+      if record:
+        self.assertEqual(Status.SUCCESS, status)
+      else:
+        self.assertEqual(Status.NOT_FOUND_ERROR, status)
+        break
+      self.assertEqual(int(record[0]) ** 2, int(record[1]))
+      status.Set(Status.UNKNOWN_ERROR)
+      self.assertEqual(record[0], it.GetKey(status))
+      self.assertEqual(Status.SUCCESS, status)
+      self.assertEqual(record[1], it.GetValue(status))
+      self.assertEqual(Status.SUCCESS, status)
+      record = it.GetStr(status)
+      self.assertTrue(record)
+      self.assertEqual(int(record[0]) ** 2, int(record[1]))
+      self.assertEqual(Status.SUCCESS, status)
+      status.Set(Status.UNKNOWN_ERROR)
+      self.assertEqual(record[0], it.GetKeyStr(status))
+      self.assertEqual(Status.SUCCESS, status)
+      status.Set(Status.UNKNOWN_ERROR)
+      self.assertEqual(record[1], it.GetValueStr(status))
+      self.assertEqual(Status.SUCCESS, status)
+      self.assertEqual(Status.SUCCESS, it.Next())
+      count += 1
+    self.assertEqual(dbm.Count(), count)
+    for i in range(count):
+      self.assertEqual(Status.SUCCESS, it.Jump(i))
+      record = it.Get(status)
+      self.assertEqual(i, int(record[0]))
+      self.assertEqual(i * i, int(record[1]))
+    status = it.Last()
+    if status == Status.SUCCESS:
+      count = 0
+      while True:
+        status = Status()
+        record = it.Get(status)
+        if record:
+          self.assertEqual(Status.SUCCESS, status)
+        else:
+          self.assertEqual(Status.NOT_FOUND_ERROR, status)
+          break
+        self.assertEqual(int(record[0]) ** 2, int(record[1]))
+        self.assertEqual(Status.SUCCESS, it.Previous())
+        count += 1
+      self.assertEqual(dbm.Count(), count)
+      self.assertEqual(Status.SUCCESS, it.JumpLower("0"))
+      self.assertEqual(None, it.GetKeyStr(status))
+      self.assertEqual(Status.NOT_FOUND_ERROR, status)
+      self.assertEqual(Status.SUCCESS, it.JumpLower("0", True))
+      self.assertEqual("0", it.GetKeyStr(status))
+      self.assertEqual(Status.SUCCESS, status)
+      self.assertEqual(Status.SUCCESS, it.Next())
+      self.assertEqual("1", it.GetKeyStr())
+      self.assertEqual(Status.SUCCESS, it.JumpUpper("9"))
+      self.assertEqual(None, it.GetKeyStr(status))
+      self.assertEqual(Status.NOT_FOUND_ERROR, status)
+      self.assertEqual(Status.SUCCESS, it.JumpLower("9", True))
+      self.assertEqual("9", it.GetKeyStr(status))
+      self.assertEqual(Status.SUCCESS, status)
+      self.assertEqual(Status.SUCCESS, it.Previous())
+      self.assertEqual("8", it.GetKeyStr())
+      self.assertEqual(Status.SUCCESS, it.Set("eight"))
+      self.assertEqual("eight", it.GetValueStr())
+      self.assertEqual(Status.SUCCESS, it.Remove())
+      self.assertEqual("9", it.GetKeyStr())
+      self.assertEqual(Status.SUCCESS, it.Remove())
+      self.assertEqual(Status.NOT_FOUND_ERROR, it.Remove())
+      self.assertEqual(8, dbm.Count())
+    else:
+      self.assertEqual(Status.NOT_IMPLEMENTED_ERROR, status)
+    self.assertEqual(Status.SUCCESS, dbm.Disconnect())
+
+  # Thread tests.
+  def testThread(self):
+    dbm = RemoteDBM()
+    self.assertEqual(Status.SUCCESS, dbm.Connect("localhost:1978"))
+    rnd_state = random.Random()
+    num_records = 5000
+    num_threads = 5
+    records = {}
+    test = self
+    class Task(threading.Thread):
+      def __init__(self, test, thid):
+        threading.Thread.__init__(self)
+        self.thid = thid
+        test = test
+      def run(self):
+        for i in range(0, num_records):
+          key_num = rnd_state.randint(1, num_records)
+          key_num = key_num - key_num % num_threads + self.thid;
+          key = str(key_num)
+          value = str(key_num * key_num)
+          if rnd_state.randint(0, num_records) == 0:
+            test.assertEqual(Status.SUCCESS, dbm.Rebuild())
+          elif rnd_state.randint(0, 10) == 0:
+            iter = dbm.MakeIterator()
+            iter.Jump(key)
+            status = Status()
+            record = iter.Get(status)
+            if status == Status.SUCCESS:
+              test.assertEqual(2, len(record))
+              test.assertEqual(key, record[0].decode())
+              test.assertEqual(value, record[1].decode())
+              iter.Next().OrDie();
+          elif rnd_state.randint(0, 4) == 0:
+            status = Status()
+            rec_value = dbm.Get(key, status)
+            if status == Status.SUCCESS:
+              test.assertEqual(value, rec_value.decode())
+            else:
+              test.assertEqual(Status.NOT_FOUND_ERROR, status)
+          elif rnd_state.randint(0, 4) == 0:
+            status = dbm.Remove(key)
+            if status == Status.SUCCESS:
+              del records[key]
+            else:
+              test.assertEqual(Status.NOT_FOUND_ERROR, status)
+          else:
+            overwrite = rnd_state.randint(0, 2) == 0
+            status = dbm.Set(key, value, overwrite)
+            if status == Status.SUCCESS:
+              records[key] = value
+            else:
+              test.assertEqual(Status.DUPLICATION_ERROR, status)
+          if rnd_state.randint(0, 10) == 0:
+            time.sleep(0.00001)
+    threads = []
+    for thid in range(0, num_threads):
+        threads.append(Task(self, thid))
+    for th in threads:
+        th.start()
+    for th in threads:
+        th.join()
+    it_records = {}
+    for key, value in dbm:
+      it_records[key.decode()] = value.decode()
+    self.assertEqual(records, it_records)
+    self.assertEqual(Status.SUCCESS, dbm.Disconnect())
+    
 
 # Main routine.
 def main(argv):

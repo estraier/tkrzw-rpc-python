@@ -16,6 +16,7 @@
 import grpc
 import pathlib
 import sys
+import threading
 import time
 
 sys.path.append(str(pathlib.Path(__file__).parent))
@@ -55,7 +56,7 @@ class Status:
   """
   Status of operations.
   """
-  
+
   SUCCESS = 0
   """Success."""
   UNKNOWN_ERROR = 1
@@ -242,7 +243,7 @@ class StatusException(RuntimeError):
 
     :return: The status object.
     """
-    return status
+    return self.status
 
 
 class RemoteDBM:
@@ -251,7 +252,7 @@ class RemoteDBM:
 
   All operations are thread-safe; Multiple threads can access the same database concurrently.  The SetDBMIndex affects all threads so it should be called before the object is shared.  This class implements the iterable protocol so an instance is usable with "for-in" loop.
   """
-  
+
   def __init__(self):
     """
     Does nothing especially.
@@ -267,7 +268,8 @@ class RemoteDBM:
 
     :return: The string representation of the object.
     """
-    pass  # native code
+    expr = "connected" if self.channel else "not connected"
+    return "<tkrzw_rpc.RemoteDBM: " + hex(id(self)) + ": " + expr + ">"
 
   def __str__(self):
     """
@@ -275,25 +277,47 @@ class RemoteDBM:
 
     :return: The string representation of the content.
     """
-    pass  # native code
+    expr = "connected" if self.channel else "not connected"
+    return "RemoteDBM: " + hex(id(self)) + ": " + expr
 
   def __len__(self):
     """
     Gets the number of records, to enable the len operator.
 
-    :return: The number of records on success, or -1 on failure.
+    :return: The number of records on success, or 0 on failure.
     """
-    pass  # native code
+    if not self.channel:
+      return 0
+    request = tkrzw_rpc_pb2.CountRequest()
+    request.dbm_index = self.dbm_index
+    try:
+      response = self.stub.Count(request, timeout=self.timeout)
+    except grpc.RpcError as error:
+      return 0
+    return response.count
 
   def __getitem__(self, key):
     """
     Gets the value of a record, to enable the [] operator.
 
     :param key: The key of the record.
-    :return: The value of the matching record or None on failure.
+    :return: The value of the matching record.  An exception is raised for missing records.  If the given key is a string, the returned value is also a string.  Otherwise, the return value is bytes.
     :raise StatusException: An exception containing the status object.
     """
-    pass  # native code
+    if not self.channel:
+      raise StatusException(Status(Status.PRECONDITION_ERROR, "not opened connection"))
+    request = tkrzw_rpc_pb2.GetRequest()
+    request.dbm_index = self.dbm_index
+    request.key = _MakeBytes(key)
+    try:
+      response = self.stub.Get(request, timeout=self.timeout)
+    except grpc.RpcError as error:
+      raise StatusException(Status(Status.NETWORK_ERROR, _StrGRPCError(error)))
+    if response.status.code != Status.SUCCESS:
+      raise StatusException(_MakeStatusFromProto(response.status))
+    if isinstance(key, str):
+      return response.value.decode("utf-8")
+    return response.value
 
   def __setitem__(self, key, value):
     """
@@ -301,10 +325,39 @@ class RemoteDBM:
 
     :param key: The key of the record.
     :param value: The value of the record.
-    :return: The value of the matching record or None on failure.
     :raise StatusException: An exception containing the status object.
     """
-    pass  # native code
+    if not self.channel:
+      raise StatusException(Status(Status.PRECONDITION_ERROR, "not opened connection"))
+    request = tkrzw_rpc_pb2.SetRequest()
+    request.dbm_index = self.dbm_index
+    request.key = _MakeBytes(key)
+    request.value = _MakeBytes(value)
+    try:
+      response = self.stub.Set(request, timeout=self.timeout)
+    except grpc.RpcError as error:
+      raise StatusException(Status(Status.NETWORK_ERROR, _StrGRPCError(error)))
+    if response.status.code != Status.SUCCESS:
+      raise StatusException(_MakeStatusFromProto(response.status))
+
+  def __delitem__(self, key):
+    """
+    Removes a record of a key, to enable the del [] operator.
+
+    :param key: The key of the record.
+    :raise StatusException: An exception containing the status object.
+    """
+    if not self.channel:
+      raise StatusException(Status(Status.PRECONDITION_ERROR, "not opened connection"))
+    request = tkrzw_rpc_pb2.RemoveRequest()
+    request.dbm_index = self.dbm_index
+    request.key = _MakeBytes(key)
+    try:
+      response = self.stub.Remove(request, timeout=self.timeout)
+    except grpc.RpcError as error:
+      raise StatusException(Status(Status.NETWORK_ERROR, _StrGRPCError(error)))
+    if response.status.code != Status.SUCCESS:
+      raise StatusException(_MakeStatusFromProto(response.status))
 
   def __iter__(self):
     """
@@ -312,7 +365,9 @@ class RemoteDBM:
 
     :return: The iterator for each record.
     """
-    pass  # native code
+    it = self.MakeIterator()
+    it.First()
+    return it
 
   def Connect(self, address, timeout=None):
     """
@@ -876,7 +931,383 @@ class RemoteDBM:
 
     :return: The iterator for each record.
     """
-    pass  # native code
+    return Iterator(self)
+
+
+class Iterator:
+  """
+  Iterator for each record.
+  """
+
+  def __init__(self, dbm):
+    """
+    Initializes the iterator.
+
+    :param dbm: The database to scan.
+    """
+    if not dbm.channel:
+      raise StatusException(Status(Status.PRECONDITION_ERROR, "not opened connection"))
+    self.dbm = dbm
+    class RequestIterator():
+      def __init__(self):
+        self.request = None
+        self.alive= True
+        self.event = threading.Event()
+      def __next__(self):
+        try:
+          self.event.wait()
+          self.event.clear()
+          if self.request:
+            return self.request
+        except Error as e:
+          print(e)
+        raise StopIteration
+    self.req_it = RequestIterator()
+    try:
+      self.res_it = dbm.stub.Iterate(self.req_it)
+    except grpc.RpcError as error:
+      self.dbm = None
+      self.req_it = None
+
+  def __repr__(self):
+    """
+    Returns A string representation of the object.
+
+    :return: The string representation of the object.
+    """
+    return "<tkrzw_rpc.Iterator: " + hex(id(self)) + ">"
+
+  def __str__(self):
+    """
+    Returns A string representation of the content.
+
+    :return: The string representation of the content.
+    """
+    return "Iterator: " + hex(id(self))
+
+  def __next__(self):
+    """
+    Moves the iterator to the next record, to comply to the iterator protocol.
+
+    :return: A tuple of The key and the value of the current record.
+    """
+    request = tkrzw_rpc_pb2.IterateRequest()
+    request.dbm_index = self.dbm.dbm_index
+    request.operation = tkrzw_rpc_pb2.IterateRequest.OP_GET
+    try:
+      self.req_it.request = request
+      self.req_it.event.set()
+      response = self.res_it.__next__()
+      self.req_it.request = None
+    except grpc.RpcError as error:
+      raise StatusException(Status(Status.NETWORK_ERROR, _StrGRPCError(error)))
+    if response.status.code == Status.SUCCESS:
+      self.Next()
+      return (response.key, response.value)
+    if response.status.code == Status.NOT_FOUND_ERROR:
+      raise StopIteration
+    raise StatusException(_MakeStatusFromProto(response.status))
+
+  def First(self):
+    """
+    Initializes the iterator to indicate the first record.
+
+    :return: The result status.
+
+    Even if there's no record, the operation doesn't fail.
+    """
+    request = tkrzw_rpc_pb2.IterateRequest()
+    request.dbm_index = self.dbm.dbm_index
+    request.operation = tkrzw_rpc_pb2.IterateRequest.OP_FIRST
+    try:
+      self.req_it.request = request
+      self.req_it.event.set()
+      response = self.res_it.__next__()
+      self.req_it.request = None
+    except grpc.RpcError as error:
+      return Status(Status.NETWORK_ERROR, _StrGRPCError(error))
+    return _MakeStatusFromProto(response.status)
+
+  def Last(self):
+    """
+    Initializes the iterator to indicate the last record.
+
+    :return: The result status.
+
+    Even if there's no record, the operation doesn't fail.  This method is suppoerted only by ordered databases.
+    """
+    request = tkrzw_rpc_pb2.IterateRequest()
+    request.dbm_index = self.dbm.dbm_index
+    request.operation = tkrzw_rpc_pb2.IterateRequest.OP_LAST
+    try:
+      self.req_it.request = request
+      self.req_it.event.set()
+      response = self.res_it.__next__()
+      self.req_it.request = None
+    except grpc.RpcError as error:
+      return Status(Status.NETWORK_ERROR, _StrGRPCError(error))
+    return _MakeStatusFromProto(response.status)
+
+  def Jump(self, key):
+    """
+    Initializes the iterator to indicate a specific record.
+
+    :param key: The key of the record to look for.
+    :return: The result status.
+
+    Ordered databases can support "lower bound" jump; If there's no record with the same key, the iterator refers to the first record whose key is greater than the given key.  The operation fails with unordered databases if there's no record with the same key.
+    """
+    request = tkrzw_rpc_pb2.IterateRequest()
+    request.dbm_index = self.dbm.dbm_index
+    request.operation = tkrzw_rpc_pb2.IterateRequest.OP_JUMP
+    request.key = _MakeBytes(key)
+    try:
+      self.req_it.request = request
+      self.req_it.event.set()
+      response = self.res_it.__next__()
+      self.req_it.request = None
+    except grpc.RpcError as error:
+      return Status(Status.NETWORK_ERROR, _StrGRPCError(error))
+    return _MakeStatusFromProto(response.status)
+
+  def JumpLower(self, key, inclusive=False):
+    """
+    Initializes the iterator to indicate the last record whose key is lower than a given key.
+
+    :param key: The key to compare with.
+    :param inclusive: If true, the considtion is inclusive: equal to or lower than the key.
+    :return: The result status.
+
+    Even if there's no matching record, the operation doesn't fail.  This method is suppoerted only by ordered databases.
+    """
+    request = tkrzw_rpc_pb2.IterateRequest()
+    request.dbm_index = self.dbm.dbm_index
+    request.operation = tkrzw_rpc_pb2.IterateRequest.OP_JUMP_LOWER
+    request.key = _MakeBytes(key)
+    request.jump_inclusive = inclusive
+    try:
+      self.req_it.request = request
+      self.req_it.event.set()
+      response = self.res_it.__next__()
+      self.req_it.request = None
+    except grpc.RpcError as error:
+      return Status(Status.NETWORK_ERROR, _StrGRPCError(error))
+    return _MakeStatusFromProto(response.status)
+
+  def JumpUpper(self, key, inclusive=False):
+    """
+    Initializes the iterator to indicate the first record whose key is upper than a given key.
+
+    :param key: The key to compare with.
+    :param inclusive: If true, the considtion is inclusive: equal to or upper than the key.
+    :return: The result status.
+
+    Even if there's no matching record, the operation doesn't fail.  This method is suppoerted only by ordered databases.
+    """
+    request = tkrzw_rpc_pb2.IterateRequest()
+    request.dbm_index = self.dbm.dbm_index
+    request.operation = tkrzw_rpc_pb2.IterateRequest.OP_JUMP_UPPER
+    request.key = _MakeBytes(key)
+    request.jump_inclusive = inclusive
+    try:
+      self.req_it.request = request
+      self.req_it.event.set()
+      response = self.res_it.__next__()
+      self.req_it.request = None
+    except grpc.RpcError as error:
+      return Status(Status.NETWORK_ERROR, _StrGRPCError(error))
+    return _MakeStatusFromProto(response.status)
+
+  def Next(self):
+    """
+    Moves the iterator to the next record.
+
+    :return: The result status.
+
+    If the current record is missing, the operation fails.  Even if there's no next record, the operation doesn't fail.
+    """
+    request = tkrzw_rpc_pb2.IterateRequest()
+    request.dbm_index = self.dbm.dbm_index
+    request.operation = tkrzw_rpc_pb2.IterateRequest.OP_NEXT
+    try:
+      self.req_it.request = request
+      self.req_it.event.set()
+      response = self.res_it.__next__()
+      self.req_it.request = None
+    except grpc.RpcError as error:
+      return Status(Status.NETWORK_ERROR, _StrGRPCError(error))
+    return _MakeStatusFromProto(response.status)
+
+  def Previous(self):
+    """
+    Moves the iterator to the previous record.
+
+    :return: The result status.
+
+    If the current record is missing, the operation fails.  Even if there's no previous record, the operation doesn't fail.  This method is suppoerted only by ordered databases.
+    """
+    request = tkrzw_rpc_pb2.IterateRequest()
+    request.dbm_index = self.dbm.dbm_index
+    request.operation = tkrzw_rpc_pb2.IterateRequest.OP_PREVIOUS
+    try:
+      self.req_it.request = request
+      self.req_it.event.set()
+      response = self.res_it.__next__()
+      self.req_it.request = None
+    except grpc.RpcError as error:
+      return Status(Status.NETWORK_ERROR, _StrGRPCError(error))
+    return _MakeStatusFromProto(response.status)
+
+  def Get(self, status=None):
+    """
+    Gets the key and the value of the current record of the iterator.
+
+    :param status: A status object to which the result status is assigned.  It can be omitted.
+    :return: A tuple of the bytes key and the bytes value of the current record.  On failure, None is returned.
+    """
+    request = tkrzw_rpc_pb2.IterateRequest()
+    request.dbm_index = self.dbm.dbm_index
+    request.operation = tkrzw_rpc_pb2.IterateRequest.OP_GET
+    try:
+      self.req_it.request = request
+      self.req_it.event.set()
+      response = self.res_it.__next__()
+      self.req_it.request = None
+    except grpc.RpcError as error:
+      if status:
+        status.Set(Status.NETWORK_ERROR, _StrGRPCError(error))
+      return None
+    if status:
+      _SetStatusFromProto(status, response.status)
+    if response.status.code == Status.SUCCESS:
+      return (response.key, response.value)
+    return None
+
+  def GetStr(self, status=None):
+    """
+    Gets the key and the value of the current record of the iterator, as strings.
+
+    :param status: A status object to which the result status is assigned.  It can be omitted.
+    :return: A tuple of the string key and the string value of the current record.  On failure, None is returned.
+    """
+    record = self.Get(status)
+    if record:
+      return (record[0].decode("utf-8"), record[1].decode("utf-8"))
+    return None
+
+  def GetKey(self, status=None):
+    """
+    Gets the key of the current record.
+
+    :param status: A status object to which the result status is assigned.  It can be omitted.
+    :return: The bytes key of the current record or None on failure.
+    """
+    request = tkrzw_rpc_pb2.IterateRequest()
+    request.dbm_index = self.dbm.dbm_index
+    request.operation = tkrzw_rpc_pb2.IterateRequest.OP_GET
+    request.omit_value = True
+    try:
+      self.req_it.request = request
+      self.req_it.event.set()
+      response = self.res_it.__next__()
+      self.req_it.request = None
+    except grpc.RpcError as error:
+      if status:
+        status.Set(Status.NETWORK_ERROR, _StrGRPCError(error))
+      return None
+    if status:
+      _SetStatusFromProto(status, response.status)
+    if response.status.code == Status.SUCCESS:
+      return response.key
+    return None
+
+  def GetKeyStr(self, status=None):
+    """
+    Gets the key of the current record, as a string.
+
+    :param status: A status object to which the result status is assigned.  It can be omitted.
+    :return: The string key of the current record or None on failure.
+    """
+    key = self.GetKey(status)
+    if key:
+      return key.decode("utf-8")
+    return None
+
+  def GetValue(self, status=None):
+    """
+    Gets the value of the current record.
+
+    :param status: A status object to which the result status is assigned.  It can be omitted.
+    :return: The bytes value of the current record or None on failure.
+    """
+    request = tkrzw_rpc_pb2.IterateRequest()
+    request.dbm_index = self.dbm.dbm_index
+    request.operation = tkrzw_rpc_pb2.IterateRequest.OP_GET
+    request.omit_key = True
+    try:
+      self.req_it.request = request
+      self.req_it.event.set()
+      response = self.res_it.__next__()
+      self.req_it.request = None
+    except grpc.RpcError as error:
+      if status:
+        status.Set(Status.NETWORK_ERROR, _StrGRPCError(error))
+      return None
+    if status:
+      _SetStatusFromProto(status, response.status)
+    if response.status.code == Status.SUCCESS:
+      return response.value
+    return None
+
+  def GetValueStr(self, status=None):
+    """
+    Gets the value of the current record, as a string.
+
+    :param status: A status object to which the result status is assigned.  It can be omitted.
+    :return: The string value of the current record or None on failure.
+    """
+    value = self.GetValue(status)
+    if value:
+      return value.decode("utf-8")
+    return None
+
+  def Set(self, value):
+    """
+    Sets the value of the current record.
+
+    :param value: The value of the record.
+    :return: The result status.
+    """
+    request = tkrzw_rpc_pb2.IterateRequest()
+    request.dbm_index = self.dbm.dbm_index
+    request.operation = tkrzw_rpc_pb2.IterateRequest.OP_SET
+    request.value = _MakeBytes(value)
+    try:
+      self.req_it.request = request
+      self.req_it.event.set()
+      response = self.res_it.__next__()
+      self.req_it.request = None
+    except grpc.RpcError as error:
+      return Status(Status.NETWORK_ERROR, _StrGRPCError(error))
+    return _MakeStatusFromProto(response.status)
+
+  def Remove(self):
+    """
+    Removes the current record.
+
+    :return: The result status.
+    """
+    request = tkrzw_rpc_pb2.IterateRequest()
+    request.dbm_index = self.dbm.dbm_index
+    request.operation = tkrzw_rpc_pb2.IterateRequest.OP_REMOVE
+    try:
+      self.req_it.request = request
+      self.req_it.event.set()
+      response = self.res_it.__next__()
+      self.req_it.request = None
+    except grpc.RpcError as error:
+      return Status(Status.NETWORK_ERROR, _StrGRPCError(error))
+    return _MakeStatusFromProto(response.status)
 
 
 # END OF FILE
