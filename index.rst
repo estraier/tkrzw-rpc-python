@@ -6,7 +6,9 @@ Module and Classes
 
    tkrzw_rpc
    tkrzw_rpc.Status
+   tkrzw_rpc.StatusException
    tkrzw_rpc.RemoteDBM
+   tkrzw_rpc.Iterator
 
 Introduction
 ============
@@ -34,13 +36,17 @@ Enter the directory of the extracted package then perform installation.  If your
 Example
 =======
 
-The following code is a typical example to use a database.  A DBM object can be used like a dictionary object.  As DBM implements the generic iterator protocol, you can access each record with the "for" loop.::
+Before running these examples, you have to run a database server by the following command.  It runs the server at the port 1978 on the local machine.::
+
+ tkrzw_server 
+
+The following code is a typical example to use a database.  A RemoteDBM object can be used like a dictionary object.  As RemoteDBM implements the generic iterator protocol, you can access each record with the "for" loop.::
 
  import tkrzw_rpc
 
  # Prepares the database.
- dbm = tkrzw.DBM()
- dbm.Open("casket.tkh", True, truncate=True, num_buckets=100)
+ dbm = tkrzw_rpc.RemoteDBM()
+ dbm.Connect("localhost:1978")
 
  # Sets records.
  # If the operation fails, a runtime exception is raised.
@@ -57,7 +63,7 @@ The following code is a typical example to use a database.  A DBM object can be 
  print(dbm["third"])
  try:
      print(dbm["fourth"])
- except tkrzw.StatusException as e:
+ except tkrzw_rpc.StatusException as e:
      print(repr(e))
 
  # Traverses records.
@@ -65,8 +71,63 @@ The following code is a typical example to use a database.  A DBM object can be 
  for key, value in dbm:
      print(key.decode(), value.decode())
 
- # Closes the database.
- dbm.Close()
+ # Closes the connection.
+ dbm.Disconnect()
+
+The following code is a more complex example.  Resources of DBM and Iterator are bound to their objects so when the refenrece count becomes zero, resources are released.  Even if the database is not closed, the destructor closes it implicitly.  The method "OrDie" throws an exception on failure so it is useful for checking errors.::
+
+ import tkrzw_rpc
+
+ # Prepares the database.
+ # The timeout is in seconds.
+ dbm = tkrzw_rpc.RemoteDBM()
+ status = dbm.Connect("localhost:1978", timeout=10)
+ if not status.IsOK():
+     raise tkrzw_rpc.StatusException(status)
+
+ # Sets the index of the database to operate.
+ # The default value 0 means the first database on the server.
+ # 1 means the second one and 2 means the third one, if any.
+ dbm.SetDBMIndex(0).OrDie()
+
+ # Sets records.
+ # The method OrDie raises a runtime error on failure.
+ dbm.Set(1, "hop").OrDie()
+ dbm.Set(2, "step").OrDie()
+ dbm.Set(3, "jump").OrDie()
+
+ # Retrieves records without checking errors.
+ # On failure, the return value is None.
+ print(dbm.GetStr(1))
+ print(dbm.GetStr(2))
+ print(dbm.GetStr(3))
+ print(dbm.GetStr(4))
+
+ # To know the status of retrieval, give a status object to Get.
+ # You can compare a status object and a status code directly.
+ status = tkrzw_rpc.Status()
+ value = dbm.GetStr(1, status)
+ print("status: " + str(status))
+ if status == tkrzw_rpc.Status.SUCCESS:
+     print("value: " + value)
+
+ # Rebuilds the database.
+ # Optional parameters compatible with the database type can be given.
+ dbm.Rebuild().OrDie()
+
+ # Traverses records with an iterator.
+ iter = dbm.MakeIterator()
+ iter.First()
+ while True:
+     status = tkrzw_rpc.Status()
+     record = iter.GetStr(status)
+     if not status.IsOK():
+         break
+     print(record[0], record[1])
+     iter.Next()
+
+ # Closes the connection.
+ dbm.Disconnect().OrDie()
 
 Indices and tables
 ==================

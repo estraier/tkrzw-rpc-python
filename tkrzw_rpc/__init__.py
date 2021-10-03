@@ -333,6 +333,7 @@ class RemoteDBM:
     request.dbm_index = self.dbm_index
     request.key = _MakeBytes(key)
     request.value = _MakeBytes(value)
+    request.overwrite = True
     try:
       response = self.stub.Set(request, timeout=self.timeout)
     except grpc.RpcError as error:
