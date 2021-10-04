@@ -269,8 +269,9 @@ class TestTkrzw(unittest.TestCase):
     dbm = RemoteDBM()
     self.assertEqual(Status.SUCCESS, dbm.Connect("localhost:1978"))
     self.assertEqual(Status.SUCCESS, dbm.Clear())
+    is_ordered = dbm.Inspect()["class"] in ("TreeDBM", "SkipDBM", "BabyDBM", "StdTreeDBM")
     rnd_state = random.Random()
-    num_records = 5000
+    num_records = 1000
     num_threads = 5
     records = {}
     class Task(threading.Thread):
@@ -293,8 +294,9 @@ class TestTkrzw(unittest.TestCase):
             record = iter.Get(status)
             if status == Status.SUCCESS:
               self.test.assertEqual(2, len(record))
-              self.test.assertEqual(key, record[0].decode())
-              self.test.assertEqual(value, record[1].decode())
+              if not is_ordered:
+                self.test.assertEqual(key, record[0].decode())
+                self.test.assertEqual(value, record[1].decode())
               status = iter.Next()
               self.test.assertTrue(status == Status.SUCCESS or status == Status.NOT_FOUND_ERROR)
           elif rnd_state.randint(0, 4) == 0:

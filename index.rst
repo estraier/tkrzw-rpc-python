@@ -33,6 +33,11 @@ Enter the directory of the extracted package then perform installation.  If your
  make
  sudo make install
 
+To perform the tests, run these command on two respective terminals.::
+
+ tkrzw_server
+ make check
+
 Example
 =======
 

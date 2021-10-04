@@ -28,6 +28,11 @@ command, edit the Makefile beforehand.  Then, run these commands.
  make
  sudo make install
 
+To perform the tests, run these command on two respective terminals.
+
+ tkrzw_server
+ make check
+
 Thanks.
 
 == END OF FILE ==

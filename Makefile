@@ -41,7 +41,10 @@ dist :
 distclean : clean apidocclean
 
 check :
-	$(RUNENV) $(PYTHON) test.py 
+	$(RUNENV) $(PYTHON) test.py
+	$(RUNENV) $(PYTHON) perf.py --iter 10000 --threads 3
+	$(RUNENV) $(PYTHON) perf.py --iter 10000 --threads 3 --random
+	echo $(RUNENV) $(PYTHON) wicked.py --iter 5000 --threads 3
 	@printf '\n'
 	@printf '#================================================================\n'
 	@printf '# Checking completed.\n'
