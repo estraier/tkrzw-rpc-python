@@ -33,7 +33,7 @@ uninstall :
 dist :
 	$(MAKE) distclean
 	rm -Rf "../$(PACKAGEDIR)" "../$(PACKAGETGZ)"
-	cd .. && cp -R tkrzw-python $(PACKAGEDIR) && \
+	cd .. && cp -R tkrzw-rpc-python $(PACKAGEDIR) && \
 	  tar --exclude=".*" -cvf - $(PACKAGEDIR) | gzip -c > $(PACKAGETGZ)
 	rm -Rf "../$(PACKAGEDIR)"
 	sync ; sync
