@@ -268,16 +268,16 @@ class TestTkrzw(unittest.TestCase):
   def testThread(self):
     dbm = RemoteDBM()
     self.assertEqual(Status.SUCCESS, dbm.Connect("localhost:1978"))
+    self.assertEqual(Status.SUCCESS, dbm.Clear())
     rnd_state = random.Random()
     num_records = 5000
     num_threads = 5
     records = {}
-    test = self
     class Task(threading.Thread):
       def __init__(self, test, thid):
         threading.Thread.__init__(self)
         self.thid = thid
-        test = test
+        self.test = test
       def run(self):
         for i in range(0, num_records):
           key_num = rnd_state.randint(1, num_records)
@@ -285,37 +285,38 @@ class TestTkrzw(unittest.TestCase):
           key = str(key_num)
           value = str(key_num * key_num)
           if rnd_state.randint(0, num_records) == 0:
-            test.assertEqual(Status.SUCCESS, dbm.Rebuild())
+            self.test.assertEqual(Status.SUCCESS, dbm.Rebuild())
           elif rnd_state.randint(0, 10) == 0:
             iter = dbm.MakeIterator()
             iter.Jump(key)
             status = Status()
             record = iter.Get(status)
             if status == Status.SUCCESS:
-              test.assertEqual(2, len(record))
-              test.assertEqual(key, record[0].decode())
-              test.assertEqual(value, record[1].decode())
-              iter.Next().OrDie();
+              self.test.assertEqual(2, len(record))
+              self.test.assertEqual(key, record[0].decode())
+              self.test.assertEqual(value, record[1].decode())
+              status = iter.Next()
+              self.test.assertTrue(status == Status.SUCCESS or status == Status.NOT_FOUND_ERROR)
           elif rnd_state.randint(0, 4) == 0:
             status = Status()
             rec_value = dbm.Get(key, status)
             if status == Status.SUCCESS:
-              test.assertEqual(value, rec_value.decode())
+              self.test.assertEqual(value, rec_value.decode())
             else:
-              test.assertEqual(Status.NOT_FOUND_ERROR, status)
+              self.test.assertEqual(Status.NOT_FOUND_ERROR, status)
           elif rnd_state.randint(0, 4) == 0:
             status = dbm.Remove(key)
             if status == Status.SUCCESS:
               del records[key]
             else:
-              test.assertEqual(Status.NOT_FOUND_ERROR, status)
+              self.test.assertEqual(Status.NOT_FOUND_ERROR, status)
           else:
             overwrite = rnd_state.randint(0, 2) == 0
             status = dbm.Set(key, value, overwrite)
             if status == Status.SUCCESS:
               records[key] = value
             else:
-              test.assertEqual(Status.DUPLICATION_ERROR, status)
+              self.test.assertEqual(Status.DUPLICATION_ERROR, status)
           if rnd_state.randint(0, 10) == 0:
             time.sleep(0.00001)
     threads = []

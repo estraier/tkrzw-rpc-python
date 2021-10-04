@@ -952,16 +952,12 @@ class Iterator:
     class RequestIterator():
       def __init__(self):
         self.request = None
-        self.alive= True
         self.event = threading.Event()
       def __next__(self):
-        try:
-          self.event.wait()
-          self.event.clear()
-          if self.request:
-            return self.request
-        except Error as e:
-          print(e)
+        self.event.wait()
+        self.event.clear()
+        if self.request:
+          return self.request
         raise StopIteration
     self.req_it = RequestIterator()
     try:
@@ -969,6 +965,13 @@ class Iterator:
     except grpc.RpcError as error:
       self.dbm = None
       self.req_it = None
+
+  def __del__(self):
+    """
+    Destructs the iterator.
+    """
+    self.request = None
+    self.req_it.event.set()
 
   def __repr__(self):
     """

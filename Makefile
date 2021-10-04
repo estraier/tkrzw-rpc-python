@@ -1,7 +1,7 @@
 # Makefile for Tkrzw-RPC for Python
 
 PACKAGE = tkrzw-rpc-python
-VERSION = 0.1.1
+VERSION = 0.1.2
 PACKAGEDIR = $(PACKAGE)-$(VERSION)
 PACKAGETGZ = $(PACKAGE)-$(VERSION).tar.gz
 
