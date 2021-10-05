@@ -15,18 +15,18 @@ _sym_db = _symbol_database.Default()
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='tkrzw_rpc.proto',
-  package='tkrzw',
+  package='tkrzw_rpc',
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0ftkrzw_rpc.proto\x12\x05tkrzw\",\n\x0bStatusProto\x12\x0c\n\x04\x63ode\x18\x01 \x01(\x05\x12\x0f\n\x07message\x18\x02 \x01(\t\"+\n\nStringPair\x12\r\n\x05\x66irst\x18\x01 \x01(\t\x12\x0e\n\x06second\x18\x02 \x01(\t\"*\n\tBytesPair\x12\r\n\x05\x66irst\x18\x01 \x01(\x0c\x12\x0e\n\x06second\x18\x02 \x01(\x0c\"<\n\x0bRecordState\x12\x11\n\texistence\x18\x01 \x01(\x08\x12\x0b\n\x03key\x18\x02 \x01(\x0c\x12\r\n\x05value\x18\x03 \x01(\x0c\"\x1e\n\x0b\x45\x63hoRequest\x12\x0f\n\x07message\x18\x01 \x01(\t\"\x1c\n\x0c\x45\x63hoResponse\x12\x0c\n\x04\x65\x63ho\x18\x01 \x01(\t\"#\n\x0eInspectRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\"5\n\x0fInspectResponse\x12\"\n\x07records\x18\x01 \x03(\x0b\x32\x11.tkrzw.StringPair\"@\n\nGetRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0b\n\x03key\x18\x02 \x01(\x0c\x12\x12\n\nomit_value\x18\x03 \x01(\x08\"@\n\x0bGetResponse\x12\"\n\x06status\x18\x01 \x01(\x0b\x32\x12.tkrzw.StatusProto\x12\r\n\x05value\x18\x02 \x01(\x0c\"2\n\x0fGetMultiRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0c\n\x04keys\x18\x02 \x03(\x0c\"Y\n\x10GetMultiResponse\x12\"\n\x06status\x18\x01 \x01(\x0b\x32\x12.tkrzw.StatusProto\x12!\n\x07records\x18\x02 \x03(\x0b\x32\x10.tkrzw.BytesPair\"N\n\nSetRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0b\n\x03key\x18\x02 \x01(\x0c\x12\r\n\x05value\x18\x03 \x01(\x0c\x12\x11\n\toverwrite\x18\x04 \x01(\x08\"1\n\x0bSetResponse\x12\"\n\x06status\x18\x01 \x01(\x0b\x32\x12.tkrzw.StatusProto\"Z\n\x0fSetMultiRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12!\n\x07records\x18\x02 \x03(\x0b\x32\x10.tkrzw.BytesPair\x12\x11\n\toverwrite\x18\x03 \x01(\x08\"6\n\x10SetMultiResponse\x12\"\n\x06status\x18\x01 \x01(\x0b\x32\x12.tkrzw.StatusProto\"/\n\rRemoveRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0b\n\x03key\x18\x02 \x01(\x0c\"4\n\x0eRemoveResponse\x12\"\n\x06status\x18\x01 \x01(\x0b\x32\x12.tkrzw.StatusProto\"5\n\x12RemoveMultiRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0c\n\x04keys\x18\x02 \x03(\x0c\"9\n\x13RemoveMultiResponse\x12\"\n\x06status\x18\x01 \x01(\x0b\x32\x12.tkrzw.StatusProto\"M\n\rAppendRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0b\n\x03key\x18\x02 \x01(\x0c\x12\r\n\x05value\x18\x03 \x01(\x0c\x12\r\n\x05\x64\x65lim\x18\x04 \x01(\x0c\"4\n\x0e\x41ppendResponse\x12\"\n\x06status\x18\x01 \x01(\x0b\x32\x12.tkrzw.StatusProto\"Y\n\x12\x41ppendMultiRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12!\n\x07records\x18\x02 \x03(\x0b\x32\x10.tkrzw.BytesPair\x12\r\n\x05\x64\x65lim\x18\x03 \x01(\x0c\"9\n\x13\x41ppendMultiResponse\x12\"\n\x06status\x18\x01 \x01(\x0b\x32\x12.tkrzw.StatusProto\"\x9e\x01\n\x16\x43ompareExchangeRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0b\n\x03key\x18\x02 \x01(\x0c\x12\x1a\n\x12\x65xpected_existence\x18\x03 \x01(\x08\x12\x16\n\x0e\x65xpected_value\x18\x04 \x01(\x0c\x12\x19\n\x11\x64\x65sired_existence\x18\x05 \x01(\x08\x12\x15\n\rdesired_value\x18\x06 \x01(\x0c\"=\n\x17\x43ompareExchangeResponse\x12\"\n\x06status\x18\x01 \x01(\x0b\x32\x12.tkrzw.StatusProto\"V\n\x10IncrementRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0b\n\x03key\x18\x02 \x01(\x0c\x12\x11\n\tincrement\x18\x03 \x01(\x03\x12\x0f\n\x07initial\x18\x04 \x01(\x03\"H\n\x11IncrementResponse\x12\"\n\x06status\x18\x01 \x01(\x0b\x32\x12.tkrzw.StatusProto\x12\x0f\n\x07\x63urrent\x18\x02 \x01(\x03\"{\n\x1b\x43ompareExchangeMultiRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12$\n\x08\x65xpected\x18\x02 \x03(\x0b\x32\x12.tkrzw.RecordState\x12#\n\x07\x64\x65sired\x18\x03 \x03(\x0b\x32\x12.tkrzw.RecordState\"B\n\x1c\x43ompareExchangeMultiResponse\x12\"\n\x06status\x18\x01 \x01(\x0b\x32\x12.tkrzw.StatusProto\"!\n\x0c\x43ountRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\"B\n\rCountResponse\x12\"\n\x06status\x18\x01 \x01(\x0b\x32\x12.tkrzw.StatusProto\x12\r\n\x05\x63ount\x18\x02 \x01(\x03\"\'\n\x12GetFileSizeRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\"L\n\x13GetFileSizeResponse\x12\"\n\x06status\x18\x01 \x01(\x0b\x32\x12.tkrzw.StatusProto\x12\x11\n\tfile_size\x18\x02 \x01(\x03\"!\n\x0c\x43learRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\"3\n\rClearResponse\x12\"\n\x06status\x18\x01 \x01(\x0b\x32\x12.tkrzw.StatusProto\"F\n\x0eRebuildRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12!\n\x06params\x18\x02 \x03(\x0b\x32\x11.tkrzw.StringPair\"5\n\x0fRebuildResponse\x12\"\n\x06status\x18\x01 \x01(\x0b\x32\x12.tkrzw.StatusProto\"+\n\x16ShouldBeRebuiltRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\"K\n\x17ShouldBeRebuiltResponse\x12\"\n\x06status\x18\x01 \x01(\x0b\x32\x12.tkrzw.StatusProto\x12\x0c\n\x04tobe\x18\x02 \x01(\x08\"X\n\x12SynchronizeRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0c\n\x04hard\x18\x02 \x01(\x08\x12!\n\x06params\x18\x03 \x03(\x0b\x32\x11.tkrzw.StringPair\"9\n\x13SynchronizeResponse\x12\"\n\x06status\x18\x01 \x01(\x0b\x32\x12.tkrzw.StatusProto\"S\n\rSearchRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0c\n\x04mode\x18\x02 \x01(\t\x12\x0f\n\x07pattern\x18\x03 \x01(\x0c\x12\x10\n\x08\x63\x61pacity\x18\x04 \x01(\x05\"E\n\x0eSearchResponse\x12\"\n\x06status\x18\x01 \x01(\x0b\x32\x12.tkrzw.StatusProto\x12\x0f\n\x07matched\x18\x02 \x03(\x0c\"\x90\x03\n\rStreamRequest\x12*\n\x0c\x65\x63ho_request\x18\x01 \x01(\x0b\x32\x12.tkrzw.EchoRequestH\x00\x12(\n\x0bget_request\x18\x02 \x01(\x0b\x32\x11.tkrzw.GetRequestH\x00\x12(\n\x0bset_request\x18\x03 \x01(\x0b\x32\x11.tkrzw.SetRequestH\x00\x12.\n\x0eremove_request\x18\x04 \x01(\x0b\x32\x14.tkrzw.RemoveRequestH\x00\x12.\n\x0e\x61ppend_request\x18\x05 \x01(\x0b\x32\x14.tkrzw.AppendRequestH\x00\x12\x41\n\x18\x63ompare_exchange_request\x18\x06 \x01(\x0b\x32\x1d.tkrzw.CompareExchangeRequestH\x00\x12\x34\n\x11increment_request\x18\x07 \x01(\x0b\x32\x17.tkrzw.IncrementRequestH\x00\x12\x15\n\romit_response\x18\x65 \x01(\x08\x42\x0f\n\rrequest_oneof\"\x89\x03\n\x0eStreamResponse\x12,\n\recho_response\x18\x01 \x01(\x0b\x32\x13.tkrzw.EchoResponseH\x00\x12*\n\x0cget_response\x18\x02 \x01(\x0b\x32\x12.tkrzw.GetResponseH\x00\x12*\n\x0cset_response\x18\x03 \x01(\x0b\x32\x12.tkrzw.SetResponseH\x00\x12\x30\n\x0fremove_response\x18\x04 \x01(\x0b\x32\x15.tkrzw.RemoveResponseH\x00\x12\x30\n\x0f\x61ppend_response\x18\x05 \x01(\x0b\x32\x15.tkrzw.AppendResponseH\x00\x12\x43\n\x19\x63ompare_exchange_response\x18\x06 \x01(\x0b\x32\x1e.tkrzw.CompareExchangeResponseH\x00\x12\x36\n\x12increment_response\x18\x07 \x01(\x0b\x32\x18.tkrzw.IncrementResponseH\x00\x42\x10\n\x0eresponse_oneof\"\xd9\x02\n\x0eIterateRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12/\n\toperation\x18\x02 \x01(\x0e\x32\x1c.tkrzw.IterateRequest.OpType\x12\x0b\n\x03key\x18\x03 \x01(\x0c\x12\r\n\x05value\x18\x04 \x01(\x0c\x12\x16\n\x0ejump_inclusive\x18\x05 \x01(\x08\x12\x10\n\x08omit_key\x18\x06 \x01(\x08\x12\x12\n\nomit_value\x18\x07 \x01(\x08\"\xa8\x01\n\x06OpType\x12\x0b\n\x07OP_NONE\x10\x00\x12\x0c\n\x08OP_FIRST\x10\x01\x12\x0b\n\x07OP_LAST\x10\x02\x12\x0b\n\x07OP_JUMP\x10\x03\x12\x11\n\rOP_JUMP_LOWER\x10\x04\x12\x11\n\rOP_JUMP_UPPER\x10\x05\x12\x0b\n\x07OP_NEXT\x10\x06\x12\x0f\n\x0bOP_PREVIOUS\x10\x07\x12\n\n\x06OP_GET\x10\x08\x12\n\n\x06OP_SET\x10\t\x12\r\n\tOP_REMOVE\x10\n\"Q\n\x0fIterateResponse\x12\"\n\x06status\x18\x01 \x01(\x0b\x32\x12.tkrzw.StatusProto\x12\x0b\n\x03key\x18\x02 \x01(\x0c\x12\r\n\x05value\x18\x03 \x01(\x0c\"O\n\x10ReplicateRequest\x12\x15\n\rmin_timestamp\x18\x01 \x01(\x03\x12\x11\n\tserver_id\x18\x02 \x01(\x05\x12\x11\n\twait_time\x18\x03 \x01(\x01\"\xfe\x01\n\x11ReplicateResponse\x12\"\n\x06status\x18\x01 \x01(\x0b\x32\x12.tkrzw.StatusProto\x12\x11\n\ttimestamp\x18\x02 \x01(\x03\x12\x11\n\tserver_id\x18\x03 \x01(\x05\x12\x11\n\tdbm_index\x18\x04 \x01(\x05\x12\x30\n\x07op_type\x18\x05 \x01(\x0e\x32\x1f.tkrzw.ReplicateResponse.OpType\x12\x0b\n\x03key\x18\x06 \x01(\x0c\x12\r\n\x05value\x18\x07 \x01(\x0c\">\n\x06OpType\x12\x0b\n\x07OP_NOOP\x10\x00\x12\n\n\x06OP_SET\x10\x01\x12\r\n\tOP_REMOVE\x10\x02\x12\x0c\n\x08OP_CLEAR\x10\x03\"=\n\x13\x43hangeMasterRequest\x12\x0e\n\x06master\x18\x01 \x01(\t\x12\x16\n\x0etimestamp_skew\x18\x02 \x01(\x03\":\n\x14\x43hangeMasterResponse\x12\"\n\x06status\x18\x01 \x01(\x0b\x32\x12.tkrzw.StatusProto2\xf5\x0b\n\nDBMService\x12/\n\x04\x45\x63ho\x12\x12.tkrzw.EchoRequest\x1a\x13.tkrzw.EchoResponse\x12\x38\n\x07Inspect\x12\x15.tkrzw.InspectRequest\x1a\x16.tkrzw.InspectResponse\x12,\n\x03Get\x12\x11.tkrzw.GetRequest\x1a\x12.tkrzw.GetResponse\x12;\n\x08GetMulti\x12\x16.tkrzw.GetMultiRequest\x1a\x17.tkrzw.GetMultiResponse\x12,\n\x03Set\x12\x11.tkrzw.SetRequest\x1a\x12.tkrzw.SetResponse\x12;\n\x08SetMulti\x12\x16.tkrzw.SetMultiRequest\x1a\x17.tkrzw.SetMultiResponse\x12\x35\n\x06Remove\x12\x14.tkrzw.RemoveRequest\x1a\x15.tkrzw.RemoveResponse\x12\x44\n\x0bRemoveMulti\x12\x19.tkrzw.RemoveMultiRequest\x1a\x1a.tkrzw.RemoveMultiResponse\x12\x35\n\x06\x41ppend\x12\x14.tkrzw.AppendRequest\x1a\x15.tkrzw.AppendResponse\x12\x44\n\x0b\x41ppendMulti\x12\x19.tkrzw.AppendMultiRequest\x1a\x1a.tkrzw.AppendMultiResponse\x12P\n\x0f\x43ompareExchange\x12\x1d.tkrzw.CompareExchangeRequest\x1a\x1e.tkrzw.CompareExchangeResponse\x12>\n\tIncrement\x12\x17.tkrzw.IncrementRequest\x1a\x18.tkrzw.IncrementResponse\x12_\n\x14\x43ompareExchangeMulti\x12\".tkrzw.CompareExchangeMultiRequest\x1a#.tkrzw.CompareExchangeMultiResponse\x12\x32\n\x05\x43ount\x12\x13.tkrzw.CountRequest\x1a\x14.tkrzw.CountResponse\x12\x44\n\x0bGetFileSize\x12\x19.tkrzw.GetFileSizeRequest\x1a\x1a.tkrzw.GetFileSizeResponse\x12\x32\n\x05\x43lear\x12\x13.tkrzw.ClearRequest\x1a\x14.tkrzw.ClearResponse\x12\x38\n\x07Rebuild\x12\x15.tkrzw.RebuildRequest\x1a\x16.tkrzw.RebuildResponse\x12P\n\x0fShouldBeRebuilt\x12\x1d.tkrzw.ShouldBeRebuiltRequest\x1a\x1e.tkrzw.ShouldBeRebuiltResponse\x12\x44\n\x0bSynchronize\x12\x19.tkrzw.SynchronizeRequest\x1a\x1a.tkrzw.SynchronizeResponse\x12\x35\n\x06Search\x12\x14.tkrzw.SearchRequest\x1a\x15.tkrzw.SearchResponse\x12\x39\n\x06Stream\x12\x14.tkrzw.StreamRequest\x1a\x15.tkrzw.StreamResponse(\x01\x30\x01\x12<\n\x07Iterate\x12\x15.tkrzw.IterateRequest\x1a\x16.tkrzw.IterateResponse(\x01\x30\x01\x12@\n\tReplicate\x12\x17.tkrzw.ReplicateRequest\x1a\x18.tkrzw.ReplicateResponse0\x01\x12G\n\x0c\x43hangeMaster\x12\x1a.tkrzw.ChangeMasterRequest\x1a\x1b.tkrzw.ChangeMasterResponseb\x06proto3'
+  serialized_pb=b'\n\x0ftkrzw_rpc.proto\x12\ttkrzw_rpc\",\n\x0bStatusProto\x12\x0c\n\x04\x63ode\x18\x01 \x01(\x05\x12\x0f\n\x07message\x18\x02 \x01(\t\"+\n\nStringPair\x12\r\n\x05\x66irst\x18\x01 \x01(\t\x12\x0e\n\x06second\x18\x02 \x01(\t\"*\n\tBytesPair\x12\r\n\x05\x66irst\x18\x01 \x01(\x0c\x12\x0e\n\x06second\x18\x02 \x01(\x0c\"<\n\x0bRecordState\x12\x11\n\texistence\x18\x01 \x01(\x08\x12\x0b\n\x03key\x18\x02 \x01(\x0c\x12\r\n\x05value\x18\x03 \x01(\x0c\"\x1e\n\x0b\x45\x63hoRequest\x12\x0f\n\x07message\x18\x01 \x01(\t\"\x1c\n\x0c\x45\x63hoResponse\x12\x0c\n\x04\x65\x63ho\x18\x01 \x01(\t\"#\n\x0eInspectRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\"9\n\x0fInspectResponse\x12&\n\x07records\x18\x01 \x03(\x0b\x32\x15.tkrzw_rpc.StringPair\"@\n\nGetRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0b\n\x03key\x18\x02 \x01(\x0c\x12\x12\n\nomit_value\x18\x03 \x01(\x08\"D\n\x0bGetResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\x12\r\n\x05value\x18\x02 \x01(\x0c\"2\n\x0fGetMultiRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0c\n\x04keys\x18\x02 \x03(\x0c\"a\n\x10GetMultiResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\x12%\n\x07records\x18\x02 \x03(\x0b\x32\x14.tkrzw_rpc.BytesPair\"N\n\nSetRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0b\n\x03key\x18\x02 \x01(\x0c\x12\r\n\x05value\x18\x03 \x01(\x0c\x12\x11\n\toverwrite\x18\x04 \x01(\x08\"5\n\x0bSetResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\"^\n\x0fSetMultiRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12%\n\x07records\x18\x02 \x03(\x0b\x32\x14.tkrzw_rpc.BytesPair\x12\x11\n\toverwrite\x18\x03 \x01(\x08\":\n\x10SetMultiResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\"/\n\rRemoveRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0b\n\x03key\x18\x02 \x01(\x0c\"8\n\x0eRemoveResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\"5\n\x12RemoveMultiRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0c\n\x04keys\x18\x02 \x03(\x0c\"=\n\x13RemoveMultiResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\"M\n\rAppendRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0b\n\x03key\x18\x02 \x01(\x0c\x12\r\n\x05value\x18\x03 \x01(\x0c\x12\r\n\x05\x64\x65lim\x18\x04 \x01(\x0c\"8\n\x0e\x41ppendResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\"]\n\x12\x41ppendMultiRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12%\n\x07records\x18\x02 \x03(\x0b\x32\x14.tkrzw_rpc.BytesPair\x12\r\n\x05\x64\x65lim\x18\x03 \x01(\x0c\"=\n\x13\x41ppendMultiResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\"\x9e\x01\n\x16\x43ompareExchangeRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0b\n\x03key\x18\x02 \x01(\x0c\x12\x1a\n\x12\x65xpected_existence\x18\x03 \x01(\x08\x12\x16\n\x0e\x65xpected_value\x18\x04 \x01(\x0c\x12\x19\n\x11\x64\x65sired_existence\x18\x05 \x01(\x08\x12\x15\n\rdesired_value\x18\x06 \x01(\x0c\"A\n\x17\x43ompareExchangeResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\"V\n\x10IncrementRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0b\n\x03key\x18\x02 \x01(\x0c\x12\x11\n\tincrement\x18\x03 \x01(\x03\x12\x0f\n\x07initial\x18\x04 \x01(\x03\"L\n\x11IncrementResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\x12\x0f\n\x07\x63urrent\x18\x02 \x01(\x03\"\x83\x01\n\x1b\x43ompareExchangeMultiRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12(\n\x08\x65xpected\x18\x02 \x03(\x0b\x32\x16.tkrzw_rpc.RecordState\x12\'\n\x07\x64\x65sired\x18\x03 \x03(\x0b\x32\x16.tkrzw_rpc.RecordState\"F\n\x1c\x43ompareExchangeMultiResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\"!\n\x0c\x43ountRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\"F\n\rCountResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\x12\r\n\x05\x63ount\x18\x02 \x01(\x03\"\'\n\x12GetFileSizeRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\"P\n\x13GetFileSizeResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\x12\x11\n\tfile_size\x18\x02 \x01(\x03\"!\n\x0c\x43learRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\"7\n\rClearResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\"J\n\x0eRebuildRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12%\n\x06params\x18\x02 \x03(\x0b\x32\x15.tkrzw_rpc.StringPair\"9\n\x0fRebuildResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\"+\n\x16ShouldBeRebuiltRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\"O\n\x17ShouldBeRebuiltResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\x12\x0c\n\x04tobe\x18\x02 \x01(\x08\"\\\n\x12SynchronizeRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0c\n\x04hard\x18\x02 \x01(\x08\x12%\n\x06params\x18\x03 \x03(\x0b\x32\x15.tkrzw_rpc.StringPair\"=\n\x13SynchronizeResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\"S\n\rSearchRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0c\n\x04mode\x18\x02 \x01(\t\x12\x0f\n\x07pattern\x18\x03 \x01(\x0c\x12\x10\n\x08\x63\x61pacity\x18\x04 \x01(\x05\"I\n\x0eSearchResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\x12\x0f\n\x07matched\x18\x02 \x03(\x0c\"\xac\x03\n\rStreamRequest\x12.\n\x0c\x65\x63ho_request\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.EchoRequestH\x00\x12,\n\x0bget_request\x18\x02 \x01(\x0b\x32\x15.tkrzw_rpc.GetRequestH\x00\x12,\n\x0bset_request\x18\x03 \x01(\x0b\x32\x15.tkrzw_rpc.SetRequestH\x00\x12\x32\n\x0eremove_request\x18\x04 \x01(\x0b\x32\x18.tkrzw_rpc.RemoveRequestH\x00\x12\x32\n\x0e\x61ppend_request\x18\x05 \x01(\x0b\x32\x18.tkrzw_rpc.AppendRequestH\x00\x12\x45\n\x18\x63ompare_exchange_request\x18\x06 \x01(\x0b\x32!.tkrzw_rpc.CompareExchangeRequestH\x00\x12\x38\n\x11increment_request\x18\x07 \x01(\x0b\x32\x1b.tkrzw_rpc.IncrementRequestH\x00\x12\x15\n\romit_response\x18\x65 \x01(\x08\x42\x0f\n\rrequest_oneof\"\xa5\x03\n\x0eStreamResponse\x12\x30\n\recho_response\x18\x01 \x01(\x0b\x32\x17.tkrzw_rpc.EchoResponseH\x00\x12.\n\x0cget_response\x18\x02 \x01(\x0b\x32\x16.tkrzw_rpc.GetResponseH\x00\x12.\n\x0cset_response\x18\x03 \x01(\x0b\x32\x16.tkrzw_rpc.SetResponseH\x00\x12\x34\n\x0fremove_response\x18\x04 \x01(\x0b\x32\x19.tkrzw_rpc.RemoveResponseH\x00\x12\x34\n\x0f\x61ppend_response\x18\x05 \x01(\x0b\x32\x19.tkrzw_rpc.AppendResponseH\x00\x12G\n\x19\x63ompare_exchange_response\x18\x06 \x01(\x0b\x32\".tkrzw_rpc.CompareExchangeResponseH\x00\x12:\n\x12increment_response\x18\x07 \x01(\x0b\x32\x1c.tkrzw_rpc.IncrementResponseH\x00\x42\x10\n\x0eresponse_oneof\"\xdd\x02\n\x0eIterateRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x33\n\toperation\x18\x02 \x01(\x0e\x32 .tkrzw_rpc.IterateRequest.OpType\x12\x0b\n\x03key\x18\x03 \x01(\x0c\x12\r\n\x05value\x18\x04 \x01(\x0c\x12\x16\n\x0ejump_inclusive\x18\x05 \x01(\x08\x12\x10\n\x08omit_key\x18\x06 \x01(\x08\x12\x12\n\nomit_value\x18\x07 \x01(\x08\"\xa8\x01\n\x06OpType\x12\x0b\n\x07OP_NONE\x10\x00\x12\x0c\n\x08OP_FIRST\x10\x01\x12\x0b\n\x07OP_LAST\x10\x02\x12\x0b\n\x07OP_JUMP\x10\x03\x12\x11\n\rOP_JUMP_LOWER\x10\x04\x12\x11\n\rOP_JUMP_UPPER\x10\x05\x12\x0b\n\x07OP_NEXT\x10\x06\x12\x0f\n\x0bOP_PREVIOUS\x10\x07\x12\n\n\x06OP_GET\x10\x08\x12\n\n\x06OP_SET\x10\t\x12\r\n\tOP_REMOVE\x10\n\"U\n\x0fIterateResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\x12\x0b\n\x03key\x18\x02 \x01(\x0c\x12\r\n\x05value\x18\x03 \x01(\x0c\"O\n\x10ReplicateRequest\x12\x15\n\rmin_timestamp\x18\x01 \x01(\x03\x12\x11\n\tserver_id\x18\x02 \x01(\x05\x12\x11\n\twait_time\x18\x03 \x01(\x01\"\x86\x02\n\x11ReplicateResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\x12\x11\n\ttimestamp\x18\x02 \x01(\x03\x12\x11\n\tserver_id\x18\x03 \x01(\x05\x12\x11\n\tdbm_index\x18\x04 \x01(\x05\x12\x34\n\x07op_type\x18\x05 \x01(\x0e\x32#.tkrzw_rpc.ReplicateResponse.OpType\x12\x0b\n\x03key\x18\x06 \x01(\x0c\x12\r\n\x05value\x18\x07 \x01(\x0c\">\n\x06OpType\x12\x0b\n\x07OP_NOOP\x10\x00\x12\n\n\x06OP_SET\x10\x01\x12\r\n\tOP_REMOVE\x10\x02\x12\x0c\n\x08OP_CLEAR\x10\x03\"=\n\x13\x43hangeMasterRequest\x12\x0e\n\x06master\x18\x01 \x01(\t\x12\x16\n\x0etimestamp_skew\x18\x02 \x01(\x03\">\n\x14\x43hangeMasterResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto2\xb5\r\n\nDBMService\x12\x37\n\x04\x45\x63ho\x12\x16.tkrzw_rpc.EchoRequest\x1a\x17.tkrzw_rpc.EchoResponse\x12@\n\x07Inspect\x12\x19.tkrzw_rpc.InspectRequest\x1a\x1a.tkrzw_rpc.InspectResponse\x12\x34\n\x03Get\x12\x15.tkrzw_rpc.GetRequest\x1a\x16.tkrzw_rpc.GetResponse\x12\x43\n\x08GetMulti\x12\x1a.tkrzw_rpc.GetMultiRequest\x1a\x1b.tkrzw_rpc.GetMultiResponse\x12\x34\n\x03Set\x12\x15.tkrzw_rpc.SetRequest\x1a\x16.tkrzw_rpc.SetResponse\x12\x43\n\x08SetMulti\x12\x1a.tkrzw_rpc.SetMultiRequest\x1a\x1b.tkrzw_rpc.SetMultiResponse\x12=\n\x06Remove\x12\x18.tkrzw_rpc.RemoveRequest\x1a\x19.tkrzw_rpc.RemoveResponse\x12L\n\x0bRemoveMulti\x12\x1d.tkrzw_rpc.RemoveMultiRequest\x1a\x1e.tkrzw_rpc.RemoveMultiResponse\x12=\n\x06\x41ppend\x12\x18.tkrzw_rpc.AppendRequest\x1a\x19.tkrzw_rpc.AppendResponse\x12L\n\x0b\x41ppendMulti\x12\x1d.tkrzw_rpc.AppendMultiRequest\x1a\x1e.tkrzw_rpc.AppendMultiResponse\x12X\n\x0f\x43ompareExchange\x12!.tkrzw_rpc.CompareExchangeRequest\x1a\".tkrzw_rpc.CompareExchangeResponse\x12\x46\n\tIncrement\x12\x1b.tkrzw_rpc.IncrementRequest\x1a\x1c.tkrzw_rpc.IncrementResponse\x12g\n\x14\x43ompareExchangeMulti\x12&.tkrzw_rpc.CompareExchangeMultiRequest\x1a\'.tkrzw_rpc.CompareExchangeMultiResponse\x12:\n\x05\x43ount\x12\x17.tkrzw_rpc.CountRequest\x1a\x18.tkrzw_rpc.CountResponse\x12L\n\x0bGetFileSize\x12\x1d.tkrzw_rpc.GetFileSizeRequest\x1a\x1e.tkrzw_rpc.GetFileSizeResponse\x12:\n\x05\x43lear\x12\x17.tkrzw_rpc.ClearRequest\x1a\x18.tkrzw_rpc.ClearResponse\x12@\n\x07Rebuild\x12\x19.tkrzw_rpc.RebuildRequest\x1a\x1a.tkrzw_rpc.RebuildResponse\x12X\n\x0fShouldBeRebuilt\x12!.tkrzw_rpc.ShouldBeRebuiltRequest\x1a\".tkrzw_rpc.ShouldBeRebuiltResponse\x12L\n\x0bSynchronize\x12\x1d.tkrzw_rpc.SynchronizeRequest\x1a\x1e.tkrzw_rpc.SynchronizeResponse\x12=\n\x06Search\x12\x18.tkrzw_rpc.SearchRequest\x1a\x19.tkrzw_rpc.SearchResponse\x12\x41\n\x06Stream\x12\x18.tkrzw_rpc.StreamRequest\x1a\x19.tkrzw_rpc.StreamResponse(\x01\x30\x01\x12\x44\n\x07Iterate\x12\x19.tkrzw_rpc.IterateRequest\x1a\x1a.tkrzw_rpc.IterateResponse(\x01\x30\x01\x12H\n\tReplicate\x12\x1b.tkrzw_rpc.ReplicateRequest\x1a\x1c.tkrzw_rpc.ReplicateResponse0\x01\x12O\n\x0c\x43hangeMaster\x12\x1e.tkrzw_rpc.ChangeMasterRequest\x1a\x1f.tkrzw_rpc.ChangeMasterResponseb\x06proto3'
 )
 
 
 
 _ITERATEREQUEST_OPTYPE = _descriptor.EnumDescriptor(
   name='OpType',
-  full_name='tkrzw.IterateRequest.OpType',
+  full_name='tkrzw_rpc.IterateRequest.OpType',
   filename=None,
   file=DESCRIPTOR,
   create_key=_descriptor._internal_create_key,
@@ -89,14 +89,14 @@ _ITERATEREQUEST_OPTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=3851,
-  serialized_end=4019,
+  serialized_start=4020,
+  serialized_end=4188,
 )
 _sym_db.RegisterEnumDescriptor(_ITERATEREQUEST_OPTYPE)
 
 _REPLICATERESPONSE_OPTYPE = _descriptor.EnumDescriptor(
   name='OpType',
-  full_name='tkrzw.ReplicateResponse.OpType',
+  full_name='tkrzw_rpc.ReplicateResponse.OpType',
   filename=None,
   file=DESCRIPTOR,
   create_key=_descriptor._internal_create_key,
@@ -124,29 +124,29 @@ _REPLICATERESPONSE_OPTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=4378,
-  serialized_end=4440,
+  serialized_start=4559,
+  serialized_end=4621,
 )
 _sym_db.RegisterEnumDescriptor(_REPLICATERESPONSE_OPTYPE)
 
 
 _STATUSPROTO = _descriptor.Descriptor(
   name='StatusProto',
-  full_name='tkrzw.StatusProto',
+  full_name='tkrzw_rpc.StatusProto',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='code', full_name='tkrzw.StatusProto.code', index=0,
+      name='code', full_name='tkrzw_rpc.StatusProto.code', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='message', full_name='tkrzw.StatusProto.message', index=1,
+      name='message', full_name='tkrzw_rpc.StatusProto.message', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -164,28 +164,28 @@ _STATUSPROTO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=26,
-  serialized_end=70,
+  serialized_start=30,
+  serialized_end=74,
 )
 
 
 _STRINGPAIR = _descriptor.Descriptor(
   name='StringPair',
-  full_name='tkrzw.StringPair',
+  full_name='tkrzw_rpc.StringPair',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='first', full_name='tkrzw.StringPair.first', index=0,
+      name='first', full_name='tkrzw_rpc.StringPair.first', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='second', full_name='tkrzw.StringPair.second', index=1,
+      name='second', full_name='tkrzw_rpc.StringPair.second', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -203,28 +203,28 @@ _STRINGPAIR = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=72,
-  serialized_end=115,
+  serialized_start=76,
+  serialized_end=119,
 )
 
 
 _BYTESPAIR = _descriptor.Descriptor(
   name='BytesPair',
-  full_name='tkrzw.BytesPair',
+  full_name='tkrzw_rpc.BytesPair',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='first', full_name='tkrzw.BytesPair.first', index=0,
+      name='first', full_name='tkrzw_rpc.BytesPair.first', index=0,
       number=1, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='second', full_name='tkrzw.BytesPair.second', index=1,
+      name='second', full_name='tkrzw_rpc.BytesPair.second', index=1,
       number=2, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
@@ -242,35 +242,35 @@ _BYTESPAIR = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=117,
-  serialized_end=159,
+  serialized_start=121,
+  serialized_end=163,
 )
 
 
 _RECORDSTATE = _descriptor.Descriptor(
   name='RecordState',
-  full_name='tkrzw.RecordState',
+  full_name='tkrzw_rpc.RecordState',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='existence', full_name='tkrzw.RecordState.existence', index=0,
+      name='existence', full_name='tkrzw_rpc.RecordState.existence', index=0,
       number=1, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='key', full_name='tkrzw.RecordState.key', index=1,
+      name='key', full_name='tkrzw_rpc.RecordState.key', index=1,
       number=2, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='value', full_name='tkrzw.RecordState.value', index=2,
+      name='value', full_name='tkrzw_rpc.RecordState.value', index=2,
       number=3, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
@@ -288,21 +288,21 @@ _RECORDSTATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=161,
-  serialized_end=221,
+  serialized_start=165,
+  serialized_end=225,
 )
 
 
 _ECHOREQUEST = _descriptor.Descriptor(
   name='EchoRequest',
-  full_name='tkrzw.EchoRequest',
+  full_name='tkrzw_rpc.EchoRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='message', full_name='tkrzw.EchoRequest.message', index=0,
+      name='message', full_name='tkrzw_rpc.EchoRequest.message', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -320,21 +320,21 @@ _ECHOREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=223,
-  serialized_end=253,
+  serialized_start=227,
+  serialized_end=257,
 )
 
 
 _ECHORESPONSE = _descriptor.Descriptor(
   name='EchoResponse',
-  full_name='tkrzw.EchoResponse',
+  full_name='tkrzw_rpc.EchoResponse',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='echo', full_name='tkrzw.EchoResponse.echo', index=0,
+      name='echo', full_name='tkrzw_rpc.EchoResponse.echo', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -352,21 +352,21 @@ _ECHORESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=255,
-  serialized_end=283,
+  serialized_start=259,
+  serialized_end=287,
 )
 
 
 _INSPECTREQUEST = _descriptor.Descriptor(
   name='InspectRequest',
-  full_name='tkrzw.InspectRequest',
+  full_name='tkrzw_rpc.InspectRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='dbm_index', full_name='tkrzw.InspectRequest.dbm_index', index=0,
+      name='dbm_index', full_name='tkrzw_rpc.InspectRequest.dbm_index', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -384,21 +384,21 @@ _INSPECTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=285,
-  serialized_end=320,
+  serialized_start=289,
+  serialized_end=324,
 )
 
 
 _INSPECTRESPONSE = _descriptor.Descriptor(
   name='InspectResponse',
-  full_name='tkrzw.InspectResponse',
+  full_name='tkrzw_rpc.InspectResponse',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='records', full_name='tkrzw.InspectResponse.records', index=0,
+      name='records', full_name='tkrzw_rpc.InspectResponse.records', index=0,
       number=1, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -416,35 +416,35 @@ _INSPECTRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=322,
-  serialized_end=375,
+  serialized_start=326,
+  serialized_end=383,
 )
 
 
 _GETREQUEST = _descriptor.Descriptor(
   name='GetRequest',
-  full_name='tkrzw.GetRequest',
+  full_name='tkrzw_rpc.GetRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='dbm_index', full_name='tkrzw.GetRequest.dbm_index', index=0,
+      name='dbm_index', full_name='tkrzw_rpc.GetRequest.dbm_index', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='key', full_name='tkrzw.GetRequest.key', index=1,
+      name='key', full_name='tkrzw_rpc.GetRequest.key', index=1,
       number=2, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='omit_value', full_name='tkrzw.GetRequest.omit_value', index=2,
+      name='omit_value', full_name='tkrzw_rpc.GetRequest.omit_value', index=2,
       number=3, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
@@ -462,28 +462,28 @@ _GETREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=377,
-  serialized_end=441,
+  serialized_start=385,
+  serialized_end=449,
 )
 
 
 _GETRESPONSE = _descriptor.Descriptor(
   name='GetResponse',
-  full_name='tkrzw.GetResponse',
+  full_name='tkrzw_rpc.GetResponse',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='status', full_name='tkrzw.GetResponse.status', index=0,
+      name='status', full_name='tkrzw_rpc.GetResponse.status', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='value', full_name='tkrzw.GetResponse.value', index=1,
+      name='value', full_name='tkrzw_rpc.GetResponse.value', index=1,
       number=2, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
@@ -501,28 +501,28 @@ _GETRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=443,
-  serialized_end=507,
+  serialized_start=451,
+  serialized_end=519,
 )
 
 
 _GETMULTIREQUEST = _descriptor.Descriptor(
   name='GetMultiRequest',
-  full_name='tkrzw.GetMultiRequest',
+  full_name='tkrzw_rpc.GetMultiRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='dbm_index', full_name='tkrzw.GetMultiRequest.dbm_index', index=0,
+      name='dbm_index', full_name='tkrzw_rpc.GetMultiRequest.dbm_index', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='keys', full_name='tkrzw.GetMultiRequest.keys', index=1,
+      name='keys', full_name='tkrzw_rpc.GetMultiRequest.keys', index=1,
       number=2, type=12, cpp_type=9, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -540,28 +540,28 @@ _GETMULTIREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=509,
-  serialized_end=559,
+  serialized_start=521,
+  serialized_end=571,
 )
 
 
 _GETMULTIRESPONSE = _descriptor.Descriptor(
   name='GetMultiResponse',
-  full_name='tkrzw.GetMultiResponse',
+  full_name='tkrzw_rpc.GetMultiResponse',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='status', full_name='tkrzw.GetMultiResponse.status', index=0,
+      name='status', full_name='tkrzw_rpc.GetMultiResponse.status', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='records', full_name='tkrzw.GetMultiResponse.records', index=1,
+      name='records', full_name='tkrzw_rpc.GetMultiResponse.records', index=1,
       number=2, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -579,42 +579,42 @@ _GETMULTIRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=561,
-  serialized_end=650,
+  serialized_start=573,
+  serialized_end=670,
 )
 
 
 _SETREQUEST = _descriptor.Descriptor(
   name='SetRequest',
-  full_name='tkrzw.SetRequest',
+  full_name='tkrzw_rpc.SetRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='dbm_index', full_name='tkrzw.SetRequest.dbm_index', index=0,
+      name='dbm_index', full_name='tkrzw_rpc.SetRequest.dbm_index', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='key', full_name='tkrzw.SetRequest.key', index=1,
+      name='key', full_name='tkrzw_rpc.SetRequest.key', index=1,
       number=2, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='value', full_name='tkrzw.SetRequest.value', index=2,
+      name='value', full_name='tkrzw_rpc.SetRequest.value', index=2,
       number=3, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='overwrite', full_name='tkrzw.SetRequest.overwrite', index=3,
+      name='overwrite', full_name='tkrzw_rpc.SetRequest.overwrite', index=3,
       number=4, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
@@ -632,21 +632,21 @@ _SETREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=652,
-  serialized_end=730,
+  serialized_start=672,
+  serialized_end=750,
 )
 
 
 _SETRESPONSE = _descriptor.Descriptor(
   name='SetResponse',
-  full_name='tkrzw.SetResponse',
+  full_name='tkrzw_rpc.SetResponse',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='status', full_name='tkrzw.SetResponse.status', index=0,
+      name='status', full_name='tkrzw_rpc.SetResponse.status', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -664,35 +664,35 @@ _SETRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=732,
-  serialized_end=781,
+  serialized_start=752,
+  serialized_end=805,
 )
 
 
 _SETMULTIREQUEST = _descriptor.Descriptor(
   name='SetMultiRequest',
-  full_name='tkrzw.SetMultiRequest',
+  full_name='tkrzw_rpc.SetMultiRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='dbm_index', full_name='tkrzw.SetMultiRequest.dbm_index', index=0,
+      name='dbm_index', full_name='tkrzw_rpc.SetMultiRequest.dbm_index', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='records', full_name='tkrzw.SetMultiRequest.records', index=1,
+      name='records', full_name='tkrzw_rpc.SetMultiRequest.records', index=1,
       number=2, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='overwrite', full_name='tkrzw.SetMultiRequest.overwrite', index=2,
+      name='overwrite', full_name='tkrzw_rpc.SetMultiRequest.overwrite', index=2,
       number=3, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
@@ -710,21 +710,21 @@ _SETMULTIREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=783,
-  serialized_end=873,
+  serialized_start=807,
+  serialized_end=901,
 )
 
 
 _SETMULTIRESPONSE = _descriptor.Descriptor(
   name='SetMultiResponse',
-  full_name='tkrzw.SetMultiResponse',
+  full_name='tkrzw_rpc.SetMultiResponse',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='status', full_name='tkrzw.SetMultiResponse.status', index=0,
+      name='status', full_name='tkrzw_rpc.SetMultiResponse.status', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -742,28 +742,28 @@ _SETMULTIRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=875,
-  serialized_end=929,
+  serialized_start=903,
+  serialized_end=961,
 )
 
 
 _REMOVEREQUEST = _descriptor.Descriptor(
   name='RemoveRequest',
-  full_name='tkrzw.RemoveRequest',
+  full_name='tkrzw_rpc.RemoveRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='dbm_index', full_name='tkrzw.RemoveRequest.dbm_index', index=0,
+      name='dbm_index', full_name='tkrzw_rpc.RemoveRequest.dbm_index', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='key', full_name='tkrzw.RemoveRequest.key', index=1,
+      name='key', full_name='tkrzw_rpc.RemoveRequest.key', index=1,
       number=2, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
@@ -781,21 +781,21 @@ _REMOVEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=931,
-  serialized_end=978,
+  serialized_start=963,
+  serialized_end=1010,
 )
 
 
 _REMOVERESPONSE = _descriptor.Descriptor(
   name='RemoveResponse',
-  full_name='tkrzw.RemoveResponse',
+  full_name='tkrzw_rpc.RemoveResponse',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='status', full_name='tkrzw.RemoveResponse.status', index=0,
+      name='status', full_name='tkrzw_rpc.RemoveResponse.status', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -813,28 +813,28 @@ _REMOVERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=980,
-  serialized_end=1032,
+  serialized_start=1012,
+  serialized_end=1068,
 )
 
 
 _REMOVEMULTIREQUEST = _descriptor.Descriptor(
   name='RemoveMultiRequest',
-  full_name='tkrzw.RemoveMultiRequest',
+  full_name='tkrzw_rpc.RemoveMultiRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='dbm_index', full_name='tkrzw.RemoveMultiRequest.dbm_index', index=0,
+      name='dbm_index', full_name='tkrzw_rpc.RemoveMultiRequest.dbm_index', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='keys', full_name='tkrzw.RemoveMultiRequest.keys', index=1,
+      name='keys', full_name='tkrzw_rpc.RemoveMultiRequest.keys', index=1,
       number=2, type=12, cpp_type=9, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -852,21 +852,21 @@ _REMOVEMULTIREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1034,
-  serialized_end=1087,
+  serialized_start=1070,
+  serialized_end=1123,
 )
 
 
 _REMOVEMULTIRESPONSE = _descriptor.Descriptor(
   name='RemoveMultiResponse',
-  full_name='tkrzw.RemoveMultiResponse',
+  full_name='tkrzw_rpc.RemoveMultiResponse',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='status', full_name='tkrzw.RemoveMultiResponse.status', index=0,
+      name='status', full_name='tkrzw_rpc.RemoveMultiResponse.status', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -884,42 +884,42 @@ _REMOVEMULTIRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1089,
-  serialized_end=1146,
+  serialized_start=1125,
+  serialized_end=1186,
 )
 
 
 _APPENDREQUEST = _descriptor.Descriptor(
   name='AppendRequest',
-  full_name='tkrzw.AppendRequest',
+  full_name='tkrzw_rpc.AppendRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='dbm_index', full_name='tkrzw.AppendRequest.dbm_index', index=0,
+      name='dbm_index', full_name='tkrzw_rpc.AppendRequest.dbm_index', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='key', full_name='tkrzw.AppendRequest.key', index=1,
+      name='key', full_name='tkrzw_rpc.AppendRequest.key', index=1,
       number=2, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='value', full_name='tkrzw.AppendRequest.value', index=2,
+      name='value', full_name='tkrzw_rpc.AppendRequest.value', index=2,
       number=3, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='delim', full_name='tkrzw.AppendRequest.delim', index=3,
+      name='delim', full_name='tkrzw_rpc.AppendRequest.delim', index=3,
       number=4, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
@@ -937,21 +937,21 @@ _APPENDREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1148,
-  serialized_end=1225,
+  serialized_start=1188,
+  serialized_end=1265,
 )
 
 
 _APPENDRESPONSE = _descriptor.Descriptor(
   name='AppendResponse',
-  full_name='tkrzw.AppendResponse',
+  full_name='tkrzw_rpc.AppendResponse',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='status', full_name='tkrzw.AppendResponse.status', index=0,
+      name='status', full_name='tkrzw_rpc.AppendResponse.status', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -969,35 +969,35 @@ _APPENDRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1227,
-  serialized_end=1279,
+  serialized_start=1267,
+  serialized_end=1323,
 )
 
 
 _APPENDMULTIREQUEST = _descriptor.Descriptor(
   name='AppendMultiRequest',
-  full_name='tkrzw.AppendMultiRequest',
+  full_name='tkrzw_rpc.AppendMultiRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='dbm_index', full_name='tkrzw.AppendMultiRequest.dbm_index', index=0,
+      name='dbm_index', full_name='tkrzw_rpc.AppendMultiRequest.dbm_index', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='records', full_name='tkrzw.AppendMultiRequest.records', index=1,
+      name='records', full_name='tkrzw_rpc.AppendMultiRequest.records', index=1,
       number=2, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='delim', full_name='tkrzw.AppendMultiRequest.delim', index=2,
+      name='delim', full_name='tkrzw_rpc.AppendMultiRequest.delim', index=2,
       number=3, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
@@ -1015,21 +1015,21 @@ _APPENDMULTIREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1281,
-  serialized_end=1370,
+  serialized_start=1325,
+  serialized_end=1418,
 )
 
 
 _APPENDMULTIRESPONSE = _descriptor.Descriptor(
   name='AppendMultiResponse',
-  full_name='tkrzw.AppendMultiResponse',
+  full_name='tkrzw_rpc.AppendMultiResponse',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='status', full_name='tkrzw.AppendMultiResponse.status', index=0,
+      name='status', full_name='tkrzw_rpc.AppendMultiResponse.status', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -1047,56 +1047,56 @@ _APPENDMULTIRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1372,
-  serialized_end=1429,
+  serialized_start=1420,
+  serialized_end=1481,
 )
 
 
 _COMPAREEXCHANGEREQUEST = _descriptor.Descriptor(
   name='CompareExchangeRequest',
-  full_name='tkrzw.CompareExchangeRequest',
+  full_name='tkrzw_rpc.CompareExchangeRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='dbm_index', full_name='tkrzw.CompareExchangeRequest.dbm_index', index=0,
+      name='dbm_index', full_name='tkrzw_rpc.CompareExchangeRequest.dbm_index', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='key', full_name='tkrzw.CompareExchangeRequest.key', index=1,
+      name='key', full_name='tkrzw_rpc.CompareExchangeRequest.key', index=1,
       number=2, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='expected_existence', full_name='tkrzw.CompareExchangeRequest.expected_existence', index=2,
+      name='expected_existence', full_name='tkrzw_rpc.CompareExchangeRequest.expected_existence', index=2,
       number=3, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='expected_value', full_name='tkrzw.CompareExchangeRequest.expected_value', index=3,
+      name='expected_value', full_name='tkrzw_rpc.CompareExchangeRequest.expected_value', index=3,
       number=4, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='desired_existence', full_name='tkrzw.CompareExchangeRequest.desired_existence', index=4,
+      name='desired_existence', full_name='tkrzw_rpc.CompareExchangeRequest.desired_existence', index=4,
       number=5, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='desired_value', full_name='tkrzw.CompareExchangeRequest.desired_value', index=5,
+      name='desired_value', full_name='tkrzw_rpc.CompareExchangeRequest.desired_value', index=5,
       number=6, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
@@ -1114,21 +1114,21 @@ _COMPAREEXCHANGEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1432,
-  serialized_end=1590,
+  serialized_start=1484,
+  serialized_end=1642,
 )
 
 
 _COMPAREEXCHANGERESPONSE = _descriptor.Descriptor(
   name='CompareExchangeResponse',
-  full_name='tkrzw.CompareExchangeResponse',
+  full_name='tkrzw_rpc.CompareExchangeResponse',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='status', full_name='tkrzw.CompareExchangeResponse.status', index=0,
+      name='status', full_name='tkrzw_rpc.CompareExchangeResponse.status', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -1146,42 +1146,42 @@ _COMPAREEXCHANGERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1592,
-  serialized_end=1653,
+  serialized_start=1644,
+  serialized_end=1709,
 )
 
 
 _INCREMENTREQUEST = _descriptor.Descriptor(
   name='IncrementRequest',
-  full_name='tkrzw.IncrementRequest',
+  full_name='tkrzw_rpc.IncrementRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='dbm_index', full_name='tkrzw.IncrementRequest.dbm_index', index=0,
+      name='dbm_index', full_name='tkrzw_rpc.IncrementRequest.dbm_index', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='key', full_name='tkrzw.IncrementRequest.key', index=1,
+      name='key', full_name='tkrzw_rpc.IncrementRequest.key', index=1,
       number=2, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='increment', full_name='tkrzw.IncrementRequest.increment', index=2,
+      name='increment', full_name='tkrzw_rpc.IncrementRequest.increment', index=2,
       number=3, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='initial', full_name='tkrzw.IncrementRequest.initial', index=3,
+      name='initial', full_name='tkrzw_rpc.IncrementRequest.initial', index=3,
       number=4, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -1199,28 +1199,28 @@ _INCREMENTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1655,
-  serialized_end=1741,
+  serialized_start=1711,
+  serialized_end=1797,
 )
 
 
 _INCREMENTRESPONSE = _descriptor.Descriptor(
   name='IncrementResponse',
-  full_name='tkrzw.IncrementResponse',
+  full_name='tkrzw_rpc.IncrementResponse',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='status', full_name='tkrzw.IncrementResponse.status', index=0,
+      name='status', full_name='tkrzw_rpc.IncrementResponse.status', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='current', full_name='tkrzw.IncrementResponse.current', index=1,
+      name='current', full_name='tkrzw_rpc.IncrementResponse.current', index=1,
       number=2, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -1238,35 +1238,35 @@ _INCREMENTRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1743,
-  serialized_end=1815,
+  serialized_start=1799,
+  serialized_end=1875,
 )
 
 
 _COMPAREEXCHANGEMULTIREQUEST = _descriptor.Descriptor(
   name='CompareExchangeMultiRequest',
-  full_name='tkrzw.CompareExchangeMultiRequest',
+  full_name='tkrzw_rpc.CompareExchangeMultiRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='dbm_index', full_name='tkrzw.CompareExchangeMultiRequest.dbm_index', index=0,
+      name='dbm_index', full_name='tkrzw_rpc.CompareExchangeMultiRequest.dbm_index', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='expected', full_name='tkrzw.CompareExchangeMultiRequest.expected', index=1,
+      name='expected', full_name='tkrzw_rpc.CompareExchangeMultiRequest.expected', index=1,
       number=2, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='desired', full_name='tkrzw.CompareExchangeMultiRequest.desired', index=2,
+      name='desired', full_name='tkrzw_rpc.CompareExchangeMultiRequest.desired', index=2,
       number=3, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -1284,21 +1284,21 @@ _COMPAREEXCHANGEMULTIREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1817,
-  serialized_end=1940,
+  serialized_start=1878,
+  serialized_end=2009,
 )
 
 
 _COMPAREEXCHANGEMULTIRESPONSE = _descriptor.Descriptor(
   name='CompareExchangeMultiResponse',
-  full_name='tkrzw.CompareExchangeMultiResponse',
+  full_name='tkrzw_rpc.CompareExchangeMultiResponse',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='status', full_name='tkrzw.CompareExchangeMultiResponse.status', index=0,
+      name='status', full_name='tkrzw_rpc.CompareExchangeMultiResponse.status', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -1316,21 +1316,21 @@ _COMPAREEXCHANGEMULTIRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1942,
-  serialized_end=2008,
+  serialized_start=2011,
+  serialized_end=2081,
 )
 
 
 _COUNTREQUEST = _descriptor.Descriptor(
   name='CountRequest',
-  full_name='tkrzw.CountRequest',
+  full_name='tkrzw_rpc.CountRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='dbm_index', full_name='tkrzw.CountRequest.dbm_index', index=0,
+      name='dbm_index', full_name='tkrzw_rpc.CountRequest.dbm_index', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -1348,28 +1348,28 @@ _COUNTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2010,
-  serialized_end=2043,
+  serialized_start=2083,
+  serialized_end=2116,
 )
 
 
 _COUNTRESPONSE = _descriptor.Descriptor(
   name='CountResponse',
-  full_name='tkrzw.CountResponse',
+  full_name='tkrzw_rpc.CountResponse',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='status', full_name='tkrzw.CountResponse.status', index=0,
+      name='status', full_name='tkrzw_rpc.CountResponse.status', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='count', full_name='tkrzw.CountResponse.count', index=1,
+      name='count', full_name='tkrzw_rpc.CountResponse.count', index=1,
       number=2, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -1387,21 +1387,21 @@ _COUNTRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2045,
-  serialized_end=2111,
+  serialized_start=2118,
+  serialized_end=2188,
 )
 
 
 _GETFILESIZEREQUEST = _descriptor.Descriptor(
   name='GetFileSizeRequest',
-  full_name='tkrzw.GetFileSizeRequest',
+  full_name='tkrzw_rpc.GetFileSizeRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='dbm_index', full_name='tkrzw.GetFileSizeRequest.dbm_index', index=0,
+      name='dbm_index', full_name='tkrzw_rpc.GetFileSizeRequest.dbm_index', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -1419,28 +1419,28 @@ _GETFILESIZEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2113,
-  serialized_end=2152,
+  serialized_start=2190,
+  serialized_end=2229,
 )
 
 
 _GETFILESIZERESPONSE = _descriptor.Descriptor(
   name='GetFileSizeResponse',
-  full_name='tkrzw.GetFileSizeResponse',
+  full_name='tkrzw_rpc.GetFileSizeResponse',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='status', full_name='tkrzw.GetFileSizeResponse.status', index=0,
+      name='status', full_name='tkrzw_rpc.GetFileSizeResponse.status', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='file_size', full_name='tkrzw.GetFileSizeResponse.file_size', index=1,
+      name='file_size', full_name='tkrzw_rpc.GetFileSizeResponse.file_size', index=1,
       number=2, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -1458,21 +1458,21 @@ _GETFILESIZERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2154,
-  serialized_end=2230,
+  serialized_start=2231,
+  serialized_end=2311,
 )
 
 
 _CLEARREQUEST = _descriptor.Descriptor(
   name='ClearRequest',
-  full_name='tkrzw.ClearRequest',
+  full_name='tkrzw_rpc.ClearRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='dbm_index', full_name='tkrzw.ClearRequest.dbm_index', index=0,
+      name='dbm_index', full_name='tkrzw_rpc.ClearRequest.dbm_index', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -1490,21 +1490,21 @@ _CLEARREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2232,
-  serialized_end=2265,
+  serialized_start=2313,
+  serialized_end=2346,
 )
 
 
 _CLEARRESPONSE = _descriptor.Descriptor(
   name='ClearResponse',
-  full_name='tkrzw.ClearResponse',
+  full_name='tkrzw_rpc.ClearResponse',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='status', full_name='tkrzw.ClearResponse.status', index=0,
+      name='status', full_name='tkrzw_rpc.ClearResponse.status', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -1522,28 +1522,28 @@ _CLEARRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2267,
-  serialized_end=2318,
+  serialized_start=2348,
+  serialized_end=2403,
 )
 
 
 _REBUILDREQUEST = _descriptor.Descriptor(
   name='RebuildRequest',
-  full_name='tkrzw.RebuildRequest',
+  full_name='tkrzw_rpc.RebuildRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='dbm_index', full_name='tkrzw.RebuildRequest.dbm_index', index=0,
+      name='dbm_index', full_name='tkrzw_rpc.RebuildRequest.dbm_index', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='params', full_name='tkrzw.RebuildRequest.params', index=1,
+      name='params', full_name='tkrzw_rpc.RebuildRequest.params', index=1,
       number=2, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -1561,21 +1561,21 @@ _REBUILDREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2320,
-  serialized_end=2390,
+  serialized_start=2405,
+  serialized_end=2479,
 )
 
 
 _REBUILDRESPONSE = _descriptor.Descriptor(
   name='RebuildResponse',
-  full_name='tkrzw.RebuildResponse',
+  full_name='tkrzw_rpc.RebuildResponse',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='status', full_name='tkrzw.RebuildResponse.status', index=0,
+      name='status', full_name='tkrzw_rpc.RebuildResponse.status', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -1593,21 +1593,21 @@ _REBUILDRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2392,
-  serialized_end=2445,
+  serialized_start=2481,
+  serialized_end=2538,
 )
 
 
 _SHOULDBEREBUILTREQUEST = _descriptor.Descriptor(
   name='ShouldBeRebuiltRequest',
-  full_name='tkrzw.ShouldBeRebuiltRequest',
+  full_name='tkrzw_rpc.ShouldBeRebuiltRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='dbm_index', full_name='tkrzw.ShouldBeRebuiltRequest.dbm_index', index=0,
+      name='dbm_index', full_name='tkrzw_rpc.ShouldBeRebuiltRequest.dbm_index', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -1625,28 +1625,28 @@ _SHOULDBEREBUILTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2447,
-  serialized_end=2490,
+  serialized_start=2540,
+  serialized_end=2583,
 )
 
 
 _SHOULDBEREBUILTRESPONSE = _descriptor.Descriptor(
   name='ShouldBeRebuiltResponse',
-  full_name='tkrzw.ShouldBeRebuiltResponse',
+  full_name='tkrzw_rpc.ShouldBeRebuiltResponse',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='status', full_name='tkrzw.ShouldBeRebuiltResponse.status', index=0,
+      name='status', full_name='tkrzw_rpc.ShouldBeRebuiltResponse.status', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='tobe', full_name='tkrzw.ShouldBeRebuiltResponse.tobe', index=1,
+      name='tobe', full_name='tkrzw_rpc.ShouldBeRebuiltResponse.tobe', index=1,
       number=2, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
@@ -1664,35 +1664,35 @@ _SHOULDBEREBUILTRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2492,
-  serialized_end=2567,
+  serialized_start=2585,
+  serialized_end=2664,
 )
 
 
 _SYNCHRONIZEREQUEST = _descriptor.Descriptor(
   name='SynchronizeRequest',
-  full_name='tkrzw.SynchronizeRequest',
+  full_name='tkrzw_rpc.SynchronizeRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='dbm_index', full_name='tkrzw.SynchronizeRequest.dbm_index', index=0,
+      name='dbm_index', full_name='tkrzw_rpc.SynchronizeRequest.dbm_index', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='hard', full_name='tkrzw.SynchronizeRequest.hard', index=1,
+      name='hard', full_name='tkrzw_rpc.SynchronizeRequest.hard', index=1,
       number=2, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='params', full_name='tkrzw.SynchronizeRequest.params', index=2,
+      name='params', full_name='tkrzw_rpc.SynchronizeRequest.params', index=2,
       number=3, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -1710,21 +1710,21 @@ _SYNCHRONIZEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2569,
-  serialized_end=2657,
+  serialized_start=2666,
+  serialized_end=2758,
 )
 
 
 _SYNCHRONIZERESPONSE = _descriptor.Descriptor(
   name='SynchronizeResponse',
-  full_name='tkrzw.SynchronizeResponse',
+  full_name='tkrzw_rpc.SynchronizeResponse',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='status', full_name='tkrzw.SynchronizeResponse.status', index=0,
+      name='status', full_name='tkrzw_rpc.SynchronizeResponse.status', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -1742,42 +1742,42 @@ _SYNCHRONIZERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2659,
-  serialized_end=2716,
+  serialized_start=2760,
+  serialized_end=2821,
 )
 
 
 _SEARCHREQUEST = _descriptor.Descriptor(
   name='SearchRequest',
-  full_name='tkrzw.SearchRequest',
+  full_name='tkrzw_rpc.SearchRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='dbm_index', full_name='tkrzw.SearchRequest.dbm_index', index=0,
+      name='dbm_index', full_name='tkrzw_rpc.SearchRequest.dbm_index', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='mode', full_name='tkrzw.SearchRequest.mode', index=1,
+      name='mode', full_name='tkrzw_rpc.SearchRequest.mode', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='pattern', full_name='tkrzw.SearchRequest.pattern', index=2,
+      name='pattern', full_name='tkrzw_rpc.SearchRequest.pattern', index=2,
       number=3, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='capacity', full_name='tkrzw.SearchRequest.capacity', index=3,
+      name='capacity', full_name='tkrzw_rpc.SearchRequest.capacity', index=3,
       number=4, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -1795,28 +1795,28 @@ _SEARCHREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2718,
-  serialized_end=2801,
+  serialized_start=2823,
+  serialized_end=2906,
 )
 
 
 _SEARCHRESPONSE = _descriptor.Descriptor(
   name='SearchResponse',
-  full_name='tkrzw.SearchResponse',
+  full_name='tkrzw_rpc.SearchResponse',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='status', full_name='tkrzw.SearchResponse.status', index=0,
+      name='status', full_name='tkrzw_rpc.SearchResponse.status', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='matched', full_name='tkrzw.SearchResponse.matched', index=1,
+      name='matched', full_name='tkrzw_rpc.SearchResponse.matched', index=1,
       number=2, type=12, cpp_type=9, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -1834,70 +1834,70 @@ _SEARCHRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2803,
-  serialized_end=2872,
+  serialized_start=2908,
+  serialized_end=2981,
 )
 
 
 _STREAMREQUEST = _descriptor.Descriptor(
   name='StreamRequest',
-  full_name='tkrzw.StreamRequest',
+  full_name='tkrzw_rpc.StreamRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='echo_request', full_name='tkrzw.StreamRequest.echo_request', index=0,
+      name='echo_request', full_name='tkrzw_rpc.StreamRequest.echo_request', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='get_request', full_name='tkrzw.StreamRequest.get_request', index=1,
+      name='get_request', full_name='tkrzw_rpc.StreamRequest.get_request', index=1,
       number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='set_request', full_name='tkrzw.StreamRequest.set_request', index=2,
+      name='set_request', full_name='tkrzw_rpc.StreamRequest.set_request', index=2,
       number=3, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='remove_request', full_name='tkrzw.StreamRequest.remove_request', index=3,
+      name='remove_request', full_name='tkrzw_rpc.StreamRequest.remove_request', index=3,
       number=4, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='append_request', full_name='tkrzw.StreamRequest.append_request', index=4,
+      name='append_request', full_name='tkrzw_rpc.StreamRequest.append_request', index=4,
       number=5, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='compare_exchange_request', full_name='tkrzw.StreamRequest.compare_exchange_request', index=5,
+      name='compare_exchange_request', full_name='tkrzw_rpc.StreamRequest.compare_exchange_request', index=5,
       number=6, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='increment_request', full_name='tkrzw.StreamRequest.increment_request', index=6,
+      name='increment_request', full_name='tkrzw_rpc.StreamRequest.increment_request', index=6,
       number=7, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='omit_response', full_name='tkrzw.StreamRequest.omit_response', index=7,
+      name='omit_response', full_name='tkrzw_rpc.StreamRequest.omit_response', index=7,
       number=101, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
@@ -1915,68 +1915,68 @@ _STREAMREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
     _descriptor.OneofDescriptor(
-      name='request_oneof', full_name='tkrzw.StreamRequest.request_oneof',
+      name='request_oneof', full_name='tkrzw_rpc.StreamRequest.request_oneof',
       index=0, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=2875,
-  serialized_end=3275,
+  serialized_start=2984,
+  serialized_end=3412,
 )
 
 
 _STREAMRESPONSE = _descriptor.Descriptor(
   name='StreamResponse',
-  full_name='tkrzw.StreamResponse',
+  full_name='tkrzw_rpc.StreamResponse',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='echo_response', full_name='tkrzw.StreamResponse.echo_response', index=0,
+      name='echo_response', full_name='tkrzw_rpc.StreamResponse.echo_response', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='get_response', full_name='tkrzw.StreamResponse.get_response', index=1,
+      name='get_response', full_name='tkrzw_rpc.StreamResponse.get_response', index=1,
       number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='set_response', full_name='tkrzw.StreamResponse.set_response', index=2,
+      name='set_response', full_name='tkrzw_rpc.StreamResponse.set_response', index=2,
       number=3, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='remove_response', full_name='tkrzw.StreamResponse.remove_response', index=3,
+      name='remove_response', full_name='tkrzw_rpc.StreamResponse.remove_response', index=3,
       number=4, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='append_response', full_name='tkrzw.StreamResponse.append_response', index=4,
+      name='append_response', full_name='tkrzw_rpc.StreamResponse.append_response', index=4,
       number=5, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='compare_exchange_response', full_name='tkrzw.StreamResponse.compare_exchange_response', index=5,
+      name='compare_exchange_response', full_name='tkrzw_rpc.StreamResponse.compare_exchange_response', index=5,
       number=6, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='increment_response', full_name='tkrzw.StreamResponse.increment_response', index=6,
+      name='increment_response', full_name='tkrzw_rpc.StreamResponse.increment_response', index=6,
       number=7, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -1994,68 +1994,68 @@ _STREAMRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
     _descriptor.OneofDescriptor(
-      name='response_oneof', full_name='tkrzw.StreamResponse.response_oneof',
+      name='response_oneof', full_name='tkrzw_rpc.StreamResponse.response_oneof',
       index=0, containing_type=None,
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=3278,
-  serialized_end=3671,
+  serialized_start=3415,
+  serialized_end=3836,
 )
 
 
 _ITERATEREQUEST = _descriptor.Descriptor(
   name='IterateRequest',
-  full_name='tkrzw.IterateRequest',
+  full_name='tkrzw_rpc.IterateRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='dbm_index', full_name='tkrzw.IterateRequest.dbm_index', index=0,
+      name='dbm_index', full_name='tkrzw_rpc.IterateRequest.dbm_index', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='operation', full_name='tkrzw.IterateRequest.operation', index=1,
+      name='operation', full_name='tkrzw_rpc.IterateRequest.operation', index=1,
       number=2, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='key', full_name='tkrzw.IterateRequest.key', index=2,
+      name='key', full_name='tkrzw_rpc.IterateRequest.key', index=2,
       number=3, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='value', full_name='tkrzw.IterateRequest.value', index=3,
+      name='value', full_name='tkrzw_rpc.IterateRequest.value', index=3,
       number=4, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='jump_inclusive', full_name='tkrzw.IterateRequest.jump_inclusive', index=4,
+      name='jump_inclusive', full_name='tkrzw_rpc.IterateRequest.jump_inclusive', index=4,
       number=5, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='omit_key', full_name='tkrzw.IterateRequest.omit_key', index=5,
+      name='omit_key', full_name='tkrzw_rpc.IterateRequest.omit_key', index=5,
       number=6, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='omit_value', full_name='tkrzw.IterateRequest.omit_value', index=6,
+      name='omit_value', full_name='tkrzw_rpc.IterateRequest.omit_value', index=6,
       number=7, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
@@ -2074,35 +2074,35 @@ _ITERATEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3674,
-  serialized_end=4019,
+  serialized_start=3839,
+  serialized_end=4188,
 )
 
 
 _ITERATERESPONSE = _descriptor.Descriptor(
   name='IterateResponse',
-  full_name='tkrzw.IterateResponse',
+  full_name='tkrzw_rpc.IterateResponse',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='status', full_name='tkrzw.IterateResponse.status', index=0,
+      name='status', full_name='tkrzw_rpc.IterateResponse.status', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='key', full_name='tkrzw.IterateResponse.key', index=1,
+      name='key', full_name='tkrzw_rpc.IterateResponse.key', index=1,
       number=2, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='value', full_name='tkrzw.IterateResponse.value', index=2,
+      name='value', full_name='tkrzw_rpc.IterateResponse.value', index=2,
       number=3, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
@@ -2120,35 +2120,35 @@ _ITERATERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4021,
-  serialized_end=4102,
+  serialized_start=4190,
+  serialized_end=4275,
 )
 
 
 _REPLICATEREQUEST = _descriptor.Descriptor(
   name='ReplicateRequest',
-  full_name='tkrzw.ReplicateRequest',
+  full_name='tkrzw_rpc.ReplicateRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='min_timestamp', full_name='tkrzw.ReplicateRequest.min_timestamp', index=0,
+      name='min_timestamp', full_name='tkrzw_rpc.ReplicateRequest.min_timestamp', index=0,
       number=1, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='server_id', full_name='tkrzw.ReplicateRequest.server_id', index=1,
+      name='server_id', full_name='tkrzw_rpc.ReplicateRequest.server_id', index=1,
       number=2, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='wait_time', full_name='tkrzw.ReplicateRequest.wait_time', index=2,
+      name='wait_time', full_name='tkrzw_rpc.ReplicateRequest.wait_time', index=2,
       number=3, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
@@ -2166,63 +2166,63 @@ _REPLICATEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4104,
-  serialized_end=4183,
+  serialized_start=4277,
+  serialized_end=4356,
 )
 
 
 _REPLICATERESPONSE = _descriptor.Descriptor(
   name='ReplicateResponse',
-  full_name='tkrzw.ReplicateResponse',
+  full_name='tkrzw_rpc.ReplicateResponse',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='status', full_name='tkrzw.ReplicateResponse.status', index=0,
+      name='status', full_name='tkrzw_rpc.ReplicateResponse.status', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='timestamp', full_name='tkrzw.ReplicateResponse.timestamp', index=1,
+      name='timestamp', full_name='tkrzw_rpc.ReplicateResponse.timestamp', index=1,
       number=2, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='server_id', full_name='tkrzw.ReplicateResponse.server_id', index=2,
+      name='server_id', full_name='tkrzw_rpc.ReplicateResponse.server_id', index=2,
       number=3, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='dbm_index', full_name='tkrzw.ReplicateResponse.dbm_index', index=3,
+      name='dbm_index', full_name='tkrzw_rpc.ReplicateResponse.dbm_index', index=3,
       number=4, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='op_type', full_name='tkrzw.ReplicateResponse.op_type', index=4,
+      name='op_type', full_name='tkrzw_rpc.ReplicateResponse.op_type', index=4,
       number=5, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='key', full_name='tkrzw.ReplicateResponse.key', index=5,
+      name='key', full_name='tkrzw_rpc.ReplicateResponse.key', index=5,
       number=6, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='value', full_name='tkrzw.ReplicateResponse.value', index=6,
+      name='value', full_name='tkrzw_rpc.ReplicateResponse.value', index=6,
       number=7, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
@@ -2241,28 +2241,28 @@ _REPLICATERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4186,
-  serialized_end=4440,
+  serialized_start=4359,
+  serialized_end=4621,
 )
 
 
 _CHANGEMASTERREQUEST = _descriptor.Descriptor(
   name='ChangeMasterRequest',
-  full_name='tkrzw.ChangeMasterRequest',
+  full_name='tkrzw_rpc.ChangeMasterRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='master', full_name='tkrzw.ChangeMasterRequest.master', index=0,
+      name='master', full_name='tkrzw_rpc.ChangeMasterRequest.master', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='timestamp_skew', full_name='tkrzw.ChangeMasterRequest.timestamp_skew', index=1,
+      name='timestamp_skew', full_name='tkrzw_rpc.ChangeMasterRequest.timestamp_skew', index=1,
       number=2, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -2280,21 +2280,21 @@ _CHANGEMASTERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4442,
-  serialized_end=4503,
+  serialized_start=4623,
+  serialized_end=4684,
 )
 
 
 _CHANGEMASTERRESPONSE = _descriptor.Descriptor(
   name='ChangeMasterResponse',
-  full_name='tkrzw.ChangeMasterResponse',
+  full_name='tkrzw_rpc.ChangeMasterResponse',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='status', full_name='tkrzw.ChangeMasterResponse.status', index=0,
+      name='status', full_name='tkrzw_rpc.ChangeMasterResponse.status', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -2312,8 +2312,8 @@ _CHANGEMASTERRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4505,
-  serialized_end=4563,
+  serialized_start=4686,
+  serialized_end=4748,
 )
 
 _INSPECTRESPONSE.fields_by_name['records'].message_type = _STRINGPAIR
@@ -2462,364 +2462,364 @@ _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 StatusProto = _reflection.GeneratedProtocolMessageType('StatusProto', (_message.Message,), {
   'DESCRIPTOR' : _STATUSPROTO,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.StatusProto)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.StatusProto)
   })
 _sym_db.RegisterMessage(StatusProto)
 
 StringPair = _reflection.GeneratedProtocolMessageType('StringPair', (_message.Message,), {
   'DESCRIPTOR' : _STRINGPAIR,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.StringPair)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.StringPair)
   })
 _sym_db.RegisterMessage(StringPair)
 
 BytesPair = _reflection.GeneratedProtocolMessageType('BytesPair', (_message.Message,), {
   'DESCRIPTOR' : _BYTESPAIR,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.BytesPair)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.BytesPair)
   })
 _sym_db.RegisterMessage(BytesPair)
 
 RecordState = _reflection.GeneratedProtocolMessageType('RecordState', (_message.Message,), {
   'DESCRIPTOR' : _RECORDSTATE,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.RecordState)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.RecordState)
   })
 _sym_db.RegisterMessage(RecordState)
 
 EchoRequest = _reflection.GeneratedProtocolMessageType('EchoRequest', (_message.Message,), {
   'DESCRIPTOR' : _ECHOREQUEST,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.EchoRequest)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.EchoRequest)
   })
 _sym_db.RegisterMessage(EchoRequest)
 
 EchoResponse = _reflection.GeneratedProtocolMessageType('EchoResponse', (_message.Message,), {
   'DESCRIPTOR' : _ECHORESPONSE,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.EchoResponse)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.EchoResponse)
   })
 _sym_db.RegisterMessage(EchoResponse)
 
 InspectRequest = _reflection.GeneratedProtocolMessageType('InspectRequest', (_message.Message,), {
   'DESCRIPTOR' : _INSPECTREQUEST,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.InspectRequest)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.InspectRequest)
   })
 _sym_db.RegisterMessage(InspectRequest)
 
 InspectResponse = _reflection.GeneratedProtocolMessageType('InspectResponse', (_message.Message,), {
   'DESCRIPTOR' : _INSPECTRESPONSE,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.InspectResponse)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.InspectResponse)
   })
 _sym_db.RegisterMessage(InspectResponse)
 
 GetRequest = _reflection.GeneratedProtocolMessageType('GetRequest', (_message.Message,), {
   'DESCRIPTOR' : _GETREQUEST,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.GetRequest)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.GetRequest)
   })
 _sym_db.RegisterMessage(GetRequest)
 
 GetResponse = _reflection.GeneratedProtocolMessageType('GetResponse', (_message.Message,), {
   'DESCRIPTOR' : _GETRESPONSE,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.GetResponse)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.GetResponse)
   })
 _sym_db.RegisterMessage(GetResponse)
 
 GetMultiRequest = _reflection.GeneratedProtocolMessageType('GetMultiRequest', (_message.Message,), {
   'DESCRIPTOR' : _GETMULTIREQUEST,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.GetMultiRequest)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.GetMultiRequest)
   })
 _sym_db.RegisterMessage(GetMultiRequest)
 
 GetMultiResponse = _reflection.GeneratedProtocolMessageType('GetMultiResponse', (_message.Message,), {
   'DESCRIPTOR' : _GETMULTIRESPONSE,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.GetMultiResponse)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.GetMultiResponse)
   })
 _sym_db.RegisterMessage(GetMultiResponse)
 
 SetRequest = _reflection.GeneratedProtocolMessageType('SetRequest', (_message.Message,), {
   'DESCRIPTOR' : _SETREQUEST,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.SetRequest)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.SetRequest)
   })
 _sym_db.RegisterMessage(SetRequest)
 
 SetResponse = _reflection.GeneratedProtocolMessageType('SetResponse', (_message.Message,), {
   'DESCRIPTOR' : _SETRESPONSE,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.SetResponse)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.SetResponse)
   })
 _sym_db.RegisterMessage(SetResponse)
 
 SetMultiRequest = _reflection.GeneratedProtocolMessageType('SetMultiRequest', (_message.Message,), {
   'DESCRIPTOR' : _SETMULTIREQUEST,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.SetMultiRequest)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.SetMultiRequest)
   })
 _sym_db.RegisterMessage(SetMultiRequest)
 
 SetMultiResponse = _reflection.GeneratedProtocolMessageType('SetMultiResponse', (_message.Message,), {
   'DESCRIPTOR' : _SETMULTIRESPONSE,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.SetMultiResponse)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.SetMultiResponse)
   })
 _sym_db.RegisterMessage(SetMultiResponse)
 
 RemoveRequest = _reflection.GeneratedProtocolMessageType('RemoveRequest', (_message.Message,), {
   'DESCRIPTOR' : _REMOVEREQUEST,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.RemoveRequest)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.RemoveRequest)
   })
 _sym_db.RegisterMessage(RemoveRequest)
 
 RemoveResponse = _reflection.GeneratedProtocolMessageType('RemoveResponse', (_message.Message,), {
   'DESCRIPTOR' : _REMOVERESPONSE,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.RemoveResponse)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.RemoveResponse)
   })
 _sym_db.RegisterMessage(RemoveResponse)
 
 RemoveMultiRequest = _reflection.GeneratedProtocolMessageType('RemoveMultiRequest', (_message.Message,), {
   'DESCRIPTOR' : _REMOVEMULTIREQUEST,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.RemoveMultiRequest)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.RemoveMultiRequest)
   })
 _sym_db.RegisterMessage(RemoveMultiRequest)
 
 RemoveMultiResponse = _reflection.GeneratedProtocolMessageType('RemoveMultiResponse', (_message.Message,), {
   'DESCRIPTOR' : _REMOVEMULTIRESPONSE,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.RemoveMultiResponse)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.RemoveMultiResponse)
   })
 _sym_db.RegisterMessage(RemoveMultiResponse)
 
 AppendRequest = _reflection.GeneratedProtocolMessageType('AppendRequest', (_message.Message,), {
   'DESCRIPTOR' : _APPENDREQUEST,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.AppendRequest)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.AppendRequest)
   })
 _sym_db.RegisterMessage(AppendRequest)
 
 AppendResponse = _reflection.GeneratedProtocolMessageType('AppendResponse', (_message.Message,), {
   'DESCRIPTOR' : _APPENDRESPONSE,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.AppendResponse)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.AppendResponse)
   })
 _sym_db.RegisterMessage(AppendResponse)
 
 AppendMultiRequest = _reflection.GeneratedProtocolMessageType('AppendMultiRequest', (_message.Message,), {
   'DESCRIPTOR' : _APPENDMULTIREQUEST,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.AppendMultiRequest)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.AppendMultiRequest)
   })
 _sym_db.RegisterMessage(AppendMultiRequest)
 
 AppendMultiResponse = _reflection.GeneratedProtocolMessageType('AppendMultiResponse', (_message.Message,), {
   'DESCRIPTOR' : _APPENDMULTIRESPONSE,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.AppendMultiResponse)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.AppendMultiResponse)
   })
 _sym_db.RegisterMessage(AppendMultiResponse)
 
 CompareExchangeRequest = _reflection.GeneratedProtocolMessageType('CompareExchangeRequest', (_message.Message,), {
   'DESCRIPTOR' : _COMPAREEXCHANGEREQUEST,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.CompareExchangeRequest)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.CompareExchangeRequest)
   })
 _sym_db.RegisterMessage(CompareExchangeRequest)
 
 CompareExchangeResponse = _reflection.GeneratedProtocolMessageType('CompareExchangeResponse', (_message.Message,), {
   'DESCRIPTOR' : _COMPAREEXCHANGERESPONSE,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.CompareExchangeResponse)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.CompareExchangeResponse)
   })
 _sym_db.RegisterMessage(CompareExchangeResponse)
 
 IncrementRequest = _reflection.GeneratedProtocolMessageType('IncrementRequest', (_message.Message,), {
   'DESCRIPTOR' : _INCREMENTREQUEST,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.IncrementRequest)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.IncrementRequest)
   })
 _sym_db.RegisterMessage(IncrementRequest)
 
 IncrementResponse = _reflection.GeneratedProtocolMessageType('IncrementResponse', (_message.Message,), {
   'DESCRIPTOR' : _INCREMENTRESPONSE,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.IncrementResponse)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.IncrementResponse)
   })
 _sym_db.RegisterMessage(IncrementResponse)
 
 CompareExchangeMultiRequest = _reflection.GeneratedProtocolMessageType('CompareExchangeMultiRequest', (_message.Message,), {
   'DESCRIPTOR' : _COMPAREEXCHANGEMULTIREQUEST,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.CompareExchangeMultiRequest)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.CompareExchangeMultiRequest)
   })
 _sym_db.RegisterMessage(CompareExchangeMultiRequest)
 
 CompareExchangeMultiResponse = _reflection.GeneratedProtocolMessageType('CompareExchangeMultiResponse', (_message.Message,), {
   'DESCRIPTOR' : _COMPAREEXCHANGEMULTIRESPONSE,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.CompareExchangeMultiResponse)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.CompareExchangeMultiResponse)
   })
 _sym_db.RegisterMessage(CompareExchangeMultiResponse)
 
 CountRequest = _reflection.GeneratedProtocolMessageType('CountRequest', (_message.Message,), {
   'DESCRIPTOR' : _COUNTREQUEST,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.CountRequest)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.CountRequest)
   })
 _sym_db.RegisterMessage(CountRequest)
 
 CountResponse = _reflection.GeneratedProtocolMessageType('CountResponse', (_message.Message,), {
   'DESCRIPTOR' : _COUNTRESPONSE,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.CountResponse)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.CountResponse)
   })
 _sym_db.RegisterMessage(CountResponse)
 
 GetFileSizeRequest = _reflection.GeneratedProtocolMessageType('GetFileSizeRequest', (_message.Message,), {
   'DESCRIPTOR' : _GETFILESIZEREQUEST,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.GetFileSizeRequest)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.GetFileSizeRequest)
   })
 _sym_db.RegisterMessage(GetFileSizeRequest)
 
 GetFileSizeResponse = _reflection.GeneratedProtocolMessageType('GetFileSizeResponse', (_message.Message,), {
   'DESCRIPTOR' : _GETFILESIZERESPONSE,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.GetFileSizeResponse)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.GetFileSizeResponse)
   })
 _sym_db.RegisterMessage(GetFileSizeResponse)
 
 ClearRequest = _reflection.GeneratedProtocolMessageType('ClearRequest', (_message.Message,), {
   'DESCRIPTOR' : _CLEARREQUEST,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.ClearRequest)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.ClearRequest)
   })
 _sym_db.RegisterMessage(ClearRequest)
 
 ClearResponse = _reflection.GeneratedProtocolMessageType('ClearResponse', (_message.Message,), {
   'DESCRIPTOR' : _CLEARRESPONSE,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.ClearResponse)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.ClearResponse)
   })
 _sym_db.RegisterMessage(ClearResponse)
 
 RebuildRequest = _reflection.GeneratedProtocolMessageType('RebuildRequest', (_message.Message,), {
   'DESCRIPTOR' : _REBUILDREQUEST,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.RebuildRequest)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.RebuildRequest)
   })
 _sym_db.RegisterMessage(RebuildRequest)
 
 RebuildResponse = _reflection.GeneratedProtocolMessageType('RebuildResponse', (_message.Message,), {
   'DESCRIPTOR' : _REBUILDRESPONSE,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.RebuildResponse)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.RebuildResponse)
   })
 _sym_db.RegisterMessage(RebuildResponse)
 
 ShouldBeRebuiltRequest = _reflection.GeneratedProtocolMessageType('ShouldBeRebuiltRequest', (_message.Message,), {
   'DESCRIPTOR' : _SHOULDBEREBUILTREQUEST,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.ShouldBeRebuiltRequest)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.ShouldBeRebuiltRequest)
   })
 _sym_db.RegisterMessage(ShouldBeRebuiltRequest)
 
 ShouldBeRebuiltResponse = _reflection.GeneratedProtocolMessageType('ShouldBeRebuiltResponse', (_message.Message,), {
   'DESCRIPTOR' : _SHOULDBEREBUILTRESPONSE,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.ShouldBeRebuiltResponse)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.ShouldBeRebuiltResponse)
   })
 _sym_db.RegisterMessage(ShouldBeRebuiltResponse)
 
 SynchronizeRequest = _reflection.GeneratedProtocolMessageType('SynchronizeRequest', (_message.Message,), {
   'DESCRIPTOR' : _SYNCHRONIZEREQUEST,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.SynchronizeRequest)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.SynchronizeRequest)
   })
 _sym_db.RegisterMessage(SynchronizeRequest)
 
 SynchronizeResponse = _reflection.GeneratedProtocolMessageType('SynchronizeResponse', (_message.Message,), {
   'DESCRIPTOR' : _SYNCHRONIZERESPONSE,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.SynchronizeResponse)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.SynchronizeResponse)
   })
 _sym_db.RegisterMessage(SynchronizeResponse)
 
 SearchRequest = _reflection.GeneratedProtocolMessageType('SearchRequest', (_message.Message,), {
   'DESCRIPTOR' : _SEARCHREQUEST,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.SearchRequest)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.SearchRequest)
   })
 _sym_db.RegisterMessage(SearchRequest)
 
 SearchResponse = _reflection.GeneratedProtocolMessageType('SearchResponse', (_message.Message,), {
   'DESCRIPTOR' : _SEARCHRESPONSE,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.SearchResponse)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.SearchResponse)
   })
 _sym_db.RegisterMessage(SearchResponse)
 
 StreamRequest = _reflection.GeneratedProtocolMessageType('StreamRequest', (_message.Message,), {
   'DESCRIPTOR' : _STREAMREQUEST,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.StreamRequest)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.StreamRequest)
   })
 _sym_db.RegisterMessage(StreamRequest)
 
 StreamResponse = _reflection.GeneratedProtocolMessageType('StreamResponse', (_message.Message,), {
   'DESCRIPTOR' : _STREAMRESPONSE,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.StreamResponse)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.StreamResponse)
   })
 _sym_db.RegisterMessage(StreamResponse)
 
 IterateRequest = _reflection.GeneratedProtocolMessageType('IterateRequest', (_message.Message,), {
   'DESCRIPTOR' : _ITERATEREQUEST,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.IterateRequest)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.IterateRequest)
   })
 _sym_db.RegisterMessage(IterateRequest)
 
 IterateResponse = _reflection.GeneratedProtocolMessageType('IterateResponse', (_message.Message,), {
   'DESCRIPTOR' : _ITERATERESPONSE,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.IterateResponse)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.IterateResponse)
   })
 _sym_db.RegisterMessage(IterateResponse)
 
 ReplicateRequest = _reflection.GeneratedProtocolMessageType('ReplicateRequest', (_message.Message,), {
   'DESCRIPTOR' : _REPLICATEREQUEST,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.ReplicateRequest)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.ReplicateRequest)
   })
 _sym_db.RegisterMessage(ReplicateRequest)
 
 ReplicateResponse = _reflection.GeneratedProtocolMessageType('ReplicateResponse', (_message.Message,), {
   'DESCRIPTOR' : _REPLICATERESPONSE,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.ReplicateResponse)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.ReplicateResponse)
   })
 _sym_db.RegisterMessage(ReplicateResponse)
 
 ChangeMasterRequest = _reflection.GeneratedProtocolMessageType('ChangeMasterRequest', (_message.Message,), {
   'DESCRIPTOR' : _CHANGEMASTERREQUEST,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.ChangeMasterRequest)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.ChangeMasterRequest)
   })
 _sym_db.RegisterMessage(ChangeMasterRequest)
 
 ChangeMasterResponse = _reflection.GeneratedProtocolMessageType('ChangeMasterResponse', (_message.Message,), {
   'DESCRIPTOR' : _CHANGEMASTERRESPONSE,
   '__module__' : 'tkrzw_rpc_pb2'
-  # @@protoc_insertion_point(class_scope:tkrzw.ChangeMasterResponse)
+  # @@protoc_insertion_point(class_scope:tkrzw_rpc.ChangeMasterResponse)
   })
 _sym_db.RegisterMessage(ChangeMasterResponse)
 
@@ -2827,17 +2827,17 @@ _sym_db.RegisterMessage(ChangeMasterResponse)
 
 _DBMSERVICE = _descriptor.ServiceDescriptor(
   name='DBMService',
-  full_name='tkrzw.DBMService',
+  full_name='tkrzw_rpc.DBMService',
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=4566,
-  serialized_end=6091,
+  serialized_start=4751,
+  serialized_end=6468,
   methods=[
   _descriptor.MethodDescriptor(
     name='Echo',
-    full_name='tkrzw.DBMService.Echo',
+    full_name='tkrzw_rpc.DBMService.Echo',
     index=0,
     containing_service=None,
     input_type=_ECHOREQUEST,
@@ -2847,7 +2847,7 @@ _DBMSERVICE = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='Inspect',
-    full_name='tkrzw.DBMService.Inspect',
+    full_name='tkrzw_rpc.DBMService.Inspect',
     index=1,
     containing_service=None,
     input_type=_INSPECTREQUEST,
@@ -2857,7 +2857,7 @@ _DBMSERVICE = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='Get',
-    full_name='tkrzw.DBMService.Get',
+    full_name='tkrzw_rpc.DBMService.Get',
     index=2,
     containing_service=None,
     input_type=_GETREQUEST,
@@ -2867,7 +2867,7 @@ _DBMSERVICE = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='GetMulti',
-    full_name='tkrzw.DBMService.GetMulti',
+    full_name='tkrzw_rpc.DBMService.GetMulti',
     index=3,
     containing_service=None,
     input_type=_GETMULTIREQUEST,
@@ -2877,7 +2877,7 @@ _DBMSERVICE = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='Set',
-    full_name='tkrzw.DBMService.Set',
+    full_name='tkrzw_rpc.DBMService.Set',
     index=4,
     containing_service=None,
     input_type=_SETREQUEST,
@@ -2887,7 +2887,7 @@ _DBMSERVICE = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='SetMulti',
-    full_name='tkrzw.DBMService.SetMulti',
+    full_name='tkrzw_rpc.DBMService.SetMulti',
     index=5,
     containing_service=None,
     input_type=_SETMULTIREQUEST,
@@ -2897,7 +2897,7 @@ _DBMSERVICE = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='Remove',
-    full_name='tkrzw.DBMService.Remove',
+    full_name='tkrzw_rpc.DBMService.Remove',
     index=6,
     containing_service=None,
     input_type=_REMOVEREQUEST,
@@ -2907,7 +2907,7 @@ _DBMSERVICE = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='RemoveMulti',
-    full_name='tkrzw.DBMService.RemoveMulti',
+    full_name='tkrzw_rpc.DBMService.RemoveMulti',
     index=7,
     containing_service=None,
     input_type=_REMOVEMULTIREQUEST,
@@ -2917,7 +2917,7 @@ _DBMSERVICE = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='Append',
-    full_name='tkrzw.DBMService.Append',
+    full_name='tkrzw_rpc.DBMService.Append',
     index=8,
     containing_service=None,
     input_type=_APPENDREQUEST,
@@ -2927,7 +2927,7 @@ _DBMSERVICE = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='AppendMulti',
-    full_name='tkrzw.DBMService.AppendMulti',
+    full_name='tkrzw_rpc.DBMService.AppendMulti',
     index=9,
     containing_service=None,
     input_type=_APPENDMULTIREQUEST,
@@ -2937,7 +2937,7 @@ _DBMSERVICE = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='CompareExchange',
-    full_name='tkrzw.DBMService.CompareExchange',
+    full_name='tkrzw_rpc.DBMService.CompareExchange',
     index=10,
     containing_service=None,
     input_type=_COMPAREEXCHANGEREQUEST,
@@ -2947,7 +2947,7 @@ _DBMSERVICE = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='Increment',
-    full_name='tkrzw.DBMService.Increment',
+    full_name='tkrzw_rpc.DBMService.Increment',
     index=11,
     containing_service=None,
     input_type=_INCREMENTREQUEST,
@@ -2957,7 +2957,7 @@ _DBMSERVICE = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='CompareExchangeMulti',
-    full_name='tkrzw.DBMService.CompareExchangeMulti',
+    full_name='tkrzw_rpc.DBMService.CompareExchangeMulti',
     index=12,
     containing_service=None,
     input_type=_COMPAREEXCHANGEMULTIREQUEST,
@@ -2967,7 +2967,7 @@ _DBMSERVICE = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='Count',
-    full_name='tkrzw.DBMService.Count',
+    full_name='tkrzw_rpc.DBMService.Count',
     index=13,
     containing_service=None,
     input_type=_COUNTREQUEST,
@@ -2977,7 +2977,7 @@ _DBMSERVICE = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='GetFileSize',
-    full_name='tkrzw.DBMService.GetFileSize',
+    full_name='tkrzw_rpc.DBMService.GetFileSize',
     index=14,
     containing_service=None,
     input_type=_GETFILESIZEREQUEST,
@@ -2987,7 +2987,7 @@ _DBMSERVICE = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='Clear',
-    full_name='tkrzw.DBMService.Clear',
+    full_name='tkrzw_rpc.DBMService.Clear',
     index=15,
     containing_service=None,
     input_type=_CLEARREQUEST,
@@ -2997,7 +2997,7 @@ _DBMSERVICE = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='Rebuild',
-    full_name='tkrzw.DBMService.Rebuild',
+    full_name='tkrzw_rpc.DBMService.Rebuild',
     index=16,
     containing_service=None,
     input_type=_REBUILDREQUEST,
@@ -3007,7 +3007,7 @@ _DBMSERVICE = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='ShouldBeRebuilt',
-    full_name='tkrzw.DBMService.ShouldBeRebuilt',
+    full_name='tkrzw_rpc.DBMService.ShouldBeRebuilt',
     index=17,
     containing_service=None,
     input_type=_SHOULDBEREBUILTREQUEST,
@@ -3017,7 +3017,7 @@ _DBMSERVICE = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='Synchronize',
-    full_name='tkrzw.DBMService.Synchronize',
+    full_name='tkrzw_rpc.DBMService.Synchronize',
     index=18,
     containing_service=None,
     input_type=_SYNCHRONIZEREQUEST,
@@ -3027,7 +3027,7 @@ _DBMSERVICE = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='Search',
-    full_name='tkrzw.DBMService.Search',
+    full_name='tkrzw_rpc.DBMService.Search',
     index=19,
     containing_service=None,
     input_type=_SEARCHREQUEST,
@@ -3037,7 +3037,7 @@ _DBMSERVICE = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='Stream',
-    full_name='tkrzw.DBMService.Stream',
+    full_name='tkrzw_rpc.DBMService.Stream',
     index=20,
     containing_service=None,
     input_type=_STREAMREQUEST,
@@ -3047,7 +3047,7 @@ _DBMSERVICE = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='Iterate',
-    full_name='tkrzw.DBMService.Iterate',
+    full_name='tkrzw_rpc.DBMService.Iterate',
     index=21,
     containing_service=None,
     input_type=_ITERATEREQUEST,
@@ -3057,7 +3057,7 @@ _DBMSERVICE = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='Replicate',
-    full_name='tkrzw.DBMService.Replicate',
+    full_name='tkrzw_rpc.DBMService.Replicate',
     index=22,
     containing_service=None,
     input_type=_REPLICATEREQUEST,
@@ -3067,7 +3067,7 @@ _DBMSERVICE = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='ChangeMaster',
-    full_name='tkrzw.DBMService.ChangeMaster',
+    full_name='tkrzw_rpc.DBMService.ChangeMaster',
     index=23,
     containing_service=None,
     input_type=_CHANGEMASTERREQUEST,

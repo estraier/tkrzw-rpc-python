@@ -16,122 +16,122 @@ class DBMServiceStub(object):
             channel: A grpc.Channel.
         """
         self.Echo = channel.unary_unary(
-                '/tkrzw.DBMService/Echo',
+                '/tkrzw_rpc.DBMService/Echo',
                 request_serializer=tkrzw__rpc__pb2.EchoRequest.SerializeToString,
                 response_deserializer=tkrzw__rpc__pb2.EchoResponse.FromString,
                 )
         self.Inspect = channel.unary_unary(
-                '/tkrzw.DBMService/Inspect',
+                '/tkrzw_rpc.DBMService/Inspect',
                 request_serializer=tkrzw__rpc__pb2.InspectRequest.SerializeToString,
                 response_deserializer=tkrzw__rpc__pb2.InspectResponse.FromString,
                 )
         self.Get = channel.unary_unary(
-                '/tkrzw.DBMService/Get',
+                '/tkrzw_rpc.DBMService/Get',
                 request_serializer=tkrzw__rpc__pb2.GetRequest.SerializeToString,
                 response_deserializer=tkrzw__rpc__pb2.GetResponse.FromString,
                 )
         self.GetMulti = channel.unary_unary(
-                '/tkrzw.DBMService/GetMulti',
+                '/tkrzw_rpc.DBMService/GetMulti',
                 request_serializer=tkrzw__rpc__pb2.GetMultiRequest.SerializeToString,
                 response_deserializer=tkrzw__rpc__pb2.GetMultiResponse.FromString,
                 )
         self.Set = channel.unary_unary(
-                '/tkrzw.DBMService/Set',
+                '/tkrzw_rpc.DBMService/Set',
                 request_serializer=tkrzw__rpc__pb2.SetRequest.SerializeToString,
                 response_deserializer=tkrzw__rpc__pb2.SetResponse.FromString,
                 )
         self.SetMulti = channel.unary_unary(
-                '/tkrzw.DBMService/SetMulti',
+                '/tkrzw_rpc.DBMService/SetMulti',
                 request_serializer=tkrzw__rpc__pb2.SetMultiRequest.SerializeToString,
                 response_deserializer=tkrzw__rpc__pb2.SetMultiResponse.FromString,
                 )
         self.Remove = channel.unary_unary(
-                '/tkrzw.DBMService/Remove',
+                '/tkrzw_rpc.DBMService/Remove',
                 request_serializer=tkrzw__rpc__pb2.RemoveRequest.SerializeToString,
                 response_deserializer=tkrzw__rpc__pb2.RemoveResponse.FromString,
                 )
         self.RemoveMulti = channel.unary_unary(
-                '/tkrzw.DBMService/RemoveMulti',
+                '/tkrzw_rpc.DBMService/RemoveMulti',
                 request_serializer=tkrzw__rpc__pb2.RemoveMultiRequest.SerializeToString,
                 response_deserializer=tkrzw__rpc__pb2.RemoveMultiResponse.FromString,
                 )
         self.Append = channel.unary_unary(
-                '/tkrzw.DBMService/Append',
+                '/tkrzw_rpc.DBMService/Append',
                 request_serializer=tkrzw__rpc__pb2.AppendRequest.SerializeToString,
                 response_deserializer=tkrzw__rpc__pb2.AppendResponse.FromString,
                 )
         self.AppendMulti = channel.unary_unary(
-                '/tkrzw.DBMService/AppendMulti',
+                '/tkrzw_rpc.DBMService/AppendMulti',
                 request_serializer=tkrzw__rpc__pb2.AppendMultiRequest.SerializeToString,
                 response_deserializer=tkrzw__rpc__pb2.AppendMultiResponse.FromString,
                 )
         self.CompareExchange = channel.unary_unary(
-                '/tkrzw.DBMService/CompareExchange',
+                '/tkrzw_rpc.DBMService/CompareExchange',
                 request_serializer=tkrzw__rpc__pb2.CompareExchangeRequest.SerializeToString,
                 response_deserializer=tkrzw__rpc__pb2.CompareExchangeResponse.FromString,
                 )
         self.Increment = channel.unary_unary(
-                '/tkrzw.DBMService/Increment',
+                '/tkrzw_rpc.DBMService/Increment',
                 request_serializer=tkrzw__rpc__pb2.IncrementRequest.SerializeToString,
                 response_deserializer=tkrzw__rpc__pb2.IncrementResponse.FromString,
                 )
         self.CompareExchangeMulti = channel.unary_unary(
-                '/tkrzw.DBMService/CompareExchangeMulti',
+                '/tkrzw_rpc.DBMService/CompareExchangeMulti',
                 request_serializer=tkrzw__rpc__pb2.CompareExchangeMultiRequest.SerializeToString,
                 response_deserializer=tkrzw__rpc__pb2.CompareExchangeMultiResponse.FromString,
                 )
         self.Count = channel.unary_unary(
-                '/tkrzw.DBMService/Count',
+                '/tkrzw_rpc.DBMService/Count',
                 request_serializer=tkrzw__rpc__pb2.CountRequest.SerializeToString,
                 response_deserializer=tkrzw__rpc__pb2.CountResponse.FromString,
                 )
         self.GetFileSize = channel.unary_unary(
-                '/tkrzw.DBMService/GetFileSize',
+                '/tkrzw_rpc.DBMService/GetFileSize',
                 request_serializer=tkrzw__rpc__pb2.GetFileSizeRequest.SerializeToString,
                 response_deserializer=tkrzw__rpc__pb2.GetFileSizeResponse.FromString,
                 )
         self.Clear = channel.unary_unary(
-                '/tkrzw.DBMService/Clear',
+                '/tkrzw_rpc.DBMService/Clear',
                 request_serializer=tkrzw__rpc__pb2.ClearRequest.SerializeToString,
                 response_deserializer=tkrzw__rpc__pb2.ClearResponse.FromString,
                 )
         self.Rebuild = channel.unary_unary(
-                '/tkrzw.DBMService/Rebuild',
+                '/tkrzw_rpc.DBMService/Rebuild',
                 request_serializer=tkrzw__rpc__pb2.RebuildRequest.SerializeToString,
                 response_deserializer=tkrzw__rpc__pb2.RebuildResponse.FromString,
                 )
         self.ShouldBeRebuilt = channel.unary_unary(
-                '/tkrzw.DBMService/ShouldBeRebuilt',
+                '/tkrzw_rpc.DBMService/ShouldBeRebuilt',
                 request_serializer=tkrzw__rpc__pb2.ShouldBeRebuiltRequest.SerializeToString,
                 response_deserializer=tkrzw__rpc__pb2.ShouldBeRebuiltResponse.FromString,
                 )
         self.Synchronize = channel.unary_unary(
-                '/tkrzw.DBMService/Synchronize',
+                '/tkrzw_rpc.DBMService/Synchronize',
                 request_serializer=tkrzw__rpc__pb2.SynchronizeRequest.SerializeToString,
                 response_deserializer=tkrzw__rpc__pb2.SynchronizeResponse.FromString,
                 )
         self.Search = channel.unary_unary(
-                '/tkrzw.DBMService/Search',
+                '/tkrzw_rpc.DBMService/Search',
                 request_serializer=tkrzw__rpc__pb2.SearchRequest.SerializeToString,
                 response_deserializer=tkrzw__rpc__pb2.SearchResponse.FromString,
                 )
         self.Stream = channel.stream_stream(
-                '/tkrzw.DBMService/Stream',
+                '/tkrzw_rpc.DBMService/Stream',
                 request_serializer=tkrzw__rpc__pb2.StreamRequest.SerializeToString,
                 response_deserializer=tkrzw__rpc__pb2.StreamResponse.FromString,
                 )
         self.Iterate = channel.stream_stream(
-                '/tkrzw.DBMService/Iterate',
+                '/tkrzw_rpc.DBMService/Iterate',
                 request_serializer=tkrzw__rpc__pb2.IterateRequest.SerializeToString,
                 response_deserializer=tkrzw__rpc__pb2.IterateResponse.FromString,
                 )
         self.Replicate = channel.unary_stream(
-                '/tkrzw.DBMService/Replicate',
+                '/tkrzw_rpc.DBMService/Replicate',
                 request_serializer=tkrzw__rpc__pb2.ReplicateRequest.SerializeToString,
                 response_deserializer=tkrzw__rpc__pb2.ReplicateResponse.FromString,
                 )
         self.ChangeMaster = channel.unary_unary(
-                '/tkrzw.DBMService/ChangeMaster',
+                '/tkrzw_rpc.DBMService/ChangeMaster',
                 request_serializer=tkrzw__rpc__pb2.ChangeMasterRequest.SerializeToString,
                 response_deserializer=tkrzw__rpc__pb2.ChangeMasterResponse.FromString,
                 )
@@ -410,7 +410,7 @@ def add_DBMServiceServicer_to_server(servicer, server):
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'tkrzw.DBMService', rpc_method_handlers)
+            'tkrzw_rpc.DBMService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
@@ -430,7 +430,7 @@ class DBMService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/tkrzw.DBMService/Echo',
+        return grpc.experimental.unary_unary(request, target, '/tkrzw_rpc.DBMService/Echo',
             tkrzw__rpc__pb2.EchoRequest.SerializeToString,
             tkrzw__rpc__pb2.EchoResponse.FromString,
             options, channel_credentials,
@@ -447,7 +447,7 @@ class DBMService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/tkrzw.DBMService/Inspect',
+        return grpc.experimental.unary_unary(request, target, '/tkrzw_rpc.DBMService/Inspect',
             tkrzw__rpc__pb2.InspectRequest.SerializeToString,
             tkrzw__rpc__pb2.InspectResponse.FromString,
             options, channel_credentials,
@@ -464,7 +464,7 @@ class DBMService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/tkrzw.DBMService/Get',
+        return grpc.experimental.unary_unary(request, target, '/tkrzw_rpc.DBMService/Get',
             tkrzw__rpc__pb2.GetRequest.SerializeToString,
             tkrzw__rpc__pb2.GetResponse.FromString,
             options, channel_credentials,
@@ -481,7 +481,7 @@ class DBMService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/tkrzw.DBMService/GetMulti',
+        return grpc.experimental.unary_unary(request, target, '/tkrzw_rpc.DBMService/GetMulti',
             tkrzw__rpc__pb2.GetMultiRequest.SerializeToString,
             tkrzw__rpc__pb2.GetMultiResponse.FromString,
             options, channel_credentials,
@@ -498,7 +498,7 @@ class DBMService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/tkrzw.DBMService/Set',
+        return grpc.experimental.unary_unary(request, target, '/tkrzw_rpc.DBMService/Set',
             tkrzw__rpc__pb2.SetRequest.SerializeToString,
             tkrzw__rpc__pb2.SetResponse.FromString,
             options, channel_credentials,
@@ -515,7 +515,7 @@ class DBMService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/tkrzw.DBMService/SetMulti',
+        return grpc.experimental.unary_unary(request, target, '/tkrzw_rpc.DBMService/SetMulti',
             tkrzw__rpc__pb2.SetMultiRequest.SerializeToString,
             tkrzw__rpc__pb2.SetMultiResponse.FromString,
             options, channel_credentials,
@@ -532,7 +532,7 @@ class DBMService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/tkrzw.DBMService/Remove',
+        return grpc.experimental.unary_unary(request, target, '/tkrzw_rpc.DBMService/Remove',
             tkrzw__rpc__pb2.RemoveRequest.SerializeToString,
             tkrzw__rpc__pb2.RemoveResponse.FromString,
             options, channel_credentials,
@@ -549,7 +549,7 @@ class DBMService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/tkrzw.DBMService/RemoveMulti',
+        return grpc.experimental.unary_unary(request, target, '/tkrzw_rpc.DBMService/RemoveMulti',
             tkrzw__rpc__pb2.RemoveMultiRequest.SerializeToString,
             tkrzw__rpc__pb2.RemoveMultiResponse.FromString,
             options, channel_credentials,
@@ -566,7 +566,7 @@ class DBMService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/tkrzw.DBMService/Append',
+        return grpc.experimental.unary_unary(request, target, '/tkrzw_rpc.DBMService/Append',
             tkrzw__rpc__pb2.AppendRequest.SerializeToString,
             tkrzw__rpc__pb2.AppendResponse.FromString,
             options, channel_credentials,
@@ -583,7 +583,7 @@ class DBMService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/tkrzw.DBMService/AppendMulti',
+        return grpc.experimental.unary_unary(request, target, '/tkrzw_rpc.DBMService/AppendMulti',
             tkrzw__rpc__pb2.AppendMultiRequest.SerializeToString,
             tkrzw__rpc__pb2.AppendMultiResponse.FromString,
             options, channel_credentials,
@@ -600,7 +600,7 @@ class DBMService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/tkrzw.DBMService/CompareExchange',
+        return grpc.experimental.unary_unary(request, target, '/tkrzw_rpc.DBMService/CompareExchange',
             tkrzw__rpc__pb2.CompareExchangeRequest.SerializeToString,
             tkrzw__rpc__pb2.CompareExchangeResponse.FromString,
             options, channel_credentials,
@@ -617,7 +617,7 @@ class DBMService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/tkrzw.DBMService/Increment',
+        return grpc.experimental.unary_unary(request, target, '/tkrzw_rpc.DBMService/Increment',
             tkrzw__rpc__pb2.IncrementRequest.SerializeToString,
             tkrzw__rpc__pb2.IncrementResponse.FromString,
             options, channel_credentials,
@@ -634,7 +634,7 @@ class DBMService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/tkrzw.DBMService/CompareExchangeMulti',
+        return grpc.experimental.unary_unary(request, target, '/tkrzw_rpc.DBMService/CompareExchangeMulti',
             tkrzw__rpc__pb2.CompareExchangeMultiRequest.SerializeToString,
             tkrzw__rpc__pb2.CompareExchangeMultiResponse.FromString,
             options, channel_credentials,
@@ -651,7 +651,7 @@ class DBMService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/tkrzw.DBMService/Count',
+        return grpc.experimental.unary_unary(request, target, '/tkrzw_rpc.DBMService/Count',
             tkrzw__rpc__pb2.CountRequest.SerializeToString,
             tkrzw__rpc__pb2.CountResponse.FromString,
             options, channel_credentials,
@@ -668,7 +668,7 @@ class DBMService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/tkrzw.DBMService/GetFileSize',
+        return grpc.experimental.unary_unary(request, target, '/tkrzw_rpc.DBMService/GetFileSize',
             tkrzw__rpc__pb2.GetFileSizeRequest.SerializeToString,
             tkrzw__rpc__pb2.GetFileSizeResponse.FromString,
             options, channel_credentials,
@@ -685,7 +685,7 @@ class DBMService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/tkrzw.DBMService/Clear',
+        return grpc.experimental.unary_unary(request, target, '/tkrzw_rpc.DBMService/Clear',
             tkrzw__rpc__pb2.ClearRequest.SerializeToString,
             tkrzw__rpc__pb2.ClearResponse.FromString,
             options, channel_credentials,
@@ -702,7 +702,7 @@ class DBMService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/tkrzw.DBMService/Rebuild',
+        return grpc.experimental.unary_unary(request, target, '/tkrzw_rpc.DBMService/Rebuild',
             tkrzw__rpc__pb2.RebuildRequest.SerializeToString,
             tkrzw__rpc__pb2.RebuildResponse.FromString,
             options, channel_credentials,
@@ -719,7 +719,7 @@ class DBMService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/tkrzw.DBMService/ShouldBeRebuilt',
+        return grpc.experimental.unary_unary(request, target, '/tkrzw_rpc.DBMService/ShouldBeRebuilt',
             tkrzw__rpc__pb2.ShouldBeRebuiltRequest.SerializeToString,
             tkrzw__rpc__pb2.ShouldBeRebuiltResponse.FromString,
             options, channel_credentials,
@@ -736,7 +736,7 @@ class DBMService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/tkrzw.DBMService/Synchronize',
+        return grpc.experimental.unary_unary(request, target, '/tkrzw_rpc.DBMService/Synchronize',
             tkrzw__rpc__pb2.SynchronizeRequest.SerializeToString,
             tkrzw__rpc__pb2.SynchronizeResponse.FromString,
             options, channel_credentials,
@@ -753,7 +753,7 @@ class DBMService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/tkrzw.DBMService/Search',
+        return grpc.experimental.unary_unary(request, target, '/tkrzw_rpc.DBMService/Search',
             tkrzw__rpc__pb2.SearchRequest.SerializeToString,
             tkrzw__rpc__pb2.SearchResponse.FromString,
             options, channel_credentials,
@@ -770,7 +770,7 @@ class DBMService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.stream_stream(request_iterator, target, '/tkrzw.DBMService/Stream',
+        return grpc.experimental.stream_stream(request_iterator, target, '/tkrzw_rpc.DBMService/Stream',
             tkrzw__rpc__pb2.StreamRequest.SerializeToString,
             tkrzw__rpc__pb2.StreamResponse.FromString,
             options, channel_credentials,
@@ -787,7 +787,7 @@ class DBMService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.stream_stream(request_iterator, target, '/tkrzw.DBMService/Iterate',
+        return grpc.experimental.stream_stream(request_iterator, target, '/tkrzw_rpc.DBMService/Iterate',
             tkrzw__rpc__pb2.IterateRequest.SerializeToString,
             tkrzw__rpc__pb2.IterateResponse.FromString,
             options, channel_credentials,
@@ -804,7 +804,7 @@ class DBMService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_stream(request, target, '/tkrzw.DBMService/Replicate',
+        return grpc.experimental.unary_stream(request, target, '/tkrzw_rpc.DBMService/Replicate',
             tkrzw__rpc__pb2.ReplicateRequest.SerializeToString,
             tkrzw__rpc__pb2.ReplicateResponse.FromString,
             options, channel_credentials,
@@ -821,7 +821,7 @@ class DBMService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/tkrzw.DBMService/ChangeMaster',
+        return grpc.experimental.unary_unary(request, target, '/tkrzw_rpc.DBMService/ChangeMaster',
             tkrzw__rpc__pb2.ChangeMasterRequest.SerializeToString,
             tkrzw__rpc__pb2.ChangeMasterResponse.FromString,
             options, channel_credentials,
