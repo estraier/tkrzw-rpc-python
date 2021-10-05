@@ -108,6 +108,8 @@ class TestTkrzw(unittest.TestCase):
     self.assertEqual("second", dbm.GetStr("two"))
     self.assertEqual(Status.SUCCESS, dbm.Append(b"two", b"second", b":"))
     self.assertEqual("second:second", dbm.GetStr("two"))
+    self.assertEqual(Status.SUCCESS, dbm.Remove("two"))
+    self.assertEqual(Status.NOT_FOUND_ERROR, dbm.Remove("two"))
     self.assertEqual(Status.SUCCESS, dbm.SetMulti(True, one="FIRST", two="SECOND"))
     records = dbm.GetMulti("one", "two", "three")
     self.assertEqual(2, len(records))
