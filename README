@@ -6,13 +6,6 @@ Please read the following documents.
 
   COPYING           - license
   CONTRIBUTING.md   - how to contribute
-  doc/index.xhtml   - main document
-
-Contents of the directory tree are below.
-
-  ./              - utility source code
-  ./tkrzw_rpc/    - package source code
-  ./example/      - sample code for tutorial
 
 This package provides a Python client library to access the service
 via gRPC protocol.  This package is independent of the core library
@@ -32,6 +25,8 @@ To perform the tests, run these command on two respective terminals.
 
  tkrzw_server
  make check
+
+See the homepage for details: https://dbmx.net/tkrzw-rpc/
 
 Thanks.
 
