@@ -970,7 +970,7 @@ class Iterator:
     """
     Destructs the iterator.
     """
-    self.request = None
+    self.req_it.request = None
     self.req_it.event.set()
 
   def __repr__(self):
