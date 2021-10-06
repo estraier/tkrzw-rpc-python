@@ -839,7 +839,7 @@ class RemoteDBM:
     :param params: Optional keyword parameters.
     :return: The result status.
 
-    The optional parameters are the same as the Open method.  Omitted tuning parameters are kept the same or implicitly optimized.
+    The optional parameters are the same as the Open method of the local DBM class and the database configurations of the server command.  Omitted tuning parameters are kept the same or implicitly optimized.
 
     In addition, HashDBM, TreeDBM, and SkipDBM supports the following parameters.
       - skip_broken_records (bool): If true, the operation continues even if there are broken records which can be skipped.
