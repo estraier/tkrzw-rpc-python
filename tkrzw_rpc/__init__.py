@@ -591,7 +591,7 @@ class RemoteDBM:
     Sets multiple records of the keyword arguments.
 
     :param overwrite: Whether to overwrite the existing value if there's a record with the same key.  If true, the existing value is overwritten by the new value.  If false, the operation is given up and an error status is returned.
-    :param records: Records to store.
+    :param records: Records to store, specified as keyword parameters.
     :return: The result status.  If there are records avoiding overwriting, DUPLICATION_ERROR is returned.
     """
     if not self.channel:
@@ -836,7 +836,7 @@ class RemoteDBM:
     """
     Rebuilds the entire database.
 
-    :param params: Optional parameters.
+    :param params: Optional keyword parameters.
     :return: The result status.
 
     The optional parameters are the same as the Open method.  Omitted tuning parameters are kept the same or implicitly optimized.
@@ -880,7 +880,7 @@ class RemoteDBM:
     Synchronizes the content of the database to the file system.
 
     :param hard: True to do physical synchronization with the hardware or false to do only logical synchronization with the file system.
-    :param params: Optional parameters.
+    :param params: Optional keyword parameters.
     :return: The result status.
 
     Only SkipDBM uses the optional parameters.  The "merge" parameter specifies paths of databases to merge, separated by colon.  The "reducer" parameter specifies the reducer to apply to records of the same key.  "ReduceToFirst", "ReduceToSecond", "ReduceToLast", etc are supported.
