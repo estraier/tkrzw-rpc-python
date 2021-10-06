@@ -140,6 +140,8 @@ class TestTkrzw(unittest.TestCase):
     self.assertEqual(None, dbm.GetStr("two"))
     self.assertEqual(Status.SUCCESS, dbm.CompareExchangeMulti(    
       [["one", None], ["two", None]], [["one", "first"], ["two", "second"]]))
+    self.assertEqual("first", dbm.GetStr("one"))
+    self.assertEqual("second", dbm.GetStr("two"))
     status = Status(Status.UNKNOWN_ERROR)
     self.assertEqual(105, dbm.Increment("num", 5, 100, status))
     self.assertEqual(Status.SUCCESS, status)
