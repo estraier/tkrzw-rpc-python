@@ -394,6 +394,8 @@ class RemoteDBM:
       ready_future = grpc.channel_ready_future(self.channel)
       while True:
         if time.time() > deadline:
+          self.channel.close()
+          self.channel = None
           return Status(Status.NETWORK_ERROR, "connection timeout")
         try:
           ready_future.result(0.1)
