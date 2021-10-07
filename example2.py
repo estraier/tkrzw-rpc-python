@@ -18,7 +18,7 @@ import tkrzw_rpc
 # Prepares the database.
 # The timeout is in seconds.
 dbm = tkrzw_rpc.RemoteDBM()
-status = dbm.Connect("localhost:1978", timeout=10)
+status = dbm.Connect("localhost:1978", 10)
 if not status.IsOK():
     raise tkrzw_rpc.StatusException(status)
 
