@@ -48,6 +48,41 @@ def main(argv):
   dbm = RemoteDBM()
   dbm.Connect(address).OrDie()
   dbm.Clear().OrDie()
+  class Echoer(threading.Thread):
+    def __init__(self, thid):
+      threading.Thread.__init__(self)
+      self.thid = thid
+    def run(self):
+      rnd_state = random.Random(self.thid)
+      for i in range(0, num_iterations):
+        if is_random:
+          key_num = rnd_state.randint(1, num_iterations * num_threads)
+        else:
+          key_num = self.thid * num_iterations + i
+        key = "{:08d}".format(key_num)
+        status = Status()
+        dbm.Echo(key, status)
+        status.OrDie()
+        seq = i + 1
+        if self.thid == 0 and seq % (num_iterations / 500) == 0:
+          print(".", end="")
+          if seq % (num_iterations / 10) == 0:
+            print(" ({:08d})".format(seq))
+          sys.stdout.flush()
+  print("Echoing:")
+  start_time = time.time()
+  threads = []
+  for thid in range(0, num_threads):
+    th = Echoer(thid)
+    th.start()
+    threads.append(th)
+  for th in threads:
+    th.join()
+  end_time = time.time()
+  elapsed = end_time - start_time
+  print("Echoing done: time={:.3f} qps={:.0f}".format(
+    elapsed, num_iterations * num_threads / elapsed))
+  print("")
   class Setter(threading.Thread):
     def __init__(self, thid):
       threading.Thread.__init__(self)
