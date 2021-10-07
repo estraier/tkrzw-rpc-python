@@ -384,14 +384,14 @@ class RemoteDBM:
     deadline = time.time() + timeout
     try:
       self.channel = grpc.insecure_channel(address)
-      is_failure = False
+      last_conn = grpc.ChannelConnectivity.CONNECTING
       def checker(conn):
-        nonlocal is_failure
-        if (conn == grpc.ChannelConnectivity.TRANSIENT_FAILURE or
-            conn == grpc.ChannelConnectivity.SHUTDOWN):
-          is_failure = True
+        nonlocal last_conn
+        last_conn = conn
       self.channel.subscribe(checker, True)
       ready_future = grpc.channel_ready_future(self.channel)
+      max_failures = 3
+      num_failures = 0
       while True:
         if time.time() > deadline:
           self.channel.close()
@@ -402,7 +402,13 @@ class RemoteDBM:
           break
         except grpc.FutureTimeoutError:
           pass
-        if is_failure:
+        if last_conn == grpc.ChannelConnectivity.TRANSIENT_FAILURE:
+          num_failures += 1
+        if last_conn == grpc.ChannelConnectivity.SHUTDOWN:
+          num_failures = max_failures
+        if num_failures >= max_failures:
+          self.channel.close()
+          self.channel = None
           return Status(Status.NETWORK_ERROR, "connection failed")
       self.stub = tkrzw_rpc_pb2_grpc.DBMServiceStub(self.channel)
     except grpc.RpcError as error:
