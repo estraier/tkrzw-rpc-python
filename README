@@ -15,7 +15,7 @@ the official document.  Python 3.6 or later is required to use this
 package.
 
 Enter the directory of the extracted package then perform installation.
-If your system has the another command except for the "python3"
+If your system has another command except for the "python3"
 command, edit the Makefile beforehand.  Then, run these commands.
 
  make
