@@ -476,6 +476,8 @@ class RemoteDBM:
     Inspects the database.
 
     :return: A map of property names and their values.
+
+    If the DBM index is negative, basic metadata of all DBMs are obtained.
     """
     result = {}
     if not self.channel:
