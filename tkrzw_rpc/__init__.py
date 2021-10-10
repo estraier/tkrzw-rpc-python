@@ -893,7 +893,7 @@ class RemoteDBM:
     :param params: Optional keyword parameters.
     :return: The result status.
 
-    Only SkipDBM uses the optional parameters.  The "merge" parameter specifies paths of databases to merge, separated by colon.  The "reducer" parameter specifies the reducer to apply to records of the same key.  "ReduceToFirst", "ReduceToSecond", "ReduceToLast", etc are supported.
+    The "reducer" parameter specifies the reducer for SkipDBM.  "ReduceToFirst", "ReduceToSecond", "ReduceToLast", etc are supported.  If the parameter "make_backup" exists, a backup file is created in the same directory as the database file.  The backup file name has a date suffix in GMT, like ".backup.20210831213749".  If the value of "make_backup" not empty, it is the value is used as the suffix.
     """
     if not self.channel:
       return Status(Status.PRECONDITION_ERROR, "not opened connection")
