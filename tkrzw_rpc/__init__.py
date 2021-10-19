@@ -794,18 +794,86 @@ class RemoteDBM:
       return Status(Status.NETWORK_ERROR, _StrGRPCError(error))
     return _MakeStatusFromProto(response.status)
 
-  def Clear(self):
+  def Rekey(old_key, new_key, overwrite=True, copying=False):
     """
-    Removes all records.
+    Changes the key of a record.
 
-    :return: The result status.
+    :param old_key: The old key of the record.
+    :param new_key: The new key of the record.
+    :param overwrite: Whether to overwrite the existing record of the new key.
+    :param copying: Whether to retain the record of the old key.
+
+    :return: The result status.  If there's no matching record to the old key, NOT_FOUND_ERROR is returned.  If the overwrite flag is false and there is an existing record of the new key, DUPLICATION ERROR is returned.
+
+    This method is done atomically.  The other threads observe that the record has either the old key or the new key.  No intermediate states are observed.
     """
     if not self.channel:
       return Status(Status.PRECONDITION_ERROR, "not opened connection")
-    request = tkrzw_rpc_pb2.ClearRequest()
+    request = tkrzw_rpc_pb2.RekeyRequest()
+    request.dbm_index = self.dbm_index
+    request.old_key = _MakeBytes(old_key)
+    request.new_key = _MakeBytes(new_key)
+    request.overwrite = bool(overwrite)
+    request.copying = bool(copying)
+    try:
+      response = self.stub.Rekey(request, timeout=self.timeout)
+    except grpc.RpcError as error:
+      return Status(Status.NETWORK_ERROR, _StrGRPCError(error))
+    return _MakeStatusFromProto(response.status)
+
+  def PopFirst(self, status=None):
+    """
+    Gets the first record and removes it.
+
+    :param status: A status object to which the result status is assigned.  It can be omitted.
+    :return: A tuple of the bytes key and the bytes value of the first record.  On failure, None is returned.
+    """
+    if not self.channel:
+      if status:
+        status.Set(Status.PRECONDITION_ERROR, "not opened connection")
+      return None
+    request = tkrzw_rpc_pb2.PopFirstRequest()
     request.dbm_index = self.dbm_index
     try:
-      response = self.stub.Clear(request, timeout=self.timeout)
+      response = self.stub.PopFirst(request, timeout=self.timeout)
+    except grpc.RpcError as error:
+      if status:
+        status.Set(Status.NETWORK_ERROR, _StrGRPCError(error))
+      return None
+    if status:
+      _SetStatusFromProto(status, response.status)
+    if response.status.code == Status.SUCCESS:
+      return response.key, response.value
+    return None
+
+  def PopFirstStr(self, status=None):
+    """
+    Gets the first record as strings and removes it.
+
+    :param status: A status object to which the result status is assigned.  It can be omitted.
+    :return: A tuple of the string key and the string value of the first record.  On failure, None is returned.
+    """
+    record = self.PopFirst(status)
+    return None if record == None else (record[0].decode("utf-8"), record[1].decode("utf-8"))
+
+  def PushLast(self, value, wtime=None):
+    """
+    Adds a record with a key of the current timestamp.
+
+    :param value: The value of the record.
+    :param wtime: The current wall time used to generate the key.  If it is None, the system clock is used.
+    :return: The result status.
+
+    The key is generated as an 8-bite big-endian binary string of the timestamp.  If there is an existing record matching the generated key, the key is regenerated and the attempt is repeated until it succeeds.
+    """
+    if not self.channel:
+      return Status(Status.PRECONDITION_ERROR, "not opened connection")
+    request = tkrzw_rpc_pb2.PushLastRequest()
+    request.dbm_index = self.dbm_index
+    request.value = _MakeBytes(value)
+    request.wtime = -1 if wtime == None else wtime
+    try:
+      response = self.stub.PushLast(request, timeout=self.timeout)
     except grpc.RpcError as error:
       return Status(Status.NETWORK_ERROR, _StrGRPCError(error))
     return _MakeStatusFromProto(response.status)
@@ -841,6 +909,22 @@ class RemoteDBM:
     except grpc.RpcError as error:
       return None
     return response.file_size
+
+  def Clear(self):
+    """
+    Removes all records.
+
+    :return: The result status.
+    """
+    if not self.channel:
+      return Status(Status.PRECONDITION_ERROR, "not opened connection")
+    request = tkrzw_rpc_pb2.ClearRequest()
+    request.dbm_index = self.dbm_index
+    try:
+      response = self.stub.Clear(request, timeout=self.timeout)
+    except grpc.RpcError as error:
+      return Status(Status.NETWORK_ERROR, _StrGRPCError(error))
+    return _MakeStatusFromProto(response.status)
 
   def Rebuild(self, **params):
     """
@@ -1322,6 +1406,43 @@ class Iterator:
     except grpc.RpcError as error:
       return Status(Status.NETWORK_ERROR, _StrGRPCError(error))
     return _MakeStatusFromProto(response.status)
+
+  def Step(self, status=None):
+    """
+    Gets the current record and moves the iterator to the next record.
+
+    :param status: A status object to which the result status is assigned.  It can be omitted.
+    :return: A tuple of the bytes key and the bytes value of the current record.  On failure, None is returned.
+    """
+    request = tkrzw_rpc_pb2.IterateRequest()
+    request.dbm_index = self.dbm.dbm_index
+    request.operation = tkrzw_rpc_pb2.IterateRequest.OP_STEP
+    try:
+      self.req_it.request = request
+      self.req_it.event.set()
+      response = self.res_it.__next__()
+      self.req_it.request = None
+    except grpc.RpcError as error:
+      if status:
+        status.Set(Status.NETWORK_ERROR, _StrGRPCError(error))
+      return None
+    if status:
+      _SetStatusFromProto(status, response.status)
+    if response.status.code == Status.SUCCESS:
+      return (response.key, response.value)
+    return None
+
+  def StepStr(self, status=None):
+    """
+    Gets the current record and moves the iterator to the next record, as strings.
+
+    :param status: A status object to which the result status is assigned.  It can be omitted.
+    :return: A tuple of the string key and the string value of the current record.  On failure, None is returned.
+    """
+    record = self.Step(status)
+    if record:
+      return (record[0].decode("utf-8"), record[1].decode("utf-8"))
+    return None
 
 
 # END OF FILE

@@ -80,6 +80,21 @@ class DBMServiceStub(object):
                 request_serializer=tkrzw__rpc__pb2.CompareExchangeMultiRequest.SerializeToString,
                 response_deserializer=tkrzw__rpc__pb2.CompareExchangeMultiResponse.FromString,
                 )
+        self.Rekey = channel.unary_unary(
+                '/tkrzw_rpc.DBMService/Rekey',
+                request_serializer=tkrzw__rpc__pb2.RekeyRequest.SerializeToString,
+                response_deserializer=tkrzw__rpc__pb2.RekeyResponse.FromString,
+                )
+        self.PopFirst = channel.unary_unary(
+                '/tkrzw_rpc.DBMService/PopFirst',
+                request_serializer=tkrzw__rpc__pb2.PopFirstRequest.SerializeToString,
+                response_deserializer=tkrzw__rpc__pb2.PopFirstResponse.FromString,
+                )
+        self.PushLast = channel.unary_unary(
+                '/tkrzw_rpc.DBMService/PushLast',
+                request_serializer=tkrzw__rpc__pb2.PushLastRequest.SerializeToString,
+                response_deserializer=tkrzw__rpc__pb2.PushLastResponse.FromString,
+                )
         self.Count = channel.unary_unary(
                 '/tkrzw_rpc.DBMService/Count',
                 request_serializer=tkrzw__rpc__pb2.CountRequest.SerializeToString,
@@ -219,6 +234,24 @@ class DBMServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def Rekey(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def PopFirst(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def PushLast(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def Count(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -352,6 +385,21 @@ def add_DBMServiceServicer_to_server(servicer, server):
                     servicer.CompareExchangeMulti,
                     request_deserializer=tkrzw__rpc__pb2.CompareExchangeMultiRequest.FromString,
                     response_serializer=tkrzw__rpc__pb2.CompareExchangeMultiResponse.SerializeToString,
+            ),
+            'Rekey': grpc.unary_unary_rpc_method_handler(
+                    servicer.Rekey,
+                    request_deserializer=tkrzw__rpc__pb2.RekeyRequest.FromString,
+                    response_serializer=tkrzw__rpc__pb2.RekeyResponse.SerializeToString,
+            ),
+            'PopFirst': grpc.unary_unary_rpc_method_handler(
+                    servicer.PopFirst,
+                    request_deserializer=tkrzw__rpc__pb2.PopFirstRequest.FromString,
+                    response_serializer=tkrzw__rpc__pb2.PopFirstResponse.SerializeToString,
+            ),
+            'PushLast': grpc.unary_unary_rpc_method_handler(
+                    servicer.PushLast,
+                    request_deserializer=tkrzw__rpc__pb2.PushLastRequest.FromString,
+                    response_serializer=tkrzw__rpc__pb2.PushLastResponse.SerializeToString,
             ),
             'Count': grpc.unary_unary_rpc_method_handler(
                     servicer.Count,
@@ -637,6 +685,57 @@ class DBMService(object):
         return grpc.experimental.unary_unary(request, target, '/tkrzw_rpc.DBMService/CompareExchangeMulti',
             tkrzw__rpc__pb2.CompareExchangeMultiRequest.SerializeToString,
             tkrzw__rpc__pb2.CompareExchangeMultiResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def Rekey(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/tkrzw_rpc.DBMService/Rekey',
+            tkrzw__rpc__pb2.RekeyRequest.SerializeToString,
+            tkrzw__rpc__pb2.RekeyResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def PopFirst(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/tkrzw_rpc.DBMService/PopFirst',
+            tkrzw__rpc__pb2.PopFirstRequest.SerializeToString,
+            tkrzw__rpc__pb2.PopFirstResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def PushLast(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/tkrzw_rpc.DBMService/PushLast',
+            tkrzw__rpc__pb2.PushLastRequest.SerializeToString,
+            tkrzw__rpc__pb2.PushLastResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
