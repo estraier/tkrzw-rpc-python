@@ -821,10 +821,11 @@ class RemoteDBM:
       return Status(Status.NETWORK_ERROR, _StrGRPCError(error))
     return _MakeStatusFromProto(response.status)
 
-  def PopFirst(self, status=None):
+  def PopFirst(self, retry_wait=None, status=None):
     """
     Gets the first record and removes it.
 
+    :param retry_wait: The maximum wait time in seconds before retrying.  If it is None, no retry is done.  If it is positive, retry is done and wait for the notifications of the next update for the time at most.
     :param status: A status object to which the result status is assigned.  It can be omitted.
     :return: A tuple of the bytes key and the bytes value of the first record.  On failure, None is returned.
     """
@@ -834,6 +835,7 @@ class RemoteDBM:
       return None
     request = tkrzw_rpc_pb2.PopFirstRequest()
     request.dbm_index = self.dbm_index
+    request.retry_wait = retry_wait if retry_wait else 0
     try:
       response = self.stub.PopFirst(request, timeout=self.timeout)
     except grpc.RpcError as error:
@@ -846,22 +848,24 @@ class RemoteDBM:
       return response.key, response.value
     return None
 
-  def PopFirstStr(self, status=None):
+  def PopFirstStr(self, retry_wait=None, status=None):
     """
     Gets the first record as strings and removes it.
 
+    :param retry_wait: The maximum wait time in seconds before retrying.  If it is None, no retry is done.  If it is positive, retry is done and wait for the notifications of the next update for the time at most.
     :param status: A status object to which the result status is assigned.  It can be omitted.
     :return: A tuple of the string key and the string value of the first record.  On failure, None is returned.
     """
-    record = self.PopFirst(status)
+    record = self.PopFirst(retry_wait, status)
     return None if record == None else (record[0].decode("utf-8"), record[1].decode("utf-8"))
 
-  def PushLast(self, value, wtime=None):
+  def PushLast(self, value, wtime=None, notify=False):
     """
     Adds a record with a key of the current timestamp.
 
     :param value: The value of the record.
     :param wtime: The current wall time used to generate the key.  If it is None, the system clock is used.
+    :param notify: If true, notification signal is sent.
     :return: The result status.
 
     The key is generated as an 8-bite big-endian binary string of the timestamp.  If there is an existing record matching the generated key, the key is regenerated and the attempt is repeated until it succeeds.
@@ -872,6 +876,7 @@ class RemoteDBM:
     request.dbm_index = self.dbm_index
     request.value = _MakeBytes(value)
     request.wtime = -1 if wtime == None else wtime
+    request.notify = notify
     try:
       response = self.stub.PushLast(request, timeout=self.timeout)
     except grpc.RpcError as error:
