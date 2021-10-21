@@ -857,7 +857,7 @@ class RemoteDBM:
     :return: A tuple of the string key and the string value of the first record.  On failure, None is returned.
     """
     record = self.PopFirst(retry_wait, status)
-    return None if record == None else (record[0].decode("utf-8"), record[1].decode("utf-8"))
+    return None if record == None else (record[0].decode("latin-1"), record[1].decode("utf-8"))
 
   def PushLast(self, value, wtime=None, notify=False):
     """
