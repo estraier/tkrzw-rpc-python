@@ -316,7 +316,7 @@ class RemoteDBM:
     if response.status.code != Status.SUCCESS:
       raise StatusException(_MakeStatusFromProto(response.status))
     if isinstance(key, str):
-      return response.value.decode("utf-8")
+      return response.value.decode("utf-8", "ignore")
     return response.value
 
   def __setitem__(self, key, value):
@@ -528,7 +528,7 @@ class RemoteDBM:
     :return: The string value of the matching record or None on failure.
     """
     value = self.Get(key, status)
-    return None if value == None else value.decode("utf-8")
+    return None if value == None else value.decode("utf-8", "ignore")
 
   def GetMulti(self, *keys):
     """
@@ -571,7 +571,7 @@ class RemoteDBM:
     except grpc.RpcError as error:
       return result
     for record in response.records:
-      result[record.first.decode("utf-8")] = record.second.decode("utf-8")
+      result[record.first.decode("utf-8", "ignore")] = record.second.decode("utf-8", "ignore")
     return result
 
   def Set(self, key, value, overwrite=True):
@@ -857,7 +857,8 @@ class RemoteDBM:
     :return: A tuple of the string key and the string value of the first record.  On failure, None is returned.
     """
     record = self.PopFirst(retry_wait, status)
-    return None if record == None else (record[0].decode("latin-1"), record[1].decode("utf-8"))
+    return None if record == None else (record[0].decode("utf-8", "ignore"),
+                                        record[1].decode("utf-8", "ignore"))
 
   def PushLast(self, value, wtime=None, notify=False):
     """
@@ -1022,7 +1023,7 @@ class RemoteDBM:
       return result
     if response.status.code == Status.SUCCESS:
       for key in response.matched:
-        result.append(key.decode("utf-8"))
+        result.append(key.decode("utf-8", "ignore"))
     return result
 
   def MakeIterator(self):
@@ -1295,7 +1296,7 @@ class Iterator:
     """
     record = self.Get(status)
     if record:
-      return (record[0].decode("utf-8"), record[1].decode("utf-8"))
+      return (record[0].decode("utf-8", "ignore"), record[1].decode("utf-8", "ignore"))
     return None
 
   def GetKey(self, status=None):
@@ -1333,7 +1334,7 @@ class Iterator:
     """
     key = self.GetKey(status)
     if key:
-      return key.decode("utf-8")
+      return key.decode("utf-8", "ignore")
     return None
 
   def GetValue(self, status=None):
@@ -1371,7 +1372,7 @@ class Iterator:
     """
     value = self.GetValue(status)
     if value:
-      return value.decode("utf-8")
+      return value.decode("utf-8", "ignore")
     return None
 
   def Set(self, value):
@@ -1446,7 +1447,7 @@ class Iterator:
     """
     record = self.Step(status)
     if record:
-      return (record[0].decode("utf-8"), record[1].decode("utf-8"))
+      return (record[0].decode("utf-8", "ignore"), record[1].decode("utf-8", "ignore"))
     return None
 
 
