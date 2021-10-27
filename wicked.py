@@ -31,11 +31,13 @@ def main(argv):
     prog="wicked.py", description="Random operation tests.",
     formatter_class=argparse.RawDescriptionHelpFormatter)
   ap.add_argument("--address", default="localhost:1978")
+  ap.add_argument("--auth", default=None)
   ap.add_argument("--iter", type=int, default=10000)
   ap.add_argument("--threads", type=int, default=1)
   ap.add_argument("--random", action='store_true', default=False)
   args = ap.parse_args(argv)
   address = args.address
+  auth_config = args.auth
   num_iterations = args.iter
   num_threads = args.threads
   print("address: {}".format(address))
@@ -43,7 +45,7 @@ def main(argv):
   print("num_threads: {}".format(num_threads))
   print("")
   dbm = RemoteDBM()
-  dbm.Connect(address).OrDie()
+  dbm.Connect(address, None, auth_config).OrDie()
   dbm.Clear().OrDie()
   is_ordered = dbm.Inspect()["class"] in ("TreeDBM", "SkipDBM", "BabyDBM", "StdTreeDBM")
   class Task(threading.Thread):

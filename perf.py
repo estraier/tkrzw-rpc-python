@@ -32,11 +32,13 @@ def main(argv):
     prog="perf.py", description="Performance Checker",
     formatter_class=argparse.RawDescriptionHelpFormatter)
   ap.add_argument("--address", default="localhost:1978")
+  ap.add_argument("--auth", default=None)
   ap.add_argument("--iter", type=int, default=10000)
   ap.add_argument("--threads", type=int, default=1)
   ap.add_argument("--random", action='store_true', default=False)
   args = ap.parse_args(argv)
   address = args.address
+  auth_config = args.auth
   num_iterations = args.iter
   num_threads = args.threads
   is_random = args.random
@@ -46,7 +48,7 @@ def main(argv):
   print("is_random: {}".format(is_random))
   print("")
   dbm = RemoteDBM()
-  dbm.Connect(address).OrDie()
+  dbm.Connect(address, None, auth_config).OrDie()
   dbm.Clear().OrDie()
   class Echoer(threading.Thread):
     def __init__(self, thid):

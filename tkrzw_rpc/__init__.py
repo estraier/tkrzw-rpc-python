@@ -370,12 +370,13 @@ class RemoteDBM:
     it.First()
     return it
 
-  def Connect(self, address, timeout=None):
+  def Connect(self, address, timeout=None, auth_config=None):
     """
     Connects to the server.
 
     :param address: The address or the host name of the server and its port number.  For IPv4 address, it's like "127.0.0.1:1978".  For IPv6, it's like "[::1]:1978".  For UNIX domain sockets, it's like "unix:/path/to/file".
     :param timeout: The timeout in seconds for connection and each operation.  Negative means unlimited.
+    :param auth_config: The authentication configuration.  It it is empty or null, no authentication is done.  If it begins with "ssl:", the SSL authentication is done.  Key-value parameters in "key=value,key=value,..." format comes next.  For SSL, "key", "cert", and "root" parameters specify the paths of the client private key file, the client certificate file, and the root CA certificate file respectively.  SSL is usable only if the Java runtime system supports the TLS and ALPN protocol.
     :return: The result status.
     """
     if self.channel:
@@ -383,7 +384,36 @@ class RemoteDBM:
     timeout = timeout if timeout and timeout >= 0 else 1 << 30
     deadline = time.time() + timeout
     try:
-      self.channel = grpc.insecure_channel(address)
+      if auth_config:
+        if auth_config.startswith("ssl:"):
+          key_path, cert_path, root_path = None, None, None
+          for param in auth_config[4:].split(","):
+            columns = param.split("=")
+            if len(columns) == 2:
+              if (columns[0] == "key"):
+                key_path = columns[1]
+              if (columns[0] == "cert"):
+                cert_path = columns[1]
+              if (columns[0] == "root"):
+                root_path = columns[1]
+          if not key_path:
+            return Status(Status.INVALID_ARGUMENT_ERROR, "client private key unspecified")
+          if not cert_path:
+            return Status(Status.INVALID_ARGUMENT_ERROR, "client certificate unspecified")
+          if not root_path:
+            return Status(Status.INVALID_ARGUMENT_ERROR, "root certificate unspecified")
+          with open(key_path, "rb") as f:
+            key_data = f.read()
+          with open(cert_path, "rb") as f:
+            cert_data = f.read()
+          with open(root_path, "rb") as f:
+            root_data = f.read()
+          credentials = grpc.ssl_channel_credentials(root_data, key_data, cert_data)
+          self.channel = grpc.secure_channel(address, credentials)
+        else:
+          return Status(Status.INVALID_ARGUMENT_ERROR, "unknown authentication mode")
+      else:
+        self.channel = grpc.insecure_channel(address)
       last_conn = grpc.ChannelConnectivity.CONNECTING
       def checker(conn):
         nonlocal last_conn
