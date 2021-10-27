@@ -376,7 +376,7 @@ class RemoteDBM:
 
     :param address: The address or the host name of the server and its port number.  For IPv4 address, it's like "127.0.0.1:1978".  For IPv6, it's like "[::1]:1978".  For UNIX domain sockets, it's like "unix:/path/to/file".
     :param timeout: The timeout in seconds for connection and each operation.  Negative means unlimited.
-    :param auth_config: The authentication configuration.  It it is empty or null, no authentication is done.  If it begins with "ssl:", the SSL authentication is done.  Key-value parameters in "key=value,key=value,..." format comes next.  For SSL, "key", "cert", and "root" parameters specify the paths of the client private key file, the client certificate file, and the root CA certificate file respectively.
+    :param auth_config: The authentication configuration.  It it is empty or None, no authentication is done.  If it begins with "ssl:", the SSL authentication is done.  Key-value parameters in "key=value,key=value,..." format comes next.  For SSL, "key", "cert", and "root" parameters specify the paths of the client private key file, the client certificate file, and the root CA certificate file respectively.
     :return: The result status.
     """
     if self.channel:
