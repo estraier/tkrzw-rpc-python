@@ -1,7 +1,7 @@
 # Makefile for Tkrzw-RPC for Python
 
 PACKAGE = tkrzw-rpc-python
-VERSION = 0.1.2
+VERSION = 0.1.3
 PACKAGEDIR = $(PACKAGE)-$(VERSION)
 PACKAGETGZ = $(PACKAGE)-$(VERSION).tar.gz
 
@@ -72,10 +72,10 @@ apidoc :
 apidocclean :
 	rm -rf api-doc tmp-doc
 
-pbpy : tkrzw_rpc.proto
+protocode : tkrzw_rpc.proto
 	$(PYTHON) -m grpc_tools.protoc -I. --python_out=tkrzw_rpc --grpc_python_out=tkrzw_rpc \
 	  tkrzw_rpc.proto
 
-.PHONY: all clean install uninstall dist distclean check apidoc apidocclean pbpy
+.PHONY: all clean install uninstall dist distclean check apidoc apidocclean protocode
 
 # END OF FILE

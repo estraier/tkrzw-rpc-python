@@ -253,6 +253,9 @@ class RemoteDBM:
   All operations are thread-safe; Multiple threads can access the same database concurrently.  The SetDBMIndex affects all threads so it should be called before the object is shared.  This class implements the iterable protocol so an instance is usable with "for-in" loop.
   """
 
+  ANY_DATA = b"\x00[ANY]\x00"
+  """The special bytes value for no-operation or any data."""
+
   def __init__(self):
     """
     Does nothing especially.
@@ -740,8 +743,8 @@ class RemoteDBM:
     Compares the value of a record and exchanges if the condition meets.
 
     :param key: The key of the record.
-    :param expected: The expected value.  If it is None, no existing record is expected.
-    :param desired: The desired value.  If it is None, the record is to be removed.
+    :param expected: The expected value.  If it is None, no existing record is expected.  If it is ANY_DATA, an existing record with any value is expacted.
+    :param desired: The desired value.  If it is None, the record is to be removed.  If it is ANY_DATA, no update is done.
     :return: The result status.  If the condition doesn't meet, INFEASIBLE_ERROR is returned.
     """
     if not self.channel:
@@ -750,16 +753,63 @@ class RemoteDBM:
     request.dbm_index = self.dbm_index
     request.key = _MakeBytes(key)
     if expected != None:
-      request.expected_existence = True
-      request.expected_value = _MakeBytes(expected)
+      if expected is self.ANY_DATA:
+        request.expected_existence = True
+        request.expect_any_value = True
+      else:
+        request.expected_existence = True
+        request.expected_value = _MakeBytes(expected)
     if desired != None:
-      request.desired_existence = True
-      request.desired_value = _MakeBytes(desired)
+      if desired is self.ANY_DATA:
+        request.desire_no_update = True
+      else:
+        request.desired_existence = True
+        request.desired_value = _MakeBytes(desired)
     try:
       response = self.stub.CompareExchange(request, timeout=self.timeout)
     except grpc.RpcError as error:
       return Status(Status.NETWORK_ERROR, _StrGRPCError(error))
     return _MakeStatusFromProto(response.status)
+
+  def CompareExchangeAndGet(self, key, expected, desired):
+    """
+    Does compare-and-exchange and/or gets the old value of the record.
+
+    :param key: The key of the record.
+    :param expected: The expected value.  If it is None, no existing record is expected.  If it is ANY_DATA, an existing record with any value is expacted.
+    :param desired: The desired value.  If it is None, the record is to be removed.  If it is ANY_DATA, no update is done.
+    :return: A pair of the result status and the.old value of the record.  If the condition doesn't meet, the state is INFEASIBLE_ERROR.  If there's no existing record, the value is None.  If not None, the type of the returned old value is the same as the expected or desired value.
+    """
+    if not self.channel:
+      return [Status(Status.PRECONDITION_ERROR, "not opened connection"), None]
+    request = tkrzw_rpc_pb2.CompareExchangeRequest()
+    request.dbm_index = self.dbm_index
+    request.key = _MakeBytes(key)
+    if expected != None:
+      if expected is self.ANY_DATA:
+        request.expected_existence = True
+        request.expect_any_value = True
+      else:
+        request.expected_existence = True
+        request.expected_value = _MakeBytes(expected)
+    if desired != None:
+      if desired is self.ANY_DATA:
+        request.desire_no_update = True
+      else:
+        request.desired_existence = True
+        request.desired_value = _MakeBytes(desired)
+    request.get_actual = True
+    try:
+      response = self.stub.CompareExchange(request, timeout=self.timeout)
+    except grpc.RpcError as error:
+      return [Status(Status.NETWORK_ERROR, _StrGRPCError(error)), None]
+    actual = None
+    if response.found:
+      if isinstance(expected, str) or isinstance(desired, str):
+        actual = response.actual.decode("utf-8", "replace")
+      else:
+        actual = response.actual
+    return [_MakeStatusFromProto(response.status), actual]
 
   def Increment(self, key, inc=1, init=0, status=None):
     """
@@ -798,7 +848,7 @@ class RemoteDBM:
     """
     Compares the values of records and exchanges if the condition meets.
 
-    :param expected: A sequence of pairs of the record keys and their expected values.  If the value is None, no existing record is expected.
+    :param expected: A sequence of pairs of the record keys and their expected values.  If the value is None, no existing record is expected.  If the value is ANY_DATA, an existing record with any value is expacted.
     :param desired: A sequence of pairs of the record keys and their desired values.  If the value is None, the record is to be removed.
     :return: The result status.  If the condition doesn't meet, INFEASIBLE_ERROR is returned.
     """
@@ -809,7 +859,10 @@ class RemoteDBM:
     for key, value in expected:
       record = request.expected.add()
       record.key = _MakeBytes(key)
-      if value != None:
+      if value is self.ANY_DATA:
+        record.existence = True
+        record.any_value = True
+      elif value != None:
         record.existence = True
         record.value = None if value == None else _MakeBytes(value)
     for key, value in desired:
