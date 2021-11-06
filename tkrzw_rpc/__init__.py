@@ -783,7 +783,7 @@ class RemoteDBM:
     :return: A pair of the result status and the.old value of the record.  If the condition doesn't meet, the state is INFEASIBLE_ERROR.  If there's no existing record, the value is None.  If not None, the type of the returned old value is the same as the expected or desired value.
     """
     if not self.channel:
-      return [Status(Status.PRECONDITION_ERROR, "not opened connection"), None]
+      return (Status(Status.PRECONDITION_ERROR, "not opened connection"), None)
     request = tkrzw_rpc_pb2.CompareExchangeRequest()
     request.dbm_index = self.dbm_index
     request.key = _MakeBytes(key)
@@ -806,14 +806,14 @@ class RemoteDBM:
     try:
       response = self.stub.CompareExchange(request, timeout=self.timeout)
     except grpc.RpcError as error:
-      return [Status(Status.NETWORK_ERROR, _StrGRPCError(error)), None]
+      return (Status(Status.NETWORK_ERROR, _StrGRPCError(error)), None)
     actual = None
     if response.found:
       if isinstance(expected, str) or isinstance(desired, str):
         actual = response.actual.decode("utf-8", "replace")
       else:
         actual = response.actual
-    return [_MakeStatusFromProto(response.status), actual]
+    return (_MakeStatusFromProto(response.status), actual)
 
   def Increment(self, key, inc=1, init=0, status=None):
     """
