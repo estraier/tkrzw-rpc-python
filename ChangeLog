@@ -1,3 +1,9 @@
+2021-11-08  Mikio Hirabayashi  <hirarin@gmail.com>
+
+	- Release: 0.1.4
+
+	- CompareExchangeAndGet becomes CompareExchangeAdvanced.
+
 2021-10-30  Mikio Hirabayashi  <hirarin@gmail.com>
 
 	- Release: 0.1.3

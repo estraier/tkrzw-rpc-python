@@ -771,13 +771,15 @@ class RemoteDBM:
       return Status(Status.NETWORK_ERROR, _StrGRPCError(error))
     return _MakeStatusFromProto(response.status)
 
-  def CompareExchangeAndGet(self, key, expected, desired):
+  def CompareExchangeAdvanced(self, key, expected, desired, retry_wait=None, notify=False):
     """
     Does compare-and-exchange and/or gets the old value of the record.
 
     :param key: The key of the record.
     :param expected: The expected value.  If it is None, no existing record is expected.  If it is ANY_DATA, an existing record with any value is expacted.
     :param desired: The desired value.  If it is None, the record is to be removed.  If it is ANY_DATA, no update is done.
+    :param retry_wait: The maximum wait time in seconds before retrying.  If it is None, no retry is done.  If it is positive, retry is done after waiting for the notifications of the next update for the time at most.
+    :param notify: If true, a notification signal is sent to wake up retrying threads.
     :return: A pair of the result status and the.old value of the record.  If the condition doesn't meet, the state is INFEASIBLE_ERROR.  If there's no existing record, the value is None.  If not None, the type of the returned old value is the same as the expected or desired value.
     """
     if not self.channel:
@@ -799,6 +801,8 @@ class RemoteDBM:
         request.desired_existence = True
         request.desired_value = _MakeBytes(desired)
     request.get_actual = True
+    request.retry_wait = retry_wait if retry_wait else 0
+    request.notify = notify
     try:
       response = self.stub.CompareExchange(request, timeout=self.timeout)
     except grpc.RpcError as error:
@@ -908,7 +912,7 @@ class RemoteDBM:
     """
     Gets the first record and removes it.
 
-    :param retry_wait: The maximum wait time in seconds before retrying.  If it is None, no retry is done.  If it is positive, retry is done and wait for the notifications of the next update for the time at most.
+    :param retry_wait: The maximum wait time in seconds before retrying.  If it is None, no retry is done.  If it is positive, retry is done after waiting for the notifications of the next update for the time at most.
     :param status: A status object to which the result status is assigned.  It can be omitted.
     :return: A tuple of the bytes key and the bytes value of the first record.  On failure, None is returned.
     """
@@ -935,7 +939,7 @@ class RemoteDBM:
     """
     Gets the first record as strings and removes it.
 
-    :param retry_wait: The maximum wait time in seconds before retrying.  If it is None, no retry is done.  If it is positive, retry is done and wait for the notifications of the next update for the time at most.
+    :param retry_wait: The maximum wait time in seconds before retrying.  If it is None, no retry is done.  If it is positive, retry is done after waiting for the notifications of the next update for the time at most.
     :param status: A status object to which the result status is assigned.  It can be omitted.
     :return: A tuple of the string key and the string value of the first record.  On failure, None is returned.
     """

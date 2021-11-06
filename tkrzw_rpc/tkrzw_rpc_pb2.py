@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='tkrzw_rpc.proto',
   package='tkrzw_rpc',
   syntax='proto3',
-  serialized_pb=_b('\n\x0ftkrzw_rpc.proto\x12\ttkrzw_rpc\",\n\x0bStatusProto\x12\x0c\n\x04\x63ode\x18\x01 \x01(\x05\x12\x0f\n\x07message\x18\x02 \x01(\t\"+\n\nStringPair\x12\r\n\x05\x66irst\x18\x01 \x01(\t\x12\x0e\n\x06second\x18\x02 \x01(\t\"*\n\tBytesPair\x12\r\n\x05\x66irst\x18\x01 \x01(\x0c\x12\x0e\n\x06second\x18\x02 \x01(\x0c\"O\n\x0bRecordState\x12\x11\n\texistence\x18\x01 \x01(\x08\x12\x0b\n\x03key\x18\x02 \x01(\x0c\x12\r\n\x05value\x18\x03 \x01(\x0c\x12\x11\n\tany_value\x18\x04 \x01(\x08\"\x1e\n\x0b\x45\x63hoRequest\x12\x0f\n\x07message\x18\x01 \x01(\t\"D\n\x0c\x45\x63hoResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\x12\x0c\n\x04\x65\x63ho\x18\x02 \x01(\t\"#\n\x0eInspectRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\"a\n\x0fInspectResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\x12&\n\x07records\x18\x02 \x03(\x0b\x32\x15.tkrzw_rpc.StringPair\"@\n\nGetRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0b\n\x03key\x18\x02 \x01(\x0c\x12\x12\n\nomit_value\x18\x03 \x01(\x08\"D\n\x0bGetResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\x12\r\n\x05value\x18\x02 \x01(\x0c\"2\n\x0fGetMultiRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0c\n\x04keys\x18\x02 \x03(\x0c\"a\n\x10GetMultiResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\x12%\n\x07records\x18\x02 \x03(\x0b\x32\x14.tkrzw_rpc.BytesPair\"N\n\nSetRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0b\n\x03key\x18\x02 \x01(\x0c\x12\r\n\x05value\x18\x03 \x01(\x0c\x12\x11\n\toverwrite\x18\x04 \x01(\x08\"5\n\x0bSetResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\"^\n\x0fSetMultiRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12%\n\x07records\x18\x02 \x03(\x0b\x32\x14.tkrzw_rpc.BytesPair\x12\x11\n\toverwrite\x18\x03 \x01(\x08\":\n\x10SetMultiResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\"/\n\rRemoveRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0b\n\x03key\x18\x02 \x01(\x0c\"8\n\x0eRemoveResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\"5\n\x12RemoveMultiRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0c\n\x04keys\x18\x02 \x03(\x0c\"=\n\x13RemoveMultiResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\"M\n\rAppendRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0b\n\x03key\x18\x02 \x01(\x0c\x12\r\n\x05value\x18\x03 \x01(\x0c\x12\r\n\x05\x64\x65lim\x18\x04 \x01(\x0c\"8\n\x0e\x41ppendResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\"]\n\x12\x41ppendMultiRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12%\n\x07records\x18\x02 \x03(\x0b\x32\x14.tkrzw_rpc.BytesPair\x12\r\n\x05\x64\x65lim\x18\x03 \x01(\x0c\"=\n\x13\x41ppendMultiResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\"\xe6\x01\n\x16\x43ompareExchangeRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0b\n\x03key\x18\x02 \x01(\x0c\x12\x1a\n\x12\x65xpected_existence\x18\x03 \x01(\x08\x12\x16\n\x0e\x65xpected_value\x18\x04 \x01(\x0c\x12\x18\n\x10\x65xpect_any_value\x18\x05 \x01(\x08\x12\x19\n\x11\x64\x65sired_existence\x18\x06 \x01(\x08\x12\x15\n\rdesired_value\x18\x07 \x01(\x0c\x12\x18\n\x10\x64\x65sire_no_update\x18\x08 \x01(\x08\x12\x12\n\nget_actual\x18\t \x01(\x08\"`\n\x17\x43ompareExchangeResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\x12\x0e\n\x06\x61\x63tual\x18\x02 \x01(\x0c\x12\r\n\x05\x66ound\x18\x03 \x01(\x08\"V\n\x10IncrementRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0b\n\x03key\x18\x02 \x01(\x0c\x12\x11\n\tincrement\x18\x03 \x01(\x03\x12\x0f\n\x07initial\x18\x04 \x01(\x03\"L\n\x11IncrementResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\x12\x0f\n\x07\x63urrent\x18\x02 \x01(\x03\"\x83\x01\n\x1b\x43ompareExchangeMultiRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12(\n\x08\x65xpected\x18\x02 \x03(\x0b\x32\x16.tkrzw_rpc.RecordState\x12\'\n\x07\x64\x65sired\x18\x03 \x03(\x0b\x32\x16.tkrzw_rpc.RecordState\"F\n\x1c\x43ompareExchangeMultiResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\"g\n\x0cRekeyRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0f\n\x07old_key\x18\x02 \x01(\x0c\x12\x0f\n\x07new_key\x18\x03 \x01(\x0c\x12\x11\n\toverwrite\x18\x04 \x01(\x08\x12\x0f\n\x07\x63opying\x18\x05 \x01(\x08\"7\n\rRekeyResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\"^\n\x0fPopFirstRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x10\n\x08omit_key\x18\x02 \x01(\x08\x12\x12\n\nomit_value\x18\x03 \x01(\x08\x12\x12\n\nretry_wait\x18\x04 \x01(\x01\"V\n\x10PopFirstResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\x12\x0b\n\x03key\x18\x02 \x01(\x0c\x12\r\n\x05value\x18\x03 \x01(\x0c\"R\n\x0fPushLastRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\r\n\x05value\x18\x02 \x01(\x0c\x12\r\n\x05wtime\x18\x03 \x01(\x01\x12\x0e\n\x06notify\x18\x04 \x01(\x08\":\n\x10PushLastResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\"!\n\x0c\x43ountRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\"F\n\rCountResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\x12\r\n\x05\x63ount\x18\x02 \x01(\x03\"\'\n\x12GetFileSizeRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\"P\n\x13GetFileSizeResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\x12\x11\n\tfile_size\x18\x02 \x01(\x03\"!\n\x0c\x43learRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\"7\n\rClearResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\"J\n\x0eRebuildRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12%\n\x06params\x18\x02 \x03(\x0b\x32\x15.tkrzw_rpc.StringPair\"9\n\x0fRebuildResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\"+\n\x16ShouldBeRebuiltRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\"O\n\x17ShouldBeRebuiltResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\x12\x0c\n\x04tobe\x18\x02 \x01(\x08\"\\\n\x12SynchronizeRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0c\n\x04hard\x18\x02 \x01(\x08\x12%\n\x06params\x18\x03 \x03(\x0b\x32\x15.tkrzw_rpc.StringPair\"=\n\x13SynchronizeResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\"S\n\rSearchRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0c\n\x04mode\x18\x02 \x01(\t\x12\x0f\n\x07pattern\x18\x03 \x01(\x0c\x12\x10\n\x08\x63\x61pacity\x18\x04 \x01(\x05\"I\n\x0eSearchResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\x12\x0f\n\x07matched\x18\x02 \x03(\x0c\"\xac\x03\n\rStreamRequest\x12.\n\x0c\x65\x63ho_request\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.EchoRequestH\x00\x12,\n\x0bget_request\x18\x02 \x01(\x0b\x32\x15.tkrzw_rpc.GetRequestH\x00\x12,\n\x0bset_request\x18\x03 \x01(\x0b\x32\x15.tkrzw_rpc.SetRequestH\x00\x12\x32\n\x0eremove_request\x18\x04 \x01(\x0b\x32\x18.tkrzw_rpc.RemoveRequestH\x00\x12\x32\n\x0e\x61ppend_request\x18\x05 \x01(\x0b\x32\x18.tkrzw_rpc.AppendRequestH\x00\x12\x45\n\x18\x63ompare_exchange_request\x18\x06 \x01(\x0b\x32!.tkrzw_rpc.CompareExchangeRequestH\x00\x12\x38\n\x11increment_request\x18\x07 \x01(\x0b\x32\x1b.tkrzw_rpc.IncrementRequestH\x00\x12\x15\n\romit_response\x18\x65 \x01(\x08\x42\x0f\n\rrequest_oneof\"\xa5\x03\n\x0eStreamResponse\x12\x30\n\recho_response\x18\x01 \x01(\x0b\x32\x17.tkrzw_rpc.EchoResponseH\x00\x12.\n\x0cget_response\x18\x02 \x01(\x0b\x32\x16.tkrzw_rpc.GetResponseH\x00\x12.\n\x0cset_response\x18\x03 \x01(\x0b\x32\x16.tkrzw_rpc.SetResponseH\x00\x12\x34\n\x0fremove_response\x18\x04 \x01(\x0b\x32\x19.tkrzw_rpc.RemoveResponseH\x00\x12\x34\n\x0f\x61ppend_response\x18\x05 \x01(\x0b\x32\x19.tkrzw_rpc.AppendResponseH\x00\x12G\n\x19\x63ompare_exchange_response\x18\x06 \x01(\x0b\x32\".tkrzw_rpc.CompareExchangeResponseH\x00\x12:\n\x12increment_response\x18\x07 \x01(\x0b\x32\x1c.tkrzw_rpc.IncrementResponseH\x00\x42\x10\n\x0eresponse_oneof\"\xea\x02\n\x0eIterateRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x33\n\toperation\x18\x02 \x01(\x0e\x32 .tkrzw_rpc.IterateRequest.OpType\x12\x0b\n\x03key\x18\x03 \x01(\x0c\x12\r\n\x05value\x18\x04 \x01(\x0c\x12\x16\n\x0ejump_inclusive\x18\x05 \x01(\x08\x12\x10\n\x08omit_key\x18\x06 \x01(\x08\x12\x12\n\nomit_value\x18\x07 \x01(\x08\"\xb5\x01\n\x06OpType\x12\x0b\n\x07OP_NONE\x10\x00\x12\x0c\n\x08OP_FIRST\x10\x01\x12\x0b\n\x07OP_LAST\x10\x02\x12\x0b\n\x07OP_JUMP\x10\x03\x12\x11\n\rOP_JUMP_LOWER\x10\x04\x12\x11\n\rOP_JUMP_UPPER\x10\x05\x12\x0b\n\x07OP_NEXT\x10\x06\x12\x0f\n\x0bOP_PREVIOUS\x10\x07\x12\n\n\x06OP_GET\x10\x08\x12\n\n\x06OP_SET\x10\t\x12\r\n\tOP_REMOVE\x10\n\x12\x0b\n\x07OP_STEP\x10\x0b\"U\n\x0fIterateResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\x12\x0b\n\x03key\x18\x02 \x01(\x0c\x12\r\n\x05value\x18\x03 \x01(\x0c\"O\n\x10ReplicateRequest\x12\x15\n\rmin_timestamp\x18\x01 \x01(\x03\x12\x11\n\tserver_id\x18\x02 \x01(\x05\x12\x11\n\twait_time\x18\x03 \x01(\x01\"\x86\x02\n\x11ReplicateResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\x12\x11\n\ttimestamp\x18\x02 \x01(\x03\x12\x11\n\tserver_id\x18\x03 \x01(\x05\x12\x11\n\tdbm_index\x18\x04 \x01(\x05\x12\x34\n\x07op_type\x18\x05 \x01(\x0e\x32#.tkrzw_rpc.ReplicateResponse.OpType\x12\x0b\n\x03key\x18\x06 \x01(\x0c\x12\r\n\x05value\x18\x07 \x01(\x0c\">\n\x06OpType\x12\x0b\n\x07OP_NOOP\x10\x00\x12\n\n\x06OP_SET\x10\x01\x12\r\n\tOP_REMOVE\x10\x02\x12\x0c\n\x08OP_CLEAR\x10\x03\"=\n\x13\x43hangeMasterRequest\x12\x0e\n\x06master\x18\x01 \x01(\t\x12\x16\n\x0etimestamp_skew\x18\x02 \x01(\x03\">\n\x14\x43hangeMasterResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto2\xfb\x0e\n\nDBMService\x12\x37\n\x04\x45\x63ho\x12\x16.tkrzw_rpc.EchoRequest\x1a\x17.tkrzw_rpc.EchoResponse\x12@\n\x07Inspect\x12\x19.tkrzw_rpc.InspectRequest\x1a\x1a.tkrzw_rpc.InspectResponse\x12\x34\n\x03Get\x12\x15.tkrzw_rpc.GetRequest\x1a\x16.tkrzw_rpc.GetResponse\x12\x43\n\x08GetMulti\x12\x1a.tkrzw_rpc.GetMultiRequest\x1a\x1b.tkrzw_rpc.GetMultiResponse\x12\x34\n\x03Set\x12\x15.tkrzw_rpc.SetRequest\x1a\x16.tkrzw_rpc.SetResponse\x12\x43\n\x08SetMulti\x12\x1a.tkrzw_rpc.SetMultiRequest\x1a\x1b.tkrzw_rpc.SetMultiResponse\x12=\n\x06Remove\x12\x18.tkrzw_rpc.RemoveRequest\x1a\x19.tkrzw_rpc.RemoveResponse\x12L\n\x0bRemoveMulti\x12\x1d.tkrzw_rpc.RemoveMultiRequest\x1a\x1e.tkrzw_rpc.RemoveMultiResponse\x12=\n\x06\x41ppend\x12\x18.tkrzw_rpc.AppendRequest\x1a\x19.tkrzw_rpc.AppendResponse\x12L\n\x0b\x41ppendMulti\x12\x1d.tkrzw_rpc.AppendMultiRequest\x1a\x1e.tkrzw_rpc.AppendMultiResponse\x12X\n\x0f\x43ompareExchange\x12!.tkrzw_rpc.CompareExchangeRequest\x1a\".tkrzw_rpc.CompareExchangeResponse\x12\x46\n\tIncrement\x12\x1b.tkrzw_rpc.IncrementRequest\x1a\x1c.tkrzw_rpc.IncrementResponse\x12g\n\x14\x43ompareExchangeMulti\x12&.tkrzw_rpc.CompareExchangeMultiRequest\x1a\'.tkrzw_rpc.CompareExchangeMultiResponse\x12:\n\x05Rekey\x12\x17.tkrzw_rpc.RekeyRequest\x1a\x18.tkrzw_rpc.RekeyResponse\x12\x43\n\x08PopFirst\x12\x1a.tkrzw_rpc.PopFirstRequest\x1a\x1b.tkrzw_rpc.PopFirstResponse\x12\x43\n\x08PushLast\x12\x1a.tkrzw_rpc.PushLastRequest\x1a\x1b.tkrzw_rpc.PushLastResponse\x12:\n\x05\x43ount\x12\x17.tkrzw_rpc.CountRequest\x1a\x18.tkrzw_rpc.CountResponse\x12L\n\x0bGetFileSize\x12\x1d.tkrzw_rpc.GetFileSizeRequest\x1a\x1e.tkrzw_rpc.GetFileSizeResponse\x12:\n\x05\x43lear\x12\x17.tkrzw_rpc.ClearRequest\x1a\x18.tkrzw_rpc.ClearResponse\x12@\n\x07Rebuild\x12\x19.tkrzw_rpc.RebuildRequest\x1a\x1a.tkrzw_rpc.RebuildResponse\x12X\n\x0fShouldBeRebuilt\x12!.tkrzw_rpc.ShouldBeRebuiltRequest\x1a\".tkrzw_rpc.ShouldBeRebuiltResponse\x12L\n\x0bSynchronize\x12\x1d.tkrzw_rpc.SynchronizeRequest\x1a\x1e.tkrzw_rpc.SynchronizeResponse\x12=\n\x06Search\x12\x18.tkrzw_rpc.SearchRequest\x1a\x19.tkrzw_rpc.SearchResponse\x12\x41\n\x06Stream\x12\x18.tkrzw_rpc.StreamRequest\x1a\x19.tkrzw_rpc.StreamResponse(\x01\x30\x01\x12\x44\n\x07Iterate\x12\x19.tkrzw_rpc.IterateRequest\x1a\x1a.tkrzw_rpc.IterateResponse(\x01\x30\x01\x12H\n\tReplicate\x12\x1b.tkrzw_rpc.ReplicateRequest\x1a\x1c.tkrzw_rpc.ReplicateResponse0\x01\x12O\n\x0c\x43hangeMaster\x12\x1e.tkrzw_rpc.ChangeMasterRequest\x1a\x1f.tkrzw_rpc.ChangeMasterResponseb\x06proto3')
+  serialized_pb=_b('\n\x0ftkrzw_rpc.proto\x12\ttkrzw_rpc\",\n\x0bStatusProto\x12\x0c\n\x04\x63ode\x18\x01 \x01(\x05\x12\x0f\n\x07message\x18\x02 \x01(\t\"+\n\nStringPair\x12\r\n\x05\x66irst\x18\x01 \x01(\t\x12\x0e\n\x06second\x18\x02 \x01(\t\"*\n\tBytesPair\x12\r\n\x05\x66irst\x18\x01 \x01(\x0c\x12\x0e\n\x06second\x18\x02 \x01(\x0c\"O\n\x0bRecordState\x12\x11\n\texistence\x18\x01 \x01(\x08\x12\x0b\n\x03key\x18\x02 \x01(\x0c\x12\r\n\x05value\x18\x03 \x01(\x0c\x12\x11\n\tany_value\x18\x04 \x01(\x08\"\x1e\n\x0b\x45\x63hoRequest\x12\x0f\n\x07message\x18\x01 \x01(\t\"D\n\x0c\x45\x63hoResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\x12\x0c\n\x04\x65\x63ho\x18\x02 \x01(\t\"#\n\x0eInspectRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\"a\n\x0fInspectResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\x12&\n\x07records\x18\x02 \x03(\x0b\x32\x15.tkrzw_rpc.StringPair\"@\n\nGetRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0b\n\x03key\x18\x02 \x01(\x0c\x12\x12\n\nomit_value\x18\x03 \x01(\x08\"D\n\x0bGetResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\x12\r\n\x05value\x18\x02 \x01(\x0c\"2\n\x0fGetMultiRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0c\n\x04keys\x18\x02 \x03(\x0c\"a\n\x10GetMultiResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\x12%\n\x07records\x18\x02 \x03(\x0b\x32\x14.tkrzw_rpc.BytesPair\"N\n\nSetRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0b\n\x03key\x18\x02 \x01(\x0c\x12\r\n\x05value\x18\x03 \x01(\x0c\x12\x11\n\toverwrite\x18\x04 \x01(\x08\"5\n\x0bSetResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\"^\n\x0fSetMultiRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12%\n\x07records\x18\x02 \x03(\x0b\x32\x14.tkrzw_rpc.BytesPair\x12\x11\n\toverwrite\x18\x03 \x01(\x08\":\n\x10SetMultiResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\"/\n\rRemoveRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0b\n\x03key\x18\x02 \x01(\x0c\"8\n\x0eRemoveResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\"5\n\x12RemoveMultiRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0c\n\x04keys\x18\x02 \x03(\x0c\"=\n\x13RemoveMultiResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\"M\n\rAppendRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0b\n\x03key\x18\x02 \x01(\x0c\x12\r\n\x05value\x18\x03 \x01(\x0c\x12\r\n\x05\x64\x65lim\x18\x04 \x01(\x0c\"8\n\x0e\x41ppendResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\"]\n\x12\x41ppendMultiRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12%\n\x07records\x18\x02 \x03(\x0b\x32\x14.tkrzw_rpc.BytesPair\x12\r\n\x05\x64\x65lim\x18\x03 \x01(\x0c\"=\n\x13\x41ppendMultiResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\"\x8a\x02\n\x16\x43ompareExchangeRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0b\n\x03key\x18\x02 \x01(\x0c\x12\x1a\n\x12\x65xpected_existence\x18\x03 \x01(\x08\x12\x16\n\x0e\x65xpected_value\x18\x04 \x01(\x0c\x12\x18\n\x10\x65xpect_any_value\x18\x05 \x01(\x08\x12\x19\n\x11\x64\x65sired_existence\x18\x06 \x01(\x08\x12\x15\n\rdesired_value\x18\x07 \x01(\x0c\x12\x18\n\x10\x64\x65sire_no_update\x18\x08 \x01(\x08\x12\x12\n\nget_actual\x18\t \x01(\x08\x12\x12\n\nretry_wait\x18\n \x01(\x01\x12\x0e\n\x06notify\x18\x0b \x01(\x08\"`\n\x17\x43ompareExchangeResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\x12\x0e\n\x06\x61\x63tual\x18\x02 \x01(\x0c\x12\r\n\x05\x66ound\x18\x03 \x01(\x08\"V\n\x10IncrementRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0b\n\x03key\x18\x02 \x01(\x0c\x12\x11\n\tincrement\x18\x03 \x01(\x03\x12\x0f\n\x07initial\x18\x04 \x01(\x03\"L\n\x11IncrementResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\x12\x0f\n\x07\x63urrent\x18\x02 \x01(\x03\"\x83\x01\n\x1b\x43ompareExchangeMultiRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12(\n\x08\x65xpected\x18\x02 \x03(\x0b\x32\x16.tkrzw_rpc.RecordState\x12\'\n\x07\x64\x65sired\x18\x03 \x03(\x0b\x32\x16.tkrzw_rpc.RecordState\"F\n\x1c\x43ompareExchangeMultiResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\"g\n\x0cRekeyRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0f\n\x07old_key\x18\x02 \x01(\x0c\x12\x0f\n\x07new_key\x18\x03 \x01(\x0c\x12\x11\n\toverwrite\x18\x04 \x01(\x08\x12\x0f\n\x07\x63opying\x18\x05 \x01(\x08\"7\n\rRekeyResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\"^\n\x0fPopFirstRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x10\n\x08omit_key\x18\x02 \x01(\x08\x12\x12\n\nomit_value\x18\x03 \x01(\x08\x12\x12\n\nretry_wait\x18\x04 \x01(\x01\"V\n\x10PopFirstResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\x12\x0b\n\x03key\x18\x02 \x01(\x0c\x12\r\n\x05value\x18\x03 \x01(\x0c\"R\n\x0fPushLastRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\r\n\x05value\x18\x02 \x01(\x0c\x12\r\n\x05wtime\x18\x03 \x01(\x01\x12\x0e\n\x06notify\x18\x04 \x01(\x08\":\n\x10PushLastResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\"!\n\x0c\x43ountRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\"F\n\rCountResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\x12\r\n\x05\x63ount\x18\x02 \x01(\x03\"\'\n\x12GetFileSizeRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\"P\n\x13GetFileSizeResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\x12\x11\n\tfile_size\x18\x02 \x01(\x03\"!\n\x0c\x43learRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\"7\n\rClearResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\"J\n\x0eRebuildRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12%\n\x06params\x18\x02 \x03(\x0b\x32\x15.tkrzw_rpc.StringPair\"9\n\x0fRebuildResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\"+\n\x16ShouldBeRebuiltRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\"O\n\x17ShouldBeRebuiltResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\x12\x0c\n\x04tobe\x18\x02 \x01(\x08\"\\\n\x12SynchronizeRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0c\n\x04hard\x18\x02 \x01(\x08\x12%\n\x06params\x18\x03 \x03(\x0b\x32\x15.tkrzw_rpc.StringPair\"=\n\x13SynchronizeResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\"S\n\rSearchRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x0c\n\x04mode\x18\x02 \x01(\t\x12\x0f\n\x07pattern\x18\x03 \x01(\x0c\x12\x10\n\x08\x63\x61pacity\x18\x04 \x01(\x05\"I\n\x0eSearchResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\x12\x0f\n\x07matched\x18\x02 \x03(\x0c\"\xac\x03\n\rStreamRequest\x12.\n\x0c\x65\x63ho_request\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.EchoRequestH\x00\x12,\n\x0bget_request\x18\x02 \x01(\x0b\x32\x15.tkrzw_rpc.GetRequestH\x00\x12,\n\x0bset_request\x18\x03 \x01(\x0b\x32\x15.tkrzw_rpc.SetRequestH\x00\x12\x32\n\x0eremove_request\x18\x04 \x01(\x0b\x32\x18.tkrzw_rpc.RemoveRequestH\x00\x12\x32\n\x0e\x61ppend_request\x18\x05 \x01(\x0b\x32\x18.tkrzw_rpc.AppendRequestH\x00\x12\x45\n\x18\x63ompare_exchange_request\x18\x06 \x01(\x0b\x32!.tkrzw_rpc.CompareExchangeRequestH\x00\x12\x38\n\x11increment_request\x18\x07 \x01(\x0b\x32\x1b.tkrzw_rpc.IncrementRequestH\x00\x12\x15\n\romit_response\x18\x65 \x01(\x08\x42\x0f\n\rrequest_oneof\"\xa5\x03\n\x0eStreamResponse\x12\x30\n\recho_response\x18\x01 \x01(\x0b\x32\x17.tkrzw_rpc.EchoResponseH\x00\x12.\n\x0cget_response\x18\x02 \x01(\x0b\x32\x16.tkrzw_rpc.GetResponseH\x00\x12.\n\x0cset_response\x18\x03 \x01(\x0b\x32\x16.tkrzw_rpc.SetResponseH\x00\x12\x34\n\x0fremove_response\x18\x04 \x01(\x0b\x32\x19.tkrzw_rpc.RemoveResponseH\x00\x12\x34\n\x0f\x61ppend_response\x18\x05 \x01(\x0b\x32\x19.tkrzw_rpc.AppendResponseH\x00\x12G\n\x19\x63ompare_exchange_response\x18\x06 \x01(\x0b\x32\".tkrzw_rpc.CompareExchangeResponseH\x00\x12:\n\x12increment_response\x18\x07 \x01(\x0b\x32\x1c.tkrzw_rpc.IncrementResponseH\x00\x42\x10\n\x0eresponse_oneof\"\xea\x02\n\x0eIterateRequest\x12\x11\n\tdbm_index\x18\x01 \x01(\x05\x12\x33\n\toperation\x18\x02 \x01(\x0e\x32 .tkrzw_rpc.IterateRequest.OpType\x12\x0b\n\x03key\x18\x03 \x01(\x0c\x12\r\n\x05value\x18\x04 \x01(\x0c\x12\x16\n\x0ejump_inclusive\x18\x05 \x01(\x08\x12\x10\n\x08omit_key\x18\x06 \x01(\x08\x12\x12\n\nomit_value\x18\x07 \x01(\x08\"\xb5\x01\n\x06OpType\x12\x0b\n\x07OP_NONE\x10\x00\x12\x0c\n\x08OP_FIRST\x10\x01\x12\x0b\n\x07OP_LAST\x10\x02\x12\x0b\n\x07OP_JUMP\x10\x03\x12\x11\n\rOP_JUMP_LOWER\x10\x04\x12\x11\n\rOP_JUMP_UPPER\x10\x05\x12\x0b\n\x07OP_NEXT\x10\x06\x12\x0f\n\x0bOP_PREVIOUS\x10\x07\x12\n\n\x06OP_GET\x10\x08\x12\n\n\x06OP_SET\x10\t\x12\r\n\tOP_REMOVE\x10\n\x12\x0b\n\x07OP_STEP\x10\x0b\"U\n\x0fIterateResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\x12\x0b\n\x03key\x18\x02 \x01(\x0c\x12\r\n\x05value\x18\x03 \x01(\x0c\"O\n\x10ReplicateRequest\x12\x15\n\rmin_timestamp\x18\x01 \x01(\x03\x12\x11\n\tserver_id\x18\x02 \x01(\x05\x12\x11\n\twait_time\x18\x03 \x01(\x01\"\x86\x02\n\x11ReplicateResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto\x12\x11\n\ttimestamp\x18\x02 \x01(\x03\x12\x11\n\tserver_id\x18\x03 \x01(\x05\x12\x11\n\tdbm_index\x18\x04 \x01(\x05\x12\x34\n\x07op_type\x18\x05 \x01(\x0e\x32#.tkrzw_rpc.ReplicateResponse.OpType\x12\x0b\n\x03key\x18\x06 \x01(\x0c\x12\r\n\x05value\x18\x07 \x01(\x0c\">\n\x06OpType\x12\x0b\n\x07OP_NOOP\x10\x00\x12\n\n\x06OP_SET\x10\x01\x12\r\n\tOP_REMOVE\x10\x02\x12\x0c\n\x08OP_CLEAR\x10\x03\"=\n\x13\x43hangeMasterRequest\x12\x0e\n\x06master\x18\x01 \x01(\t\x12\x16\n\x0etimestamp_skew\x18\x02 \x01(\x03\">\n\x14\x43hangeMasterResponse\x12&\n\x06status\x18\x01 \x01(\x0b\x32\x16.tkrzw_rpc.StatusProto2\xfb\x0e\n\nDBMService\x12\x37\n\x04\x45\x63ho\x12\x16.tkrzw_rpc.EchoRequest\x1a\x17.tkrzw_rpc.EchoResponse\x12@\n\x07Inspect\x12\x19.tkrzw_rpc.InspectRequest\x1a\x1a.tkrzw_rpc.InspectResponse\x12\x34\n\x03Get\x12\x15.tkrzw_rpc.GetRequest\x1a\x16.tkrzw_rpc.GetResponse\x12\x43\n\x08GetMulti\x12\x1a.tkrzw_rpc.GetMultiRequest\x1a\x1b.tkrzw_rpc.GetMultiResponse\x12\x34\n\x03Set\x12\x15.tkrzw_rpc.SetRequest\x1a\x16.tkrzw_rpc.SetResponse\x12\x43\n\x08SetMulti\x12\x1a.tkrzw_rpc.SetMultiRequest\x1a\x1b.tkrzw_rpc.SetMultiResponse\x12=\n\x06Remove\x12\x18.tkrzw_rpc.RemoveRequest\x1a\x19.tkrzw_rpc.RemoveResponse\x12L\n\x0bRemoveMulti\x12\x1d.tkrzw_rpc.RemoveMultiRequest\x1a\x1e.tkrzw_rpc.RemoveMultiResponse\x12=\n\x06\x41ppend\x12\x18.tkrzw_rpc.AppendRequest\x1a\x19.tkrzw_rpc.AppendResponse\x12L\n\x0b\x41ppendMulti\x12\x1d.tkrzw_rpc.AppendMultiRequest\x1a\x1e.tkrzw_rpc.AppendMultiResponse\x12X\n\x0f\x43ompareExchange\x12!.tkrzw_rpc.CompareExchangeRequest\x1a\".tkrzw_rpc.CompareExchangeResponse\x12\x46\n\tIncrement\x12\x1b.tkrzw_rpc.IncrementRequest\x1a\x1c.tkrzw_rpc.IncrementResponse\x12g\n\x14\x43ompareExchangeMulti\x12&.tkrzw_rpc.CompareExchangeMultiRequest\x1a\'.tkrzw_rpc.CompareExchangeMultiResponse\x12:\n\x05Rekey\x12\x17.tkrzw_rpc.RekeyRequest\x1a\x18.tkrzw_rpc.RekeyResponse\x12\x43\n\x08PopFirst\x12\x1a.tkrzw_rpc.PopFirstRequest\x1a\x1b.tkrzw_rpc.PopFirstResponse\x12\x43\n\x08PushLast\x12\x1a.tkrzw_rpc.PushLastRequest\x1a\x1b.tkrzw_rpc.PushLastResponse\x12:\n\x05\x43ount\x12\x17.tkrzw_rpc.CountRequest\x1a\x18.tkrzw_rpc.CountResponse\x12L\n\x0bGetFileSize\x12\x1d.tkrzw_rpc.GetFileSizeRequest\x1a\x1e.tkrzw_rpc.GetFileSizeResponse\x12:\n\x05\x43lear\x12\x17.tkrzw_rpc.ClearRequest\x1a\x18.tkrzw_rpc.ClearResponse\x12@\n\x07Rebuild\x12\x19.tkrzw_rpc.RebuildRequest\x1a\x1a.tkrzw_rpc.RebuildResponse\x12X\n\x0fShouldBeRebuilt\x12!.tkrzw_rpc.ShouldBeRebuiltRequest\x1a\".tkrzw_rpc.ShouldBeRebuiltResponse\x12L\n\x0bSynchronize\x12\x1d.tkrzw_rpc.SynchronizeRequest\x1a\x1e.tkrzw_rpc.SynchronizeResponse\x12=\n\x06Search\x12\x18.tkrzw_rpc.SearchRequest\x1a\x19.tkrzw_rpc.SearchResponse\x12\x41\n\x06Stream\x12\x18.tkrzw_rpc.StreamRequest\x1a\x19.tkrzw_rpc.StreamResponse(\x01\x30\x01\x12\x44\n\x07Iterate\x12\x19.tkrzw_rpc.IterateRequest\x1a\x1a.tkrzw_rpc.IterateResponse(\x01\x30\x01\x12H\n\tReplicate\x12\x1b.tkrzw_rpc.ReplicateRequest\x1a\x1c.tkrzw_rpc.ReplicateResponse0\x01\x12O\n\x0c\x43hangeMaster\x12\x1e.tkrzw_rpc.ChangeMasterRequest\x1a\x1f.tkrzw_rpc.ChangeMasterResponseb\x06proto3')
 )
 
 
@@ -81,8 +81,8 @@ _ITERATEREQUEST_OPTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=4712,
-  serialized_end=4893,
+  serialized_start=4748,
+  serialized_end=4929,
 )
 _sym_db.RegisterEnumDescriptor(_ITERATEREQUEST_OPTYPE)
 
@@ -111,8 +111,8 @@ _REPLICATERESPONSE_OPTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=5264,
-  serialized_end=5326,
+  serialized_start=5300,
+  serialized_end=5362,
 )
 _sym_db.RegisterEnumDescriptor(_REPLICATERESPONSE_OPTYPE)
 
@@ -1106,6 +1106,20 @@ _COMPAREEXCHANGEREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='retry_wait', full_name='tkrzw_rpc.CompareExchangeRequest.retry_wait', index=9,
+      number=10, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='notify', full_name='tkrzw_rpc.CompareExchangeRequest.notify', index=10,
+      number=11, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -1119,7 +1133,7 @@ _COMPAREEXCHANGEREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=1583,
-  serialized_end=1813,
+  serialized_end=1849,
 )
 
 
@@ -1163,8 +1177,8 @@ _COMPAREEXCHANGERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1815,
-  serialized_end=1911,
+  serialized_start=1851,
+  serialized_end=1947,
 )
 
 
@@ -1215,8 +1229,8 @@ _INCREMENTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1913,
-  serialized_end=1999,
+  serialized_start=1949,
+  serialized_end=2035,
 )
 
 
@@ -1253,8 +1267,8 @@ _INCREMENTRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2001,
-  serialized_end=2077,
+  serialized_start=2037,
+  serialized_end=2113,
 )
 
 
@@ -1298,8 +1312,8 @@ _COMPAREEXCHANGEMULTIREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2080,
-  serialized_end=2211,
+  serialized_start=2116,
+  serialized_end=2247,
 )
 
 
@@ -1329,8 +1343,8 @@ _COMPAREEXCHANGEMULTIRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2213,
-  serialized_end=2283,
+  serialized_start=2249,
+  serialized_end=2319,
 )
 
 
@@ -1388,8 +1402,8 @@ _REKEYREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2285,
-  serialized_end=2388,
+  serialized_start=2321,
+  serialized_end=2424,
 )
 
 
@@ -1419,8 +1433,8 @@ _REKEYRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2390,
-  serialized_end=2445,
+  serialized_start=2426,
+  serialized_end=2481,
 )
 
 
@@ -1471,8 +1485,8 @@ _POPFIRSTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2447,
-  serialized_end=2541,
+  serialized_start=2483,
+  serialized_end=2577,
 )
 
 
@@ -1516,8 +1530,8 @@ _POPFIRSTRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2543,
-  serialized_end=2629,
+  serialized_start=2579,
+  serialized_end=2665,
 )
 
 
@@ -1568,8 +1582,8 @@ _PUSHLASTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2631,
-  serialized_end=2713,
+  serialized_start=2667,
+  serialized_end=2749,
 )
 
 
@@ -1599,8 +1613,8 @@ _PUSHLASTRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2715,
-  serialized_end=2773,
+  serialized_start=2751,
+  serialized_end=2809,
 )
 
 
@@ -1630,8 +1644,8 @@ _COUNTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2775,
-  serialized_end=2808,
+  serialized_start=2811,
+  serialized_end=2844,
 )
 
 
@@ -1668,8 +1682,8 @@ _COUNTRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2810,
-  serialized_end=2880,
+  serialized_start=2846,
+  serialized_end=2916,
 )
 
 
@@ -1699,8 +1713,8 @@ _GETFILESIZEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2882,
-  serialized_end=2921,
+  serialized_start=2918,
+  serialized_end=2957,
 )
 
 
@@ -1737,8 +1751,8 @@ _GETFILESIZERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2923,
-  serialized_end=3003,
+  serialized_start=2959,
+  serialized_end=3039,
 )
 
 
@@ -1768,8 +1782,8 @@ _CLEARREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3005,
-  serialized_end=3038,
+  serialized_start=3041,
+  serialized_end=3074,
 )
 
 
@@ -1799,8 +1813,8 @@ _CLEARRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3040,
-  serialized_end=3095,
+  serialized_start=3076,
+  serialized_end=3131,
 )
 
 
@@ -1837,8 +1851,8 @@ _REBUILDREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3097,
-  serialized_end=3171,
+  serialized_start=3133,
+  serialized_end=3207,
 )
 
 
@@ -1868,8 +1882,8 @@ _REBUILDRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3173,
-  serialized_end=3230,
+  serialized_start=3209,
+  serialized_end=3266,
 )
 
 
@@ -1899,8 +1913,8 @@ _SHOULDBEREBUILTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3232,
-  serialized_end=3275,
+  serialized_start=3268,
+  serialized_end=3311,
 )
 
 
@@ -1937,8 +1951,8 @@ _SHOULDBEREBUILTRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3277,
-  serialized_end=3356,
+  serialized_start=3313,
+  serialized_end=3392,
 )
 
 
@@ -1982,8 +1996,8 @@ _SYNCHRONIZEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3358,
-  serialized_end=3450,
+  serialized_start=3394,
+  serialized_end=3486,
 )
 
 
@@ -2013,8 +2027,8 @@ _SYNCHRONIZERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3452,
-  serialized_end=3513,
+  serialized_start=3488,
+  serialized_end=3549,
 )
 
 
@@ -2065,8 +2079,8 @@ _SEARCHREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3515,
-  serialized_end=3598,
+  serialized_start=3551,
+  serialized_end=3634,
 )
 
 
@@ -2103,8 +2117,8 @@ _SEARCHRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3600,
-  serialized_end=3673,
+  serialized_start=3636,
+  serialized_end=3709,
 )
 
 
@@ -2186,8 +2200,8 @@ _STREAMREQUEST = _descriptor.Descriptor(
       name='request_oneof', full_name='tkrzw_rpc.StreamRequest.request_oneof',
       index=0, containing_type=None, fields=[]),
   ],
-  serialized_start=3676,
-  serialized_end=4104,
+  serialized_start=3712,
+  serialized_end=4140,
 )
 
 
@@ -2262,8 +2276,8 @@ _STREAMRESPONSE = _descriptor.Descriptor(
       name='response_oneof', full_name='tkrzw_rpc.StreamResponse.response_oneof',
       index=0, containing_type=None, fields=[]),
   ],
-  serialized_start=4107,
-  serialized_end=4528,
+  serialized_start=4143,
+  serialized_end=4564,
 )
 
 
@@ -2336,8 +2350,8 @@ _ITERATEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4531,
-  serialized_end=4893,
+  serialized_start=4567,
+  serialized_end=4929,
 )
 
 
@@ -2381,8 +2395,8 @@ _ITERATERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4895,
-  serialized_end=4980,
+  serialized_start=4931,
+  serialized_end=5016,
 )
 
 
@@ -2426,8 +2440,8 @@ _REPLICATEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4982,
-  serialized_end=5061,
+  serialized_start=5018,
+  serialized_end=5097,
 )
 
 
@@ -2500,8 +2514,8 @@ _REPLICATERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5064,
-  serialized_end=5326,
+  serialized_start=5100,
+  serialized_end=5362,
 )
 
 
@@ -2538,8 +2552,8 @@ _CHANGEMASTERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5328,
-  serialized_end=5389,
+  serialized_start=5364,
+  serialized_end=5425,
 )
 
 
@@ -2569,8 +2583,8 @@ _CHANGEMASTERRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5391,
-  serialized_end=5453,
+  serialized_start=5427,
+  serialized_end=5489,
 )
 
 _ECHORESPONSE.fields_by_name['status'].message_type = _STATUSPROTO
@@ -3141,8 +3155,8 @@ _DBMSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=5456,
-  serialized_end=7371,
+  serialized_start=5492,
+  serialized_end=7407,
   methods=[
   _descriptor.MethodDescriptor(
     name='Echo',
