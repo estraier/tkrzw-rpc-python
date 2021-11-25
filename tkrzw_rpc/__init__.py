@@ -299,6 +299,25 @@ class RemoteDBM:
       return 0
     return response.count
 
+  def __contains__(self, key):
+    """
+    Checks if a record exists or not, to enable the in operator.
+
+    :param key: The key of the record.
+    :return: True if the record exists, or False if not.  No exception is raised for missing records.
+    """
+    if not self.channel:
+      raise StatusException(Status(Status.PRECONDITION_ERROR, "not opened connection"))
+    request = tkrzw_rpc_pb2.GetRequest()
+    request.dbm_index = self.dbm_index
+    request.key = _MakeBytes(key)
+    request.omit_value = True
+    try:
+      response = self.stub.Get(request, timeout=self.timeout)
+    except grpc.RpcError as error:
+      raise StatusException(Status(Status.NETWORK_ERROR, _StrGRPCError(error)))
+    return response.status.code == Status.SUCCESS
+
   def __getitem__(self, key):
     """
     Gets the value of a record, to enable the [] operator.
